@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HARMAN Unified Leadership Framework: Infographics</title>
+<style>
+:root {
+  --bg:      #EDEEF2;
+  --white:   #FFFFFF;
+  --dark:    #0F1222;
+  --muted:   #777;
+  --border:  #E4E5EA;
+  --teal:    #00B8D4;
+  --int:  #0057B8; --int-l: #00B4D8;
+  --inn:  #C24F00; --inn-l: #FF8A2B;
+  --own:  #1A2280; --own-l: #6B7FE0;
+  --tea:  #005C42; --tea-l: #00C896;
+  --cus:  #5C0078; --cus-l: #C970E8;
+}
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+body { font-family:'Segoe UI', system-ui, Arial, sans-serif; background:var(--bg); color:var(--dark); }
+
+/* ── PAGE HEADER ── */
+.pg-hdr { background:var(--dark); color:white; padding:28px 56px; border-bottom:3px solid var(--teal); }
+.pg-hdr h1 { font-size:22px; font-weight:800; letter-spacing:-0.3px; margin-bottom:5px; }
+.pg-hdr p  { font-size:12px; opacity:.55; }
+.draft-pill { display:inline-block; background:#C24F00; color:white; font-size:9px; font-weight:700; letter-spacing:2px; padding:2px 8px; border-radius:10px; margin-left:10px; vertical-align:middle; }
+.ph-note { margin:0 56px; background:#FFF8E7; border-left:3px solid #F0AD4E; padding:10px 16px; font-size:12px; color:#7A5C00; margin-top:16px; border-radius:0 6px 6px 0; }
+
+/* ── SECTION WRAPPER ── */
+.section { background:var(--white); margin:28px 56px; padding:40px 44px; border-radius:14px; box-shadow:0 2px 14px rgba(0,0,0,0.07); }
+.sec-tag { display:inline-block; background:var(--dark); color:white; font-size:9px; font-weight:700; letter-spacing:2.5px; padding:3px 10px; border-radius:4px; margin-bottom:12px; }
+.sec-title { font-size:24px; font-weight:800; margin-bottom:6px; }
+.sec-desc  { font-size:13px; color:var(--muted); margin-bottom:36px; line-height:1.55; }
+.ph { background:#FFF3CD; border:1px dashed #F0AD4E; border-radius:3px; padding:1px 6px; font-size:11px; color:#7A5C00; font-weight:600; }
+footer { text-align:center; padding:32px; color:#AAA; font-size:12px; }
+
+/* ── THEMES ── */
+.theme-list { display:flex; flex-direction:column; gap:0; }
+.theme-item {
+  display:flex; align-items:center; gap:22px;
+  padding:14px 0; border-bottom:1px solid var(--border);
+  cursor:pointer; user-select:none;
+}
+.theme-item:last-child { border-bottom:none; }
+.theme-num {
+  font-size:28px; font-weight:900; line-height:1; flex-shrink:0; width:44px; height:44px;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  border:2.5px solid currentColor; transition:background .2s, color .2s;
+  font-variant-numeric:tabular-nums;
+}
+.theme-item.open .theme-num { color:white !important; }
+.theme-text {
+  font-size:16px; font-weight:600; line-height:1.55; color:var(--dark);
+  max-height:0; overflow:hidden; opacity:0;
+  transition:max-height .4s ease, opacity .35s ease;
+  pointer-events:none;
+}
+.theme-item.open .theme-text { max-height:160px; opacity:1; pointer-events:auto; }
+.theme-hint { font-size:12px; color:var(--muted); margin-bottom:10px; }
+
+/* ══════════════════════════════════════════════════════════
+   CONCEPT B: DATA STORY
+   ══════════════════════════════════════════════════════════ */
+.journey { display:flex; align-items:stretch; gap:0; }
+.j-arrow { display:flex; align-items:center; color:#CCC; font-size:24px; padding:0 2px; flex-shrink:0; font-weight:300; }
+
+.j-step {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  text-align:center; padding:26px 16px; border-radius:14px;
+}
+.j-icon {
+  width:68px; height:68px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px; margin-bottom:14px; flex-shrink:0;
+}
+.j-big { font-size:44px; font-weight:900; line-height:1; margin-bottom:3px; }
+.j-label { font-size:13px; font-weight:700; margin-bottom:8px; }
+.j-detail { font-size:11.5px; color:#666; line-height:1.6; }
+
+.b-totals {
+  display:flex; justify-content:center; gap:60px;
+  margin-top:40px; padding-top:32px; border-top:1px solid var(--border);
+}
+.b-total { text-align:center; }
+.b-total-big { font-size:50px; font-weight:900; line-height:1; color:var(--dark); }
+.b-total-lbl { font-size:12px; color:var(--muted); margin-top:4px; }
+
+/* ══════════════════════════════════════════════════════════
+   CONCEPT C: TWO HORIZONS
+   ══════════════════════════════════════════════════════════ */
+.hz-tl { display:flex; align-items:center; justify-content:center; gap:0; margin-bottom:28px; }
+.hz-tl-item { text-align:center; }
+.hz-tl-yr { font-size:30px; font-weight:900; }
+.hz-tl-lbl { font-size:11px; color:var(--muted); }
+.hz-tl-bar {
+  flex:1; height:3px; margin:0 16px; position:relative;
+  background:linear-gradient(to right, #0057B8, #5C0078);
+  border-radius:2px;
+}
+.hz-tl-bar::after {
+  content:''; position:absolute; right:-6px; top:-4px;
+  border:5px solid transparent; border-left:8px solid #5C0078;
+}
+
+.hz-cols { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+
+.hz-col-h {
+  border-radius:12px 12px 0 0; padding:20px 22px; text-align:center; color:white;
+}
+.hz-col-h h3 { font-size:15px; font-weight:800; margin-bottom:4px; }
+.hz-col-h p  { font-size:11px; opacity:.8; line-height:1.4; }
+
+.hz-col-b {
+  background:#F8F9FC; border:1px solid var(--border); border-top:none;
+  border-radius:0 0 12px 12px; padding:20px 22px;
+}
+.hz-entry { margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #EAEAEA; }
+.hz-entry:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.hz-val { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px; }
+.hz-behavior { font-size:12.5px; font-weight:700; line-height:1.35; color:var(--dark); margin-bottom:2px; }
+.hz-sub { font-size:11px; color:var(--muted); line-height:1.4; font-style:italic; }
+.th-badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; border-radius:8px; padding:1px 6px; margin-left:6px; vertical-align:middle; text-transform:uppercase; }
+.th1b { background:rgba(0,87,184,0.12); color:#0057B8; }
+.th2b { background:rgba(92,0,120,0.12); color:#5C0078; }
+.thbb { background:rgba(0,150,100,0.12); color:#00704A; }
+
+/* ══════════════════════════════════════════════════════════
+   CONCEPT D: STRENGTH & GAP (qualitative, traffic light)
+   ══════════════════════════════════════════════════════════ */
+.d-legend { display:flex; align-items:center; gap:24px; margin-bottom:28px; flex-wrap:wrap; }
+.d-leg-item { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:600; }
+.d-leg-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+.d-sources { font-size:12px; color:var(--muted); background:#F8F9FC; padding:10px 14px; border-radius:8px; border:1px solid var(--border); margin-bottom:28px; }
+.d-sources strong { color:var(--dark); }
+
+.d-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+
+.d-col { border-radius:12px; overflow:hidden; border:1px solid var(--border); }
+
+.d-col-hdr { padding:14px 12px; text-align:center; color:white; }
+.d-col-hdr h3 { font-size:13px; font-weight:800; letter-spacing:0.3px; }
+
+/* RAG indicator */
+.d-rag { display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); }
+.d-rag-dot { width:22px; height:22px; border-radius:50%; flex-shrink:0; box-shadow:0 0 0 3px rgba(0,0,0,0.06); }
+.d-rag-text { font-size:11px; font-weight:700; line-height:1.3; }
+
+.d-sub-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:8px 12px; border-bottom:1px solid #F0F0F0; }
+.d-item { padding:9px 12px; border-bottom:1px solid #F5F5F5; font-size:11px; line-height:1.45; color:#333; }
+.d-item:last-child { border-bottom:none; }
+.d-item-src { font-size:10px; color:#AAA; font-style:italic; margin-top:3px; }
+.str-lbl { color:#1B5E20; }
+.gap-lbl { color:#B22222; }
+.str-bg { background:#F0FFF4; }
+.gap-bg { background:#FFF8F8; }
+
+/* ══ ENTERPRISE SURVEY FINDINGS ══ */
+.sf-completion { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px; }
+.sf-comp-card { background:var(--bg); border-radius:10px; padding:20px 24px; display:flex; align-items:center; gap:18px; }
+.sf-comp-big { font-size:42px; font-weight:900; color:var(--teal); line-height:1; }
+.sf-comp-body {}
+.sf-comp-label { font-size:13px; font-weight:700; margin-bottom:2px; }
+.sf-comp-sub { font-size:11px; color:var(--muted); line-height:1.5; }
+
+.sf-findings { display:flex; flex-direction:column; gap:0; margin-bottom:32px; }
+.sf-finding { display:flex; gap:14px; padding:13px 0; border-bottom:1px solid var(--border); align-items:flex-start; }
+.sf-finding:last-child { border-bottom:none; }
+.sf-finding-dot { width:26px; height:26px; border-radius:50%; background:var(--teal); color:white; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.sf-finding-text { font-size:13px; line-height:1.65; }
+
+.tab-bar { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:28px; overflow-x:auto; flex-wrap:nowrap; }
+.tab-btn { padding:10px 18px; font-size:12px; font-weight:700; cursor:pointer; border:none; background:none; color:var(--muted); border-bottom:3px solid transparent; margin-bottom:-2px; font-family:inherit; white-space:nowrap; transition:color .15s; letter-spacing:.5px; }
+.tab-btn.active { color:var(--teal); border-bottom-color:var(--teal); }
+.tab-btn:hover:not(.active) { color:var(--dark); }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+.sf-collar-hdr { font-size:10px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin:24px 0 14px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.sf-collar-hdr:first-child { margin-top:0; }
+.sf-level-hdr { font-size:12px; font-weight:700; margin:16px 0 10px; color:var(--dark); }
+
+.sf-div-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:16px; }
+.sf-div-grid-2 { grid-template-columns:1fr 1fr; }
+.sf-div-col { background:var(--bg); border-radius:10px; padding:16px 18px; }
+.sf-div-name { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:2px; }
+.sf-div-n { font-size:10px; color:var(--muted); margin-bottom:12px; }
+
+.sf-beh-lbl { font-size:9px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; display:inline-block; padding:2px 7px; border-radius:3px; margin-bottom:6px; }
+.sf-beh-lbl.top { background:#D4EDDA; color:#155724; }
+.sf-beh-lbl.bot { background:#FAE0E0; color:#7A1C1C; }
+.sf-beh-row { display:flex; align-items:flex-start; gap:7px; margin-bottom:5px; line-height:1.35; }
+.vb { width:17px; height:17px; border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:900; color:white; flex-shrink:0; margin-top:1px; }
+.vb-I { background:#0057B8; } .vb-O { background:#1A2280; } .vb-N { background:#C24F00; } .vb-T { background:#005C42; } .vb-C { background:#5C0078; }
+.sf-beh-name { font-size:11.5px; flex:1; }
+.sf-pct { font-size:12px; font-weight:800; flex-shrink:0; min-width:36px; text-align:right; }
+
+.sf-caution { background:#FFF8E7; border-left:3px solid #F0AD4E; padding:12px 16px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:#7A5C00; line-height:1.65; }
+.sf-info { background:#EEF7FF; border-left:3px solid var(--teal); padding:12px 16px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:#003D66; line-height:1.65; }
+.sf-trends { background:#EEF7FF; border-left:3px solid var(--teal); padding:14px 16px 12px; border-radius:0 8px 8px 0; margin:16px 0; }
+.sf-trends-lbl { font-size:9px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(0,184,212,0.18); }
+.sf-trends-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:7px; }
+.sf-trends-list li { font-size:12px; line-height:1.6; color:#003D66; padding-left:16px; position:relative; }
+.sf-trends-list li::before { content:'·'; position:absolute; left:2px; font-weight:900; color:var(--teal); font-size:16px; line-height:1.2; }
+.sf-section-sub { background:#EEF7FF; border-left:3px solid var(--teal); padding:12px 16px; border-radius:0 8px 8px 0; margin:12px 0 16px; font-size:13px; color:#003D66; line-height:1.6; }
+
+.sf-gap-table { width:100%; border-collapse:collapse; font-size:12px; margin-bottom:16px; }
+.sf-gap-table th { text-align:left; padding:8px 10px; background:var(--bg); font-size:9px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+.sf-gap-table td { padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.4; }
+.sf-gap-table .gp { color:#1A6B3A; font-weight:800; }
+.sf-overall-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.sf-overall-card { background:var(--bg); border-radius:10px; padding:18px 20px; }
+.sf-overall-card-title { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+
+
+.sf-finding-headline { font-size:13px; font-weight:800; margin-bottom:4px; color:var(--dark); }
+.sf-finding-body { font-size:12px; line-height:1.65; color:#777; font-weight:400; margin-top:3px; }
+
+
+
+
+</style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="pwGate" style="
+  position:fixed; inset:0; z-index:9999;
+  background:#0F1222;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Tenorite',system-ui,sans-serif;">
+  <div style="
+    background:#1A1F38; border-radius:16px; padding:48px 56px;
+    text-align:center; max-width:400px; width:90%;
+    box-shadow:0 24px 64px rgba(0,0,0,.5);">
+    <div style="font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#00B8D4;margin-bottom:20px;">HARMAN</div>
+    <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;">Leadership Framework</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:36px;">Working team access only</div>
+    <input id="pwInput" type="password" placeholder="Enter password"
+      onkeydown="if(event.key==='Enter')checkPw()"
+      style="
+        width:100%; box-sizing:border-box;
+        padding:12px 16px; border-radius:8px;
+        border:1.5px solid rgba(255,255,255,.12);
+        background:rgba(255,255,255,.07); color:#fff;
+        font-size:14px; font-family:inherit;
+        outline:none; margin-bottom:12px;
+        transition:border-color .2s;">
+    <div id="pwErr" style="font-size:11px;color:#E05C5C;min-height:16px;margin-bottom:12px;display:none;">Incorrect password. Try again.</div>
+    <button onclick="checkPw()" style="
+      width:100%; padding:12px; border-radius:8px; border:none;
+      background:#00B8D4; color:#fff; font-size:13px;
+      font-weight:700; letter-spacing:.5px; cursor:pointer;
+      font-family:inherit; transition:opacity .2s;">
+      Enter
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const k = atob('RnJhbWV3b3JrMjAyNg==');
+  window.checkPw = function() {
+    const v = document.getElementById('pwInput').value;
+    const e = document.getElementById('pwErr');
+    if (v === k) {
+      document.getElementById('pwGate').style.display = 'none';
+      sessionStorage.setItem('hlf_auth','1');
+    } else {
+      e.style.display = 'block';
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwInput').focus();
+    }
+  };
+  if (sessionStorage.getItem('hlf_auth') === '1') {
+    document.getElementById('pwGate').style.display = 'none';
+  }
+})();
+</script>
+
+<!-- PAGE HEADER -->
+<header class="pg-hdr">
+  <h1>HARMAN Unified Leadership Framework</h1>
+  <p>May 2026</p>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════
+     CONCEPT B: HOW WE BUILT THIS
+     ════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="sec-title">How HARMAN built this</div>
+
+  <div class="journey">
+
+    <div class="j-step" style="background:#F8F0FF;">
+      <div class="j-icon" style="background:#5C0078;color:white;">💬</div>
+      <div class="j-big" style="color:#5C0078;">55</div>
+      <div class="j-label" style="color:#5C0078;">Working Sessions</div>
+      <div class="j-detail">
+        3 sessions<br>
+        Cross-hierarchical participation<br>
+        15 business functions · 13 countries
+      </div>
+    </div>
+    <div class="j-arrow">›</div>
+
+    <div class="j-step" style="background:#F0FFF8;">
+      <div class="j-icon" style="background:#005C42;color:white;">🏛</div>
+      <div class="j-big" style="color:#005C42;">80</div>
+      <div class="j-label" style="color:#005C42;">Leadership Forum</div>
+      <div class="j-detail">
+        1 session · March 2026<br>
+        Pressure-tested draft behaviors<br>
+        37 survey responses from session
+      </div>
+    </div>
+    <div class="j-arrow">›</div>
+
+    <div class="j-step" style="background:#FFF8F0;">
+      <div class="j-icon" style="background:#C24F00;color:white;">🔭</div>
+      <div class="j-big" style="color:#C24F00;">63</div>
+      <div class="j-label" style="color:#C24F00;">Future Storming</div>
+      <div class="j-detail">
+        2 sessions: AMER (35) + APAC (28)<br>
+        Future-back thinking<br>
+        92% of behaviors validated
+      </div>
+    </div>
+    <div class="j-arrow">›</div>
+
+    <div class="j-step" style="background:#F0F8FF;">
+      <div class="j-icon" style="background:#0057B8;color:white;">🎙</div>
+      <div class="j-big" style="color:#0057B8;">14</div>
+      <div class="j-label" style="color:#0057B8;">Leaders Interviewed</div>
+      <div class="j-detail">
+        6 SLT · 8 PLT leaders<br>
+        Mix of 1:1 and 2:1 interviews<br>
+        AMER and EMEA represented<br>
+        Raw, unfiltered input
+      </div>
+    </div>
+    <div class="j-arrow">›</div>
+
+    <div class="j-step" style="background:#FFF0F0;">
+      <div class="j-icon" style="background:#B22222;color:white;">📊</div>
+      <div class="j-big" style="color:#B22222;">1,004</div>
+      <div class="j-label" style="color:#B22222;">Enterprise Survey</div>
+      <div class="j-detail">
+        10,594 invited<br>
+        White collar + Blue collar<br>
+        Automotive · Lifestyle · Corporate<br>
+        35 countries
+      </div>
+    </div>
+
+  </div>
+
+  <div class="b-totals">
+    <div class="b-total">
+      <div class="b-total-big">5</div>
+      <div class="b-total-lbl">distinct data sources</div>
+    </div>
+    <div class="b-total">
+      <div class="b-total-big">35</div>
+      <div class="b-total-lbl">countries represented</div>
+    </div>
+    <div class="b-total">
+      <div class="b-total-big">1,200+</div>
+      <div class="b-total-lbl">total participants</div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ════════════════════════════════════════════════════════
+     WHAT WE HEARD: THEMES
+     ════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="sec-title">What we heard: Themes</div>
+  <div class="theme-hint">Click a number to reveal the theme.</div>
+  <div class="theme-list">
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#00B8D4">
+      <div class="theme-num" style="color:#00B8D4">01</div>
+      <div class="theme-text">The framework should challenge, inspire, and move people.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#0057B8">
+      <div class="theme-num" style="color:#0057B8">02</div>
+      <div class="theme-text">Integrity behaviors are the most consistently demonstrated across HARMAN: leaders at all levels practice them and hold others to them.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#1A2280">
+      <div class="theme-num" style="color:#1A2280">03</div>
+      <div class="theme-text">Leaders named ownership behaviors as the most important in the framework, yet see them as the most likely to break down in practice.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#C24F00">
+      <div class="theme-num" style="color:#C24F00">04</div>
+      <div class="theme-text">Innovation is HARMAN's clearest behavioral gap, especially with external orientation.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#00B8D4">
+      <div class="theme-num" style="color:#00B8D4">05</div>
+      <div class="theme-text">Low psychological safety is the shared root of HARMAN's ownership and innovation gaps: people can't take risks or speak up when the environment doesn't support it.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#5C0078">
+      <div class="theme-num" style="color:#5C0078">06</div>
+      <div class="theme-text">Customer value resonates but needs translation for roles without direct customer contact.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#00B8D4">
+      <div class="theme-num" style="color:#00B8D4">07</div>
+      <div class="theme-text">Behaviors will only stick if they align with what gets rewarded.</div>
+    </div>
+    <div class="theme-item" onclick="toggleTheme(this)" data-color="#00B8D4">
+      <div class="theme-num" style="color:#00B8D4">08</div>
+      <div class="theme-text">Across interviews, one condition surfaced consistently: whether senior leaders are visibly going first.</div>
+    </div>
+  </div>
+  <script>
+  function toggleTheme(el) {
+    const isOpen = el.classList.contains('open');
+    el.classList.toggle('open');
+    const num = el.querySelector('.theme-num');
+    const color = el.dataset.color;
+    if (!isOpen) {
+      num.style.background = color;
+      num.style.borderColor = color;
+    } else {
+      num.style.background = '';
+      num.style.borderColor = '';
+    }
+  }
+  </script>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     ENTERPRISE SURVEY FINDINGS
+     ════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="sec-title">Enterprise Survey Findings</div>
+  <div class="sec-desc">Survey data reflects % favorable (respondents who rated a behavior 3–4 on a 4-point criticality scale). White Collar completion: 31.6% (816/2,579 invited). Blue Collar completion: 2.3% (188/8,015 invited).</div>
+
+  <!-- EXEC SUMMARY -->
+  <div style="background:#F4F8FF; border-radius:12px; padding:24px 28px; margin-bottom:32px; border:1px solid #D0E4FF;">
+    <div style="font-size:10px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:#0057B8; margin-bottom:14px;">Executive Summary</div>
+
+    <div style="font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">Key Findings</div>
+    <div class="sf-findings">
+      <div class=sf-finding><div class=sf-finding-dot>1</div><div class=sf-finding-text><div class=sf-finding-headline>The top rated behaviors are internal and execution-focused; the bottom are external and future-facing</div><div class=sf-finding-body>The five highest-rated behaviors are all Integrity and Ownership: internal and execution-focused. The five lowest are all Innovation and externally oriented. The framework is intentionally weighted toward the external, future-facing behaviors HARMAN needs to build.</div></div></div>
+      <div class=sf-finding><div class=sf-finding-dot>2</div><div class=sf-finding-text><div class=sf-finding-headline>Highest-rated behaviors were table stakes and have been removed from the framework</div><div class=sf-finding-body>The highest-rated behaviors (adhering to laws and standards, owning mistakes, treating others with equal respect) were rated critical by 93 to 94% of respondents across every cut of the data. Because these reflect universally held employment expectations rather than differentiating leadership behaviors, they have been removed from the framework.</div></div></div>
+      <div class=sf-finding><div class=sf-finding-dot>3</div><div class=sf-finding-text><div class=sf-finding-headline>Innovation ranked lowest across every cut of the data and all behaviors were kept in the framework</div><div class=sf-finding-body>Innovation behaviors ranked lowest in every cut of the data. Brings outside ideas to HARMAN scored 75% (WC) and 76% (BC), the lowest single behavior in the dataset. The framework retains all innovation behaviors. Low scores signal a capability HARMAN is actively building: that is precisely why they belong here.</div></div></div>
+      <div class=sf-finding><div class=sf-finding-dot>4</div><div class=sf-finding-text><div class=sf-finding-headline>The data validates one unified global framework</div><div class=sf-finding-body>The same behaviors surfaced at the top and bottom across every region, gender, division, and span of control. Variation was in magnitude, not direction. This holds even across divisions: Automotive, Corporate, and Lifestyle all converged on the same top and bottom behaviors. The data supports that a single unified framework can land with credibility across the organization.</div></div></div>
+      <div class=sf-finding><div class=sf-finding-dot>5</div><div class=sf-finding-text><div class=sf-finding-headline>Leaders with more direct reports rate behaviors higher, but prioritize the same ones</div><div class=sf-finding-body>Leaders with 10 or more direct reports rated behaviors 7 to 14 points more favorably than individual contributors, but prioritized the same ones. The largest gaps (questioning the status quo, putting team goals first, sharing information proactively) point to where development should start earlier, not where the framework should differ.</div></div></div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="sfTab(this,'sf-overall')">Overall</button>
+    <button class="tab-btn" onclick="sfTab(this,'sf-wc-bc')">WC vs BC</button>
+    <button class="tab-btn" onclick="sfTab(this,'sf-division')">By Division</button>
+    <button class="tab-btn" onclick="sfTab(this,'sf-region')">By Region &amp; Country</button>
+    <button class="tab-btn" onclick="sfTab(this,'sf-gender')">By Gender</button>
+    <button class="tab-btn" onclick="sfTab(this,'sf-drs')">No. of Direct Reports</button>
+  </div>
+
+  <!-- ── TAB: OVERALL ── -->
+  <div class="tab-panel active" id="sf-overall">
+    <div class="sf-section-sub">Top and bottom rated behaviors combined across all respondents (WC and BC).</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Top 5 Behaviors</div>
+        <div class="sf-beh-lbl top">Highest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws and standards <span style="font-size:10px;color:var(--muted);font-weight:400;">· Self</span></div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes and communicates openly <span style="font-size:10px;color:var(--muted);font-weight:400;">· Self</span></div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Treats others with equal respect <span style="font-size:10px;color:var(--muted);font-weight:400;">· Self</span></div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Takes full responsibility for outcomes <span style="font-size:10px;color:var(--muted);font-weight:400;">· Self</span></div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Speaks up when something is wrong <span style="font-size:10px;color:var(--muted);font-weight:400;">· Teams</span></div><div class="sf-pct">92%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Bottom 5 Behaviors</div>
+        <div class="sf-beh-lbl bot">Lowest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Looks outside HARMAN for new ideas <span style="font-size:10px;color:var(--muted);font-weight:400;">· Self</span></div><div class="sf-pct">75%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools and practices <span style="font-size:10px;color:var(--muted);font-weight:400;">· Teams</span></div><div class="sf-pct">80%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks diverse perspectives <span style="font-size:10px;color:var(--muted);font-weight:400;">· Self</span></div><div class="sf-pct">83%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation <span style="font-size:10px;color:var(--muted);font-weight:400;">· Teams</span></div><div class="sf-pct">83%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates future customer needs <span style="font-size:10px;color:var(--muted);font-weight:400;">· Teams</span></div><div class="sf-pct">83%</div></div>
+      </div>
+    </div>
+    <div class="sf-info" style="margin-top:8px;">Top behaviors are all Integrity and Ownership, inward-facing. Bottom behaviors are all Innovation and externally-facing. The framework should deliberately elevate the external, future-oriented behaviors.</div>
+  </div>
+
+  <!-- ── TAB: WC VS BC ── -->
+  <div class="tab-panel" id="sf-wc-bc">
+    <div class="sf-collar-hdr">White Collar</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Self</div>
+        <div class="sf-beh-lbl top">Highest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws and standards</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes and communicates openly</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Treats others with equal respect</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Lowest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">75%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks diverse perspectives</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Actively seeks customer feedback</div><div class="sf-pct">83%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Teams</div>
+        <div class="sf-beh-lbl top">Highest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Team delivers clear value</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Speaks up when something is wrong</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Lowest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools and tech</div><div class="sf-pct">80%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates future customer needs</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">82%</div></div>
+      </div>
+    </div>
+
+    <div class="sf-collar-hdr" style="margin-top:28px;">Blue Collar</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Self</div>
+        <div class="sf-beh-lbl top">Highest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws and standards</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Acts decisively within scope</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Engages respectfully in interactions</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Lowest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">76%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Raises concerns through channels</div><div class="sf-pct">81%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions long-accepted practices</div><div class="sf-pct">82%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Teams</div>
+        <div class="sf-beh-lbl top">Highest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Invests in developing team members</div><div class="sf-pct">88%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Lowest rated</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools and tech</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Sets clear enterprise priorities</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Maintains direct customer relationships</div><div class="sf-pct">85%</div></div>
+      </div>
+    </div>
+    <div class="sf-info" style="margin-top:8px;"><strong>Consistent signal across both groups:</strong> The same behaviors top and bottom across WC and BC: strong validation for a single unified framework. Variation is in magnitude, not direction.</div>
+  </div>
+
+  <!-- ── TAB: DIVISION ── -->
+  <div class="tab-panel" id="sf-division">
+    <div class="sf-collar-hdr">White Collar by Division</div>
+    <div class="sf-level-hdr">Leader of Self</div>
+    <div class="sf-section-sub">Integrity and Ownership have the highest weighted averages across all divisions, while Innovation had the lowest (82.5% weighted average).</div>
+    <div class="sf-div-grid">
+      <div class="sf-div-col">
+        <div class="sf-div-name">Automotive</div><div class="sf-div-n">n = 473</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Takes full responsibility</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">75%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks diverse perspectives</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Aligns behind team decisions</div><div class="sf-pct">82%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Corporate</div><div class="sf-div-n">n = 28: treat directionally</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Follows through on commitments</div><div class="sf-pct">100%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Speaks up to protect customer</div><div class="sf-pct">100%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">96%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">70%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions long-accepted practices</div><div class="sf-pct">75%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Puts team goals first</div><div class="sf-pct">79%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Lifestyle</div><div class="sf-div-n">n = 315</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Treats others with equal respect</div><div class="sf-pct">95%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">77%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Actively seeks customer feedback</div><div class="sf-pct">81%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks diverse perspectives</div><div class="sf-pct">81%</div></div>
+      </div>
+    </div>
+
+    <div class="sf-level-hdr">Leader of Teams</div>
+    <div class="sf-section-sub">Substantial overlap between Automotive, Corporate, and Lifestyle on both top and bottom behaviors. No critical failures at this level: bottom behaviors are still 77–85%.</div>
+    <div class="sf-div-grid">
+      <div class="sf-div-col">
+        <div class="sf-div-name">Automotive</div><div class="sf-div-n">n = 473</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">81%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">81%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates future customer needs</div><div class="sf-pct">82%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Corporate</div><div class="sf-div-n">n = 28: treat directionally</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">96%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">96%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">96%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">77%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">85%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Shares failures &amp; learnings openly</div><div class="sf-pct">85%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Lifestyle</div><div class="sf-div-n">n = 315</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">79%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates future customer needs</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">83%</div></div>
+      </div>
+    </div>
+    <div class="sf-info">Substantial overlap across all three WC divisions on both top and bottom behaviors. Innovation is the consistent low point regardless of division.</div>
+
+    <div class="sf-collar-hdr" style="margin-top:28px;">Blue Collar by Division</div>
+    <div class="sf-level-hdr">Leader of Self</div>
+    <div class="sf-div-grid sf-div-grid-2">
+      <div class="sf-div-col">
+        <div class="sf-div-name">Automotive</div><div class="sf-div-n">n = 164</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Acts decisively within scope</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Engages respectfully in disagreement</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">79%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Raises concerns through channels</div><div class="sf-pct">83%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions long-accepted practices</div><div class="sf-pct">85%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Lifestyle</div><div class="sf-div-n">n = 24: treat with caution</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">79%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Considers impact on others</div><div class="sf-pct">74%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates near-term customer needs</div><div class="sf-pct">74%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">54%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Takes full responsibility for outcomes</div><div class="sf-pct">58%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Follows through on commitments</div><div class="sf-pct">58%</div></div>
+      </div>
+    </div>
+    <div class="sf-caution"><strong>BC Lifestyle outlier.</strong> BC Lifestyle rated nearly every leadership behavior 20–32 points lower than BC Automotive across all 41 behaviors. The gap is too consistent to be random variance: the highest-rated BC Lifestyle behavior (79%) sits below BC Automotive's lowest (83%). BTS recommendation: validate with HR and the Lifestyle GM leader before presenting this data as actionable. n=24 limits reliability.</div>
+
+    <div class="sf-level-hdr">Leader of Teams</div>
+    <div class="sf-div-grid sf-div-grid-2">
+      <div class="sf-div-col">
+        <div class="sf-div-name">Automotive</div><div class="sf-div-n">n = 164</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Invests in developing people</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Sets priorities &amp; stops low-value work</div><div class="sf-pct">86%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Maintains direct customer relationships</div><div class="sf-pct">87%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Lifestyle</div><div class="sf-div-n">n = 24: treat with caution</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">71%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">71%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Invests in developing people</div><div class="sf-pct">71%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">65%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Shares failures &amp; learnings openly</div><div class="sf-pct">67%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Holds others accountable</div><div class="sf-pct">67%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: REGION ── -->
+  <div class="tab-panel" id="sf-region">
+    <div class="sf-collar-hdr">White Collar by Region</div>
+    <div class="sf-div-grid">
+      <div class="sf-div-col">
+        <div class="sf-div-name">APAC</div><div class="sf-div-n">n = 404 (incl. Australia)</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">95%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions long-accepted practices</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-lbl top" style="margin-top:8px;">Top: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Holds others accountable</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Challenges requests for customer fit</div><div class="sf-pct">86%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">EMEA</div><div class="sf-div-n">n = 183</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Takes full responsibility</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">65%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks out diverse perspectives</div><div class="sf-pct">73%</div></div>
+        <div class="sf-beh-lbl top" style="margin-top:8px;">Top: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates future customer needs</div><div class="sf-pct">72%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">72%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Americas</div><div class="sf-div-n">n = 216</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Follows through on commitments</div><div class="sf-pct">97%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Treats others with equal respect</div><div class="sf-pct">97%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">70%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Actively seeks customer feedback</div><div class="sf-pct">80%</div></div>
+        <div class="sf-beh-lbl top" style="margin-top:8px;">Top: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">97%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">95%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">75%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">78%</div></div>
+      </div>
+    </div>
+    <div class="sf-trends">
+      <div class="sf-trends-lbl">Trends</div>
+      <ul class="sf-trends-list">
+        <li>Regional scores remain broadly consistent at 82–93% favorable — the behavioral pattern holds across geographies.</li>
+        <li>Core integrity behaviors (adheres to laws &amp; standards; creates safety to speak up) are consistently highest and most stable across all three regions.</li>
+        <li>Innovation behaviors rank lowest in every region without exception.</li>
+        <li>EMEA scores lowest overall: Brings outside ideas to HARMAN at 65% is the lowest single regional figure in the WC dataset.</li>
+        <li>APAC and Americas rated customer-centric behaviors as least critical; EMEA did not — the one notable directional difference across regions.</li>
+      </ul>
+    </div>
+
+    <div class="sf-collar-hdr" style="margin-top:28px;">Blue Collar by Country</div>
+    <div class="sf-div-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="sf-div-col">
+        <div class="sf-div-name">China</div><div class="sf-div-n">n = 130</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Engages respectfully</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">80%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Raises concerns through channels</div><div class="sf-pct">83%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Hungary</div><div class="sf-div-n">n = 14: directional only</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">100%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">57%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions how things are done</div><div class="sf-pct">64%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">India</div><div class="sf-div-n">n = 32</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Actively seeks customer feedback</div><div class="sf-pct">87%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Speaks up to protect customer</div><div class="sf-pct">87%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Raises concerns through channels</div><div class="sf-pct">71%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Understands problem before acting</div><div class="sf-pct">72%</div></div>
+      </div>
+      <div class="sf-div-col">
+        <div class="sf-div-name">Mexico</div><div class="sf-div-n">n = 10: directional only</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Understands problem before acting</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Considers decision impact on others</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Considers impact on customer</div><div class="sf-pct">50%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Sets clear priorities under pressure</div><div class="sf-pct">67%</div></div>
+      </div>
+    </div>
+    <div class="sf-caution">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+        <li style="padding-left:14px; position:relative;"><span style="position:absolute; left:0;">·</span>Country scores range from 80–89% favorable.</li>
+        <li style="padding-left:14px; position:relative;"><span style="position:absolute; left:0;">·</span>China (n=130) is the most reliable BC reference point.</li>
+        <li style="padding-left:14px; position:relative;"><span style="position:absolute; left:0;">·</span>Hungary (n=14) and Mexico (n=10) should be treated as directional only: sample sizes are too small to draw reliable conclusions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── TAB: GENDER ── -->
+  <div class="tab-panel" id="sf-gender">
+    <div class="sf-collar-hdr">White Collar</div>
+    <div class="sf-section-sub">Leader of Self: Adheres to laws &amp; standards was rated most critical by men (95%), but didn't make the top 5 for women, who prioritized equal respect and follow-through instead.</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Self: Female (n=246)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Treats others with equal respect</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Follows through on commitments</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">92%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">72%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions long-accepted practices</div><div class="sf-pct">80%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Self: Male (n=562)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">95%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Takes full responsibility</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">77%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks diverse perspectives</div><div class="sf-pct">81%</div></div>
+      </div>
+    </div>
+    <div class="sf-section-sub">Men and women agree on which behaviors matter most for leading teams. They differ only in how they rank them.</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Teams: Female (n=246)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">81%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">83%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Teams: Male (n=562)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Creates safety to speak up</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">94%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">79%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">81%</div></div>
+      </div>
+    </div>
+    <div class="sf-collar-hdr" style="margin-top:28px;">Blue Collar</div>
+    <div class="sf-section-sub">BC men prioritized customer-focused behaviors (89%); BC women rated teamwork and integrity highest.</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Self: Female (n=50)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Engages respectfully in disagreement</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Seeks diverse perspectives</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">88%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Raises concerns through channels</div><div class="sf-pct">72%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">72%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Self: Male (n=138)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to laws &amp; standards</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Speaks up to protect customer</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Actively seeks customer feedback</div><div class="sf-pct">89%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">77%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions long-accepted practices</div><div class="sf-pct">85%</div></div>
+      </div>
+    </div>
+    <div class="sf-section-sub">BC men and women diverge more sharply on leading teams. Men skewed toward innovation and challenge; women toward fairness and accountability. Women rated all behaviors less critical overall (74–88%) than men (84–90%).</div>
+    <div class="sf-overall-grid">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Teams: Female (n=50)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-T">T</div><div class="sf-beh-name">Recognizes contributions fairly</div><div class="sf-pct">88%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Holds others accountable</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Makes decisions transparently</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Shares failures &amp; learnings openly</div><div class="sf-pct">74%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">77%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">Leader of Teams: Male (n=138)</div>
+        <div class="sf-beh-lbl top">Top</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Pushes team to innovation</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Invites challenge &amp; dissent openly</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Anticipates future customer needs</div><div class="sf-pct">90%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:10px;">Bottom</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">84%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-C">C</div><div class="sf-beh-name">Maintains direct customer relationships</div><div class="sf-pct">87%</div></div>
+      </div>
+    </div>
+    <div class="sf-trends">
+      <div class="sf-trends-lbl">Trends</div>
+      <ul class="sf-trends-list">
+        <li>White collar employees largely share a common model of effective leadership regardless of gender: 90%+ overlap on both top and bottom behaviors.</li>
+        <li>Blue collar leadership expectations diverge by gender: BC women rated integrity behaviors highest; BC men prioritized teamwork and customer value.</li>
+        <li>Across all groups, innovation behaviors were rated least critical.</li>
+        <li>Sample sizes differ substantially (WC: men n=562, women n=246; BC: men n=138, women n=50): treat as descriptive trends, not definitive evidence.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── TAB: DIRECT REPORTS ── -->
+  <div class="tab-panel" id="sf-drs">
+    <div class="sf-section-sub">Leaders with 10+ direct reports rate all behaviors more critical. The gap marks what people learn by leading, not which behaviors are more critical.</div>
+    <div style="font-size:11px; color:var(--muted); margin-bottom:16px; margin-top:-8px;">* White Collar only: no direct reports data available for Blue Collar.</div>
+    <div class="sf-overall-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">No Direct Reports (n=366)</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to all laws and standards</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">91%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">73%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions how things are done</div><div class="sf-pct">79%</div></div>
+        <div class="sf-beh-lbl top" style="margin-top:8px;">Top: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Speaks up when something is wrong</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">93%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">78%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Connects innovation to business impact</div><div class="sf-pct">80%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">1–9 Direct Reports (n=373)</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to all laws and standards</div><div class="sf-pct">94.7%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">94.6%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">75.7%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions how things are done</div><div class="sf-pct">82%</div></div>
+        <div class="sf-beh-lbl top" style="margin-top:8px;">Top: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Speaks up when something is wrong</div><div class="sf-pct">94.6%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">94.5%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">78.4%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Connects innovation to business impact</div><div class="sf-pct">82.6%</div></div>
+      </div>
+      <div class="sf-overall-card">
+        <div class="sf-overall-card-title">10+ Direct Reports (n=62)</div>
+        <div class="sf-beh-lbl top">Top: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Adheres to all laws and standards</div><div class="sf-pct">99.2%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Owns mistakes openly</div><div class="sf-pct">98.5%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Self</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings outside ideas to HARMAN</div><div class="sf-pct">80.6%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Questions how things are done</div><div class="sf-pct">91.8%</div></div>
+        <div class="sf-beh-lbl top" style="margin-top:8px;">Top: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-I">I</div><div class="sf-beh-name">Speaks up when something is wrong</div><div class="sf-pct">99.2%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-O">O</div><div class="sf-beh-name">Ensures team delivers clear value</div><div class="sf-pct">98.9%</div></div>
+        <div class="sf-beh-lbl bot" style="margin-top:8px;">Bottom: Teams</div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Brings in emerging tools &amp; practices</div><div class="sf-pct">89.0%</div></div>
+        <div class="sf-beh-row"><div class="vb vb-N">N</div><div class="sf-beh-name">Connects innovation to business impact</div><div class="sf-pct">89.7%</div></div>
+      </div>
+    </div>
+
+    <div class="sf-trends">
+      <div class="sf-trends-lbl">Trends</div>
+      <ul class="sf-trends-list">
+        <li>The same behaviors top and bottom across all three groups: Integrity highest, Innovation lowest. Span of control changes the magnitude, not the pattern.</li>
+        <li>Leaders with more direct reports rate all behaviors more favorably — the largest gaps are on behaviors that become salient through leading: questioning the status quo (+14pt), putting team goals first (+11pt), sharing information proactively (+10pt).</li>
+        <li>This is a development signal, not a framework flaw: these gaps mark what people learn by leading, and point to where development can start earlier.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+  function sfTab(btn, panelId) {
+    btn.closest('.section').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.closest('.section').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+  </script>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     GAP ANALYSIS: BY VALUE
+     ════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="sec-title">Gap Analysis: by Value</div>
+
+  <div class="d-legend">
+    <div class="d-leg-item"><div class="d-leg-dot" style="background:#1B6E2E"></div>Green: practiced consistently, named as a strength</div>
+    <div class="d-leg-item"><div class="d-leg-dot" style="background:#E8A000"></div>Amber: foundation exists, gaps emerge under pressure</div>
+    <div class="d-leg-item"><div class="d-leg-dot" style="background:#B22222"></div>Red: consistently named as the work to be done</div>
+  </div>
+
+  <div class="d-sources">
+    <strong>Qualitative sources:</strong> SLT interviews (6) · PLT interviews (8) · Future Storming AMER + APAC · Leadership Forum · Working sessions &nbsp;·&nbsp; <strong>Quantitative:</strong> Enterprise survey (WC n=816 · BC n=188). Survey data reflects % favorable on criticality: used here as a signal to validate or complicate the qualitative picture.
+  </div>
+
+  <div class="d-grid">
+
+    <!-- ── INTEGRITY ── -->
+    <div class="d-col">
+      <div class="d-col-hdr" style="background:var(--int)"><h3>Integrity</h3></div>
+      <div class="d-rag" style="background:#FFF9E6;">
+        <div class="d-rag-dot" style="background:#E8A000;"></div>
+        <div class="d-rag-text" style="color:#8A5E00;">Amber: foundation strong,<br>gaps under pressure</div>
+      </div>
+      <div class="d-sub-label str-lbl str-bg">✓ Where we lead</div>
+      <div class="d-item str-bg">
+        Leaders named integrity as a genuine strength: compliance, follow-through, and directness are consistent in normal conditions.
+        <div class="d-item-src">Working sessions · SLT interviews</div>
+      </div>
+      <div class="d-item str-bg">
+        When the pressure is external, leaders generally hold the standard.
+        <div class="d-item-src">SLT Interviews</div>
+      </div>
+      <div class="d-item str-bg">
+        Integrity behaviors top the survey rankings: adhering to laws and standards (94% WC, 90% BC) and owning mistakes (93% WC) are the highest-rated behaviors in the dataset.
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+      <div class="d-sub-label gap-lbl gap-bg">✗ Where the work is</div>
+      <div class="d-item gap-bg">
+        Integrity breaks under hierarchy: speaking up to peers and superiors is inconsistent and carries real professional risk.
+        <div class="d-item-src">PLT interviews: "Fear is the mechanism"</div>
+      </div>
+      <div class="d-item gap-bg">
+        Psychological safety is named accurately as a gap at the SLT level: but not yet owned as something leaders must model, not just diagnose.
+        <div class="d-item-src">SLT interviews: "Essentially zero"</div>
+      </div>
+      <div class="d-item gap-bg">
+        Say-do ratio breaks in commercially pressured situations.
+        <div class="d-item-src">SLT and PLT Interviews</div>
+      </div>
+      <div class="d-item gap-bg">
+        Raising concerns through proper channels scores 81% BC: one of the lowest scores in the blue collar set.
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+    </div>
+
+    <!-- ── INNOVATION ── -->
+    <div class="d-col">
+      <div class="d-col-hdr" style="background:var(--inn)"><h3>Innovation</h3></div>
+      <div class="d-rag" style="background:#FFF3F3;">
+        <div class="d-rag-dot" style="background:#B22222;"></div>
+        <div class="d-rag-text" style="color:#8A0000;">Red: most consistently underperformed across all data</div>
+      </div>
+      <div class="d-sub-label str-lbl str-bg">✓ Where we lead</div>
+      <div class="d-item str-bg">
+        Leaders understand the need for innovation and name it as critical to HARMAN's future.
+        <div class="d-item-src">FS sessions · Working sessions</div>
+      </div>
+      <div class="d-sub-label gap-lbl gap-bg">✗ Where the work is</div>
+      <div class="d-item gap-bg">
+        Fear of failure is the most consistent named barrier: across every SLT interview, every PLT interview, and both Future Storming sessions.
+        <div class="d-item-src">All qualitative data sources</div>
+      </div>
+      <div class="d-item gap-bg">
+        "Not invented here" instinct: internal creation assumed to be the only valid path.
+        <div class="d-item-src">AMER + APAC FS sessions</div>
+      </div>
+      <div class="d-item gap-bg">
+        Speed is not internalized as a leadership behavior: treated as a process outcome, not a personal choice.
+        <div class="d-item-src">SLT Interviews</div>
+      </div>
+      <div class="d-item gap-bg">
+        No shared organizational definition of innovation: leaders approach it from their own domain and cannot model a consistent behavior.
+        <div class="d-item-src">SLT interviews</div>
+      </div>
+      <div class="d-item gap-bg">
+        Innovation behaviors rank lowest in every single cut: region, division, gender, and span of control without exception. Brings outside ideas to HARMAN is the lowest-rated behavior overall: 75% WC, 76% BC. EMEA scores drop to 65%.
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+    </div>
+
+    <!-- ── OWNERSHIP ── -->
+    <div class="d-col">
+      <div class="d-col-hdr" style="background:var(--own)"><h3>Ownership</h3></div>
+      <div class="d-rag" style="background:#FFF3F3;">
+        <div class="d-rag-dot" style="background:#B22222;"></div>
+        <div class="d-rag-text" style="color:#8A0000;">Red: enterprise ownership is the defining gap</div>
+      </div>
+      <div class="d-sub-label str-lbl str-bg">✓ Where we lead</div>
+      <div class="d-item str-bg">
+        Strong within-scope ownership: leaders take clear responsibility for their division and domain.
+        <div class="d-item-src">SLT + PLT interviews</div>
+      </div>
+      <div class="d-item str-bg">
+        Individual accountability behaviors score well: owns mistakes (93% WC), takes full responsibility (93% WC).
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+      <div class="d-sub-label gap-lbl gap-bg">✗ Where the work is</div>
+      <div class="d-item gap-bg">
+        Enterprise ownership breaks at every division boundary: leaders own their scope and stop at its edge.
+        <div class="d-item-src">Named in every SLT + PLT interview</div>
+      </div>
+      <div class="d-item gap-bg">
+        Contested cross-boundary decisions stall rather than resolve. The org design makes it structural, not personal.
+        <div class="d-item-src">SLT interviews</div>
+      </div>
+      <div class="d-item gap-bg">
+        Cross-boundary sharing has at times been punished, reinforcing the barrier.
+        <div class="d-item-src">PLT: "Ownership is HARMAN's worst value as actually lived"</div>
+      </div>
+      <div class="d-item gap-bg">
+        Public accountability: owning a miss out loud: is inconsistently practiced at senior levels.
+        <div class="d-item-src">SLT + PLT interviews</div>
+      </div>
+      <div class="d-item gap-bg">
+        Sets priorities and stops low-value work (82% WC Automotive) and sets clear enterprise priorities (84% BC) appear in the bottom 5. The IC-to-senior gap is largest for ownership behaviors.
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+    </div>
+
+    <!-- ── TEAMWORK ── -->
+    <div class="d-col">
+      <div class="d-col-hdr" style="background:var(--tea)"><h3>Teamwork</h3></div>
+      <div class="d-rag" style="background:#FFF3F3;">
+        <div class="d-rag-dot" style="background:#B22222;"></div>
+        <div class="d-rag-text" style="color:#8A0000;">Red: most universally flagged gap across all voices</div>
+      </div>
+      <div class="d-sub-label str-lbl str-bg">✓ Where we lead</div>
+      <div class="d-item str-bg">
+        Strong within-team and within-division collaboration is real and consistent.
+        <div class="d-item-src">SLT + PLT interviews · FS sessions</div>
+      </div>
+      <div class="d-item str-bg">
+        Desire and intent to collaborate across boundaries is genuine.
+        <div class="d-item-src">FS sessions: AMER + APAC</div>
+      </div>
+      <div class="d-item str-bg">
+        Within-team behaviors rank near the top everywhere: invests in developing people and recognizes contributions fairly are consistent high points.
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+      <div class="d-sub-label gap-lbl gap-bg">✗ Where the work is</div>
+      <div class="d-item gap-bg">
+        Cross-divisional collaboration named in every single conversation: the most universally flagged gap across all data.
+        <div class="d-item-src">Every PLT voice · SLT interviews · both FS sessions</div>
+      </div>
+      <div class="d-item gap-bg">
+        Silos are structural, not just cultural: the incentive model rewards winning alone. Leaders won't release talent across boundaries.
+        <div class="d-item-src">PLT: "It's an incentive problem, not an attitude problem"</div>
+      </div>
+      <div class="d-item gap-bg">
+        SLT misalignment cascades down: what is agreed in the room doesn't travel.
+        <div class="d-item-src">PLT interviews: "Alignment in the room means nothing if you walk out and say something different"</div>
+      </div>
+      <div class="d-item gap-bg">
+        Cross-boundary behaviors appear in the bottom 5 across multiple cuts: seeks diverse perspectives (82% WC, 73% EMEA) and aligns behind team decisions (82% WC Automotive).
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+    </div>
+
+    <!-- ── CUSTOMER VALUE ── -->
+    <div class="d-col">
+      <div class="d-col-hdr" style="background:var(--cus)"><h3>Customer Value</h3></div>
+      <div class="d-rag" style="background:#FFF9E6;">
+        <div class="d-rag-dot" style="background:#E8A000;"></div>
+        <div class="d-rag-text" style="color:#8A5E00;">Amber: genuine strength in some areas, notable gaps in others</div>
+      </div>
+      <div class="d-sub-label str-lbl str-bg">✓ Where we lead</div>
+      <div class="d-item str-bg">
+        Automotive and Lifestyle lead strongly: direct customer orientation is genuine and named by SLT as a real strength.
+        <div class="d-item-src">SLT interviews: Carolin, Dave</div>
+      </div>
+      <div class="d-item str-bg">
+        "Going to the last mile": direct frontline engagement: named as an authentic differentiator.
+        <div class="d-item-src">SLT Interviews</div>
+      </div>
+      <div class="d-sub-label gap-lbl gap-bg">✗ Where the work is</div>
+      <div class="d-item gap-bg">
+        Corporate functions: customer value was almost never raised organically by PLT: internal dynamics dominate entirely.
+        <div class="d-item-src">SLT vs PLT divergence analysis</div>
+      </div>
+      <div class="d-item gap-bg">
+        Long-term and geopolitical customer foresight is largely underdeveloped as a practiced leadership behavior.
+        <div class="d-item-src">FS: APAC raised this more strongly than AMER</div>
+      </div>
+      <div class="d-item gap-bg">
+        Customer strategy often anchored in internal metrics and divisional preferences rather than actual customer outcomes.
+        <div class="d-item-src">SLT and PLT Interviews</div>
+      </div>
+      <div class="d-item gap-bg">
+        Customer behaviors appear in the bottom 5 across multiple cuts: actively seeks customer feedback (83% WC, 81% WC Lifestyle), anticipates future customer needs (72% EMEA Teams), challenges requests for customer fit (83–86%). Customer-forward behaviors score strongly where direct customer contact exists.
+        <div class="d-item-src">Enterprise Survey Analysis</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     TWO HORIZONS
+     ════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="sec-title">Two horizons of leadership: <span style="font-weight:500; opacity:0.75;">Leading Organizations</span></div>
+
+  <div class="hz-tl">
+    <div class="hz-tl-item">
+      <div class="hz-tl-yr" style="color:#0057B8;">Now</div>
+      <div class="hz-tl-lbl">Today</div>
+    </div>
+    <div class="hz-tl-bar"></div>
+    <div class="hz-tl-item">
+      <div class="hz-tl-yr" style="color:#0057B8;">2030</div>
+      <div class="hz-tl-lbl">HARMAN 2030</div>
+    </div>
+    <div class="hz-tl-bar"></div>
+    <div class="hz-tl-item">
+      <div class="hz-tl-yr" style="color:#5C0078;">2040</div>
+      <div class="hz-tl-lbl">Next decade</div>
+    </div>
+  </div>
+
+  <div class="hz-cols">
+
+    <!-- COLUMN HEADERS -->
+    <div class="hz-col-h" style="background:#0057B8;">
+      <h3>🎯 Horizon One</h3>
+      <p>What HARMAN needs to execute now.</p>
+    </div>
+    <div class="hz-col-h" style="background:#0F1222;">
+      <h3>⚡ Both Horizons</h3>
+      <p>Non-negotiable across both timelines.</p>
+    </div>
+    <div class="hz-col-h" style="background:#5C0078;">
+      <h3>🔭 Horizon Two</h3>
+      <p>What HARMAN needs to be successful in the future.</p>
+    </div>
+
+    <!-- HORIZON ONE BODY -->
+    <div class="hz-col-b">
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--inn)">INNOVATION</div>
+        <div class="hz-behavior">Get off the hamster wheel</div>
+        <div class="hz-sub">Challenge how we work, not just what we do</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--inn)">INNOVATION</div>
+        <div class="hz-behavior">Fail fast, move faster</div>
+        <div class="hz-sub">Start experiments fast: stop what isn't working equally fast</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--inn)">INNOVATION</div>
+        <div class="hz-behavior">Celebrate what you learned from the miss</div>
+        <div class="hz-sub">Create real permission to fail without fear of blame</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--own)">OWNERSHIP</div>
+        <div class="hz-behavior">Own it or assign it</div>
+        <div class="hz-sub">Kill ownership ambiguity before it kills speed</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--tea)">TEAMWORK</div>
+        <div class="hz-behavior">Build bridges on purpose</div>
+        <div class="hz-sub">Design cross-divisional collaboration: don't wait for organic connection</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--tea)">TEAMWORK</div>
+        <div class="hz-behavior">Compete outside, not inside</div>
+        <div class="hz-sub">Resources and talent decisions reflect enterprise-first logic</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--tea)">TEAMWORK</div>
+        <div class="hz-behavior">Agree once, cascade faithfully</div>
+        <div class="hz-sub">What is agreed in the room is what gets enacted</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--tea)">TEAMWORK</div>
+        <div class="hz-behavior">Show up to serve, not to govern</div>
+        <div class="hz-sub">Arrive to business units as a contributor to their success</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Show every function their line to the customer</div>
+        <div class="hz-sub">Customer outcomes as the organizing principle for every function</div>
+      </div>
+    </div>
+
+    <!-- BOTH HORIZONS BODY -->
+    <div class="hz-col-b">
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--int)">INTEGRITY</div>
+        <div class="hz-behavior">Walk the walk</div>
+        <div class="hz-sub">Be the first to call it when words and actions don't match</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--int)">INTEGRITY</div>
+        <div class="hz-behavior">Speak up, even when it stings</div>
+        <div class="hz-sub">Name the issue no one else will: at any level, in any room</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--int)">INTEGRITY</div>
+        <div class="hz-behavior">Standards don't bend under pressure</div>
+        <div class="hz-sub">Make the trade-off visible and hold the standard anyway</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--int)">INTEGRITY</div>
+        <div class="hz-behavior">Apply the newspaper test first</div>
+        <div class="hz-sub">Decisions based on what is right for HARMAN: not personal agendas</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--inn)">INNOVATION</div>
+        <div class="hz-behavior">Steal good ideas, shamelessly</div>
+        <div class="hz-sub">External intelligence into internal advantage: not just through individuals</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--own)">OWNERSHIP</div>
+        <div class="hz-behavior">Publicly say "that was my decision"</div>
+        <div class="hz-sub">Own the miss loudly enough to make accountability the norm</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--own)">OWNERSHIP</div>
+        <div class="hz-behavior">Check your ego at the door</div>
+        <div class="hz-sub">Bring in better expertise than your own when needed</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--own)">OWNERSHIP</div>
+        <div class="hz-behavior">Decide now, adapt as you learn</div>
+        <div class="hz-sub">Make the call with what you have and adapt faster than the situation changes</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--tea)">TEAMWORK</div>
+        <div class="hz-behavior">Thank people for raising the hard thing</div>
+        <div class="hz-sub">Make it the expected behavior: not the brave one</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Stay obsessed with the need behind the ask</div>
+        <div class="hz-sub">Never answer the stated question without first understanding the real one</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Go where the work happens</div>
+        <div class="hz-sub">Make frontline intelligence a structural input to strategy</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Build the discipline to tell the customer what's right</div>
+        <div class="hz-sub">Earn trust as the partner who says what others won't</div>
+      </div>
+    </div>
+
+    <!-- HORIZON TWO BODY -->
+    <div class="hz-col-b">
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--inn)">INNOVATION</div>
+        <div class="hz-behavior">Build your team's tech fluency before you need it</div>
+        <div class="hz-sub">Position teams as AI collaborators before the market demands it</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--own)">OWNERSHIP</div>
+        <div class="hz-behavior">Make decisions that hold up at board level</div>
+        <div class="hz-sub">Operate with awareness of HARMAN's position within the Samsung ecosystem</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Name the market shift before it's confirmed</div>
+        <div class="hz-sub">Move on weak signals before competitors confirm them</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Move the org on signals, not certainty</div>
+        <div class="hz-sub">Read geopolitical and market forces as forward-looking signals: and act on them</div>
+      </div>
+      <div class="hz-entry">
+        <div class="hz-val" style="color:var(--cus)">CUSTOMER VALUE</div>
+        <div class="hz-behavior">Predict where your customer is going, then get there first</div>
+        <div class="hz-sub">Shape the market your customer will operate in: don't just respond to it</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<footer>HARMAN Unified Leadership Framework · BTS · Working Team Draft · May 2026 · Do not distribute</footer>
+</body>
+</html>

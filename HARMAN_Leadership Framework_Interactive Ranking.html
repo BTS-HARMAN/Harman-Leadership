@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HARMAN Unified Leadership Framework</title>
+<style>
+:root {
+  --bg:        #1C2D5A;
+  --panel:     #243870;
+  --panel-h:   #2A4280;
+  --border:    rgba(255,255,255,0.09);
+  --border-h:  rgba(255,255,255,0.2);
+  --teal:      #00C2D4;
+  --orange:    #FF6A00;
+  --muted:     rgba(255,255,255,0.52);
+  --text:      #FFFFFF;
+  --int-a: #0057B8; --int-b: #00C2D4;
+  --inn-a: #C24F00; --inn-b: #FF8A2B;
+  --own-a: #1A2280; --own-b: #6B7FE0;
+  --tea-a: #005C42; --tea-b: #00C896;
+  --cus-a: #5C0078; --cus-b: #C970E8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER (stays dark / branded) ── */
+.hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: #070A17;
+  position: sticky; top: 0; z-index: 200;
+}
+.hdr-left { display: flex; align-items: center; gap: 20px; }
+.hdr-wordmark { font-size: 20px; font-weight: 900; letter-spacing: 5px; color: #00C2D4; }
+.hdr-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.12); }
+.hdr-title { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.hdr-draft { font-size: 10px; font-weight: 700; letter-spacing: 2px; background: rgba(255,106,0,0.18); color: #FF6A00; border: 1px solid rgba(255,106,0,0.3); border-radius: 20px; padding: 3px 10px; }
+
+/* ── NAV BAR ── */
+.nav-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 48px;
+  min-height: 50px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+.back-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 14px 6px 10px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: background .2s, border-color .2s;
+  font-family: inherit;
+}
+.back-btn:hover { background: rgba(255,255,255,0.13); border-color: var(--border-h); }
+.bc { font-size: 13px; color: var(--muted); }
+.bc-sep { color: rgba(255,255,255,0.2); margin: 0 4px; }
+.bc-cur { color: var(--text); font-weight: 600; }
+.bc-val-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+/* ── SCREEN CONTAINER ── */
+.screen { display: none; padding: 44px 48px 140px; animation: fsIn .3s ease both; }
+.screen.active { display: block; }
+@keyframes fsIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+
+/* ══ SCREEN 1 ══ */
+.s1-eyebrow { text-align:center; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
+.s1-title { text-align:center; font-size:34px; font-weight:900; letter-spacing:-0.5px; margin-bottom:8px; }
+.s1-sub { text-align:center; font-size:14px; color:var(--muted); margin-bottom:44px; }
+
+.val-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.val-grid-center { grid-column:2; grid-row:2; display:flex; align-items:center; justify-content:center; }
+.val-center-pill {
+  background: linear-gradient(135deg, #00A8BC, #0057B8);
+  border-radius: 50px; padding: 16px 32px;
+  text-align: center; color: white;
+}
+.val-center-pill p { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; opacity:.75; margin-bottom:4px; }
+.val-center-pill h3 { font-size: 15px; font-weight: 900; letter-spacing: 3px; }
+
+.val-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 26px 26px;
+  cursor: pointer;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  position: relative; overflow: hidden;
+  min-height: 192px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.val-card::before {
+  content: ''; position: absolute; top:0; left:0; right:0; height:3px;
+  border-radius: 16px 16px 0 0; background: var(--v-grad);
+}
+.val-card::after {
+  content: ''; position: absolute; inset:0;
+  background: radial-gradient(ellipse at 15% 10%, var(--v-glow) 0%, transparent 55%);
+  pointer-events: none;
+}
+.val-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: var(--border-h); }
+.val-icon { position:absolute; top:22px; right:22px; font-size:38px; opacity:.55; }
+.val-name { font-size:20px; font-weight:900; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
+.val-tag { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--v-accent); }
+.val-cta { font-size:11px; color:var(--muted); margin-top:14px; display:flex; align-items:center; gap:4px; }
+.val-cta::after { content:'→'; }
+
+/* ══ SCREEN 2 ══ */
+.s2-heading { margin-bottom:36px; display:flex; align-items:center; gap:16px; }
+.s2-heading-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.s2-heading h2 { font-size:30px; font-weight:900; letter-spacing:-0.5px; }
+.s2-heading p { font-size:14px; color:var(--muted); margin-top:6px; }
+
+.lvl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:920px; }
+
+.lvl-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 36px 28px;
+  cursor: pointer;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.lvl-card::before {
+  content: ''; position: absolute; top:0; left:0; right:0; height:3px;
+  background: var(--v-grad); border-radius: 16px 16px 0 0;
+}
+.lvl-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.1); border-color:var(--border-h); }
+.lvl-num { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.lvl-name { font-size:22px; font-weight:900; margin-bottom:10px; }
+.lvl-desc { font-size:13px; color:var(--muted); line-height:1.6; flex:1; margin-bottom:24px; }
+.lvl-count { font-size:42px; font-weight:900; color:var(--v-accent); line-height:1; }
+.lvl-count-label { font-size:11px; color:var(--muted); letter-spacing:1px; margin-top:2px; }
+.lvl-arr { position:absolute; bottom:24px; right:24px; font-size:18px; color:var(--muted); }
+
+/* ══ SCREEN 3 ══ */
+.s3-heading { margin-bottom:28px; }
+.s3-heading h2 { font-size:26px; font-weight:900; }
+.s3-heading p { font-size:13px; color:var(--muted); margin-top:6px; line-height:1.5; }
+
+/* Rating legend banner (org level only) */
+.rank-legend {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 18px; margin-bottom: 20px;
+  max-width: 820px;
+}
+.rank-legend-title { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.rank-legend-items { display: flex; gap: 16px; flex-wrap: wrap; }
+.rank-leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--text); }
+.rank-leg-dot { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: white; flex-shrink: 0; }
+
+.beh-list { max-width:820px; display:flex; flex-direction:column; gap:14px; }
+
+.beh-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--v-accent2);
+  border-radius: 12px; padding: 22px 26px;
+  transition: background .2s;
+}
+.beh-item:hover { background: var(--panel-h); }
+.beh-n { font-size:10px; font-weight:700; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
+.beh-text { font-size:15px; line-height:1.65; font-weight:500; }
+
+/* Leading Org extras */
+.beh-punchy { font-size:18px; font-weight:900; margin-bottom:6px; }
+.beh-full { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:12px; font-style:italic; }
+.beh-ml { margin-top:14px; padding-top:14px; border-top: 1px solid var(--border); }
+.beh-ml-lbl { font-size:10px; font-weight:700; letter-spacing:2px; color:var(--teal); text-transform:uppercase; margin-bottom:5px; }
+.beh-ml-text { font-size:14px; line-height:1.55; font-weight:600; color:var(--text); }
+
+.beh-th { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1.5px; border-radius:10px; padding:2px 8px; margin-left:8px; vertical-align:middle; text-transform:uppercase; }
+.th1 { background:rgba(0,87,184,0.1); color:#0057B8; }
+.th2 { background:rgba(92,0,120,0.1); color:#5C0078; }
+.thb { background:rgba(0,92,66,0.1); color:#005C42; }
+
+/* ══ RANKING ROW ══ */
+.rank-row {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.rank-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
+.rank-btns { display: flex; gap: 7px; }
+.rank-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  font-size: 13px; font-weight: 800; color: var(--muted);
+  cursor: pointer; transition: all .15s; font-family: inherit;
+  display: flex; align-items: center; justify-content: center;
+}
+.rank-btn:hover { border-color: var(--v-accent2); color: var(--v-accent2); }
+.rank-btn.sel-1 { background: #C0392B; border-color: #C0392B; color: white; }
+.rank-btn.sel-2 { background: #D4860A; border-color: #D4860A; color: white; }
+.rank-btn.sel-3 { background: #1B7A3E; border-color: #1B7A3E; color: white; }
+.rank-saved { font-size: 11px; color: #1B8C42; font-weight: 600; margin-left: auto; opacity: 0; transition: opacity .4s; }
+.rank-saved.show { opacity: 1; }
+
+/* ══ FLOATING SUBMIT BAR ══ */
+.submit-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #070A17; border-top: 2px solid #00C2D4;
+  padding: 14px 48px;
+  display: none; align-items: center; justify-content: space-between;
+  gap: 20px; z-index: 300;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.3);
+}
+.submit-bar.visible { display: flex; }
+.sb-left { display: flex; flex-direction: column; gap: 6px; }
+.sb-progress { font-size: 13px; font-weight: 700; color: white; }
+.sb-sub { font-size: 11px; color: rgba(255,255,255,0.4); }
+.sb-prog-track { width: 220px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+.sb-prog-fill { height: 100%; background: #00C2D4; border-radius: 2px; transition: width .35s; }
+.sb-btn {
+  background: #00C2D4; color: #070A17;
+  border: none; border-radius: 8px; padding: 12px 28px;
+  font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit;
+  transition: background .2s, transform .15s; white-space: nowrap;
+}
+.sb-btn:hover:not(:disabled) { background: #00DFF0; transform: translateY(-1px); }
+.sb-btn:disabled { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.3); cursor: not-allowed; }
+.sb-save-btn { background: transparent; color: rgba(255,255,255,0.75); border: 1.5px solid rgba(255,255,255,0.22); padding: 12px 22px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; letter-spacing: .3px; transition: all .2s; }
+.sb-save-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.45); color: white; }
+.sb-save-btn.saved { border-color: #00C2D4; color: #00C2D4; }
+
+/* ══ MODAL ══ */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(7,10,23,0.72); backdrop-filter: blur(6px);
+  z-index: 400; display: none; align-items: center; justify-content: center;
+}
+.modal-overlay.visible { display: flex; }
+.modal {
+  background: white; border-radius: 20px; padding: 44px 48px;
+  max-width: 500px; width: 90%;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.28);
+  animation: fsIn .25s ease both;
+}
+.modal h2 { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+.modal > p { font-size: 14px; color: #666; line-height: 1.55; margin-bottom: 28px; }
+.form-field { margin-bottom: 16px; }
+.form-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+.form-field input, .form-field select {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid #DDD; border-radius: 8px;
+  font-size: 15px; font-family: inherit; color: #0F1222;
+  background: white; transition: border-color .18s;
+}
+.form-field input:focus, .form-field select:focus { outline: none; border-color: #00A8BC; }
+.modal-actions { display: flex; gap: 12px; margin-top: 28px; }
+.modal-submit {
+  flex: 1; background: #070A17; color: white;
+  border: none; border-radius: 8px; padding: 14px;
+  font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit;
+  transition: background .2s;
+}
+.modal-submit:hover { background: #1A2280; }
+.modal-cancel {
+  background: transparent; border: 1.5px solid #DDD;
+  border-radius: 8px; padding: 14px 20px;
+  font-size: 14px; cursor: pointer; font-family: inherit; color: #555;
+}
+.modal-cancel:hover { border-color: #BBB; }
+.modal-error { color: #C0392B; font-size: 13px; margin-top: 12px; display: none; }
+
+/* Success */
+.success-box { text-align: center; padding: 10px 0; }
+.success-box .s-icon { font-size: 52px; margin-bottom: 16px; }
+.success-box h3 { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+.success-box p { font-size: 14px; color: #666; line-height: 1.6; }
+.success-box .s-close {
+  margin-top: 28px; background: #070A17; color: white;
+  border: none; border-radius: 8px; padding: 12px 28px;
+  font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit;
+}
+
+/* ── LEVEL SELECT (Screen 1) ── */
+.lvl-sel-grid { display:flex; flex-direction:column; gap:16px; max-width:820px; margin:0 auto; }
+.lvl-sel-bottom { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.start-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  background:var(--teal); color:#070A17;
+  font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+  padding:5px 14px; border-radius:20px; margin-bottom:18px;
+}
+.lvl-after-label {
+  font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--muted); margin-bottom:10px;
+}
+.lvl-sel-secondary { opacity:0.52; transition:opacity .2s; }
+.lvl-sel-secondary:hover { opacity:0.75; }
+
+/* ── COMMENT BOX ── */
+.comment-box-wrap {
+  max-width: 820px;
+  margin-top: 28px;
+  padding: 24px 26px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.comment-box-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+}
+.comment-box-hint {
+  font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.5;
+}
+.comment-box-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.65;
+  padding: 14px 16px;
+  resize: vertical;
+  min-height: 96px;
+  transition: border-color .2s, background .2s;
+}
+.comment-box-textarea:focus { outline: none; border-color: var(--border-h); background: rgba(255,255,255,0.08); }
+.comment-box-textarea::placeholder { color: var(--muted); opacity: 0.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .hdr { padding: 16px 20px; }
+  .nav-bar { padding: 12px 20px; }
+  .screen { padding: 24px 20px 140px; }
+  .val-grid, .lvl-grid { grid-template-columns:1fr; }
+  .val-grid-center { grid-column:1; }
+  .s1-title { font-size:24px; }
+  .submit-bar { padding: 14px 20px; flex-wrap: wrap; }
+  .sb-prog-track { width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-wordmark">HARMAN</div>
+    <div class="hdr-divider"></div>
+    <div class="hdr-title">Unified Leadership Framework</div>
+  </div>
+</header>
+
+<!-- NAV BAR -->
+<div class="nav-bar" id="navBar"></div>
+
+<!-- SCREEN 1, VALUES -->
+<div class="screen active" id="s1">
+  <div class="s1-eyebrow">Leadership Levels</div>
+  <div class="s1-title">Unified Leadership Framework</div>
+  <div class="s1-sub">Before your 1:1, please review and rank the <strong style="color:var(--teal)">Leading Organizations</strong> behaviors. Please provide any comments on Leading Self and Leading Teams behaviors before EOD May 29.</div>
+  <div class="val-grid" id="valGrid"></div>
+</div>
+
+<!-- SCREEN 2, LEVELS -->
+<div class="screen" id="s2">
+  <div class="s2-heading">
+    <div class="s2-heading-dot" id="s2Dot"></div>
+    <div>
+      <h2 id="s2Title"></h2>
+      <p id="s2Sub"></p>
+    </div>
+  </div>
+  <div class="lvl-grid" id="lvlGrid"></div>
+</div>
+
+<!-- SCREEN 3, BEHAVIORS -->
+<div class="screen" id="s3">
+  <div class="s3-heading">
+    <h2 id="s3Title"></h2>
+    <p id="s3Sub"></p>
+  </div>
+  <div id="rankLegend" style="display:none">
+    <div class="rank-legend" style="flex-direction:column; align-items:flex-start; gap:10px;">
+      <div style="font-size:13px; line-height:1.6; color:var(--text); max-width:780px;">
+        Please review and rate each behavior on the scale below.
+      </div>
+      <div class="rank-legend-items" style="flex-direction:column; gap:8px;">
+        <div class="rank-leg-item"><div class="rank-leg-dot" style="background:#C0392B">1</div> Do not include: unimportant to current and future success</div>
+        <div class="rank-leg-item"><div class="rank-leg-dot" style="background:#D4860A">2</div> Could stay or go: useful but not critical</div>
+        <div class="rank-leg-item"><div class="rank-leg-dot" style="background:#1B7A3E">3</div> Must stay, critical to get right for HARMAN's current and future success</div>
+      </div>
+    </div>
+  </div>
+  <div id="textOnlyNote" style="display:none; font-size:13px; line-height:1.6; color:var(--text); max-width:780px; padding:0 0 8px 0;">
+    Review the behaviors below and provide any feedback in the open text box at the bottom.
+  </div>
+  <div class="beh-list" id="behList"></div>
+</div>
+
+<!-- FLOATING SUBMIT BAR -->
+<div class="submit-bar" id="submitBar">
+  <div class="sb-left">
+    <div class="sb-progress" id="sbProgress">0 of 30 behaviors rated</div>
+    <div class="sb-sub" id="sbSub">Complete all behaviors at the current level to submit</div>
+    <div class="sb-prog-track"><div class="sb-prog-fill" id="sbProgFill" style="width:0%"></div></div>
+  </div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <button class="sb-save-btn" id="sbSaveBtn" onclick="saveAndNext()">Save &amp; Next →</button>
+    <button class="sb-btn" id="sbBtn" onclick="openModal()" disabled>Submit Level →</button>
+  </div>
+</div>
+
+<!-- SUBMIT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBox">
+    <div id="modalContent">
+      <h2>Submit your rankings</h2>
+      <p>Your ratings and comments will be recorded in the HARMAN leadership framework working spreadsheet and used to help pare the behavior set down to the sharpest final list.</p>
+      <div class="form-field">
+        <label>Your name</label>
+        <input type="text" id="inputName" placeholder="First and last name" />
+      </div>
+      <div class="modal-error" id="modalError">Please enter your name.</div>
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-submit" id="modalSubmitBtn" onclick="submitRankings()">Submit my rankings →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   CONFIGURATION, replace with your deployed Apps Script URL
+   ════════════════════════════════════════════════════════════ */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0S69ocMq8G9DVvkTKmE3gvKSIe9pPHZYINzEVi-UdzCFgBmiR9XT0NShEqRZsGuRs/exec';
+
+/* ════════════════════════════════════════════════════════════
+   DATA
+   ════════════════════════════════════════════════════════════ */
+const VALUES = [
+  { id:'integrity',  name:'Integrity',      tagline:'AT EVERY FREQUENCY',                    icon:'⚡', grad:'linear-gradient(135deg,#0057B8,#00C2D4)', glow:'rgba(0,100,200,0.12)', glow2:'#00C2D4', accent:'#00C2D4', accent2:'#0057B8' },
+  { id:'innovation', name:'Innovation',     tagline:'THAT INSPIRES',                          icon:'💡', grad:'linear-gradient(135deg,#C24F00,#FF8A2B)', glow:'rgba(200,80,0,0.12)',  glow2:'#FF8A2B', accent:'#FF8A2B', accent2:'#C24F00' },
+  { id:'ownership',  name:'Ownership',      tagline:'THAT DRIVES US FORWARD',                icon:'🎯', grad:'linear-gradient(135deg,#1A2280,#6B7FE0)', glow:'rgba(40,50,180,0.12)', glow2:'#6B7FE0', accent:'#6B7FE0', accent2:'#1A2280' },
+  { id:'teamwork',   name:'Teamwork',       tagline:'THAT POWERS CONNECTED EXPERIENCES',     icon:'🤝', grad:'linear-gradient(135deg,#005C42,#00C896)', glow:'rgba(0,100,70,0.12)',  glow2:'#00C896', accent:'#00C896', accent2:'#005C42' },
+  { id:'customer',   name:'Customer Value', tagline:'AMPLIFIED',                              icon:'🎵', grad:'linear-gradient(135deg,#5C0078,#C970E8)', glow:'rgba(100,0,150,0.12)', glow2:'#C970E8', accent:'#C970E8', accent2:'#5C0078' },
+];
+
+const LEVELS = [
+  { id:'self',  name:'Leading Self',          num:'Level 01', desc:'The foundation behaviors every individual leader is expected to own.' },
+  { id:'teams', name:'Leading Teams',         num:'Level 02', desc:'Behaviors for leaders who are responsible for the performance and development of others.' },
+  { id:'org',   name:'Leading Organizations', num:'Level 03', desc:'Senior leadership behaviors that span two horizons: what HARMAN needs to execute now, and what the next decade demands.' },
+];
+
+const BEHAVIORS = {
+  integrity: {
+    self: [
+      { text:'Adhere to all laws, regulations, and company standards without exception.' },
+      { text:'Own mistakes and setbacks directly, communicate what happened and what will be done differently.' },
+      { text:'Treat others fairly and with equal respect regardless of role, seniority, or background.' },
+      { text:'Raise concerns or call out problems through appropriate channels, even when it may be unpopular or carry personal risk.' },
+      { text:'Follow through on commitments, even when it\'s difficult.' },
+    ],
+    teams: [
+      { text:'Recognize and reward contributions based on observable actions and performance, not favoritism.' },
+      { text:'Hold others accountable for commitments, even when it requires difficult conversations.' },
+      { text:'Speak up when something is wrong, and create conditions where the team feels safe to do the same.' },
+      { text:'Make decisions transparently and grounded in data and observable evidence, communicate reasoning openly, especially when decisions are difficult or unpopular.' },
+    ],
+    org: [
+      { punchy:'Walk the walk',                   text:'Maintains a say-do ratio of one: consistently matches words with actions, especially in high-stakes or commercially pressured situations, and is the first to acknowledge when this hasn\'t happened.', marketLeader:'Be the first to call it when words and actions don\'t match.',                                  horizon:'Both' },
+      { punchy:'Tell the truth, even when it\'s inconvenient', text:'Tells the truth even when it\'s inconvenient: speaks up on issues that conflict with standards or values regardless of hierarchy, peer pressure, or personal risk.',                   marketLeader:'Name the issue no one else will, at any level, in any room.',                                    horizon:'Both' },
+      { punchy:'Standards don\'t bend under pressure', text:'Does not allow financial, commercial, or workforce pressures to justify circumventing standards or requirements, and transparently manages the trade-offs when tension exists.',               marketLeader:'Make the trade-off visible and hold the standard anyway.',                                       horizon:'Both' },
+      { punchy:'Apply the newspaper test first, and create the expectation that others do too', text:'Makes decisions based on what is right for HARMAN and its stakeholders, not personal interests or political agendas, and applies the newspaper test as a check before acting.', marketLeader:'Make decisions you\'d be proud to defend publicly and speak up when others don\'t.', horizon:'Both' },
+    ],
+  },
+  innovation: {
+    self: [
+      { text:'Test new approaches, share what was learned openly, and adjust, whether the outcome is a success or a failure.' },
+      { text:'Question how things are done when there might be a better way, including long-accepted practices.' },
+      { text:'Seek ways to improve what is delivered to the end user, not just how the work gets done internally.' },
+      { text:'Look outside HARMAN for new ideas and approaches, and bring relevant insights back to the work.' },
+      { text:'Use emerging technology as a working partner in day-to-day tasks and review its outputs critically before acting on them.' },
+    ],
+    teams: [
+      { text:'Bring in emerging tools, technologies, and external practices to improve how the team works.' },
+      { text:'Encourage the team to adopt emerging technology and actively address the friction and fear that slows adoption.' },
+      { text:'Push the team to connect innovation to customer and business impact, not just internal improvement.' },
+      { text:'Share failures and learnings openly with the team, setting the example for others to do the same.' },
+      { text:'Reward reasonable risk-taking, including when it doesn\'t pan out.' },
+    ],
+    org: [
+      { punchy:'Get off the hamster wheel and make time to question how we work', text:'Breaks out of the "operational hamster wheel" by regularly taking a helicopter perspective: actively challenges the organization\'s assumptions and existing ways of working, while creating real conditions for others to do the same.', marketLeader:'Dismantle the conditions that keep the org on the hamster wheel.', horizon:'TH1' },
+      { punchy:'Fail fast, move faster',                 text:'Recognizes that speed is winning: starts experiments fast and stops what isn\'t working equally fast; makes the call to discontinue even when effort has been invested.',                                                             marketLeader:'Turn every failure into a competitive edge.',                                                 horizon:'TH1' },
+      { punchy:'Grab good ideas from anywhere, shamelessly', text:'Looks outside HARMAN for innovation: keeps a pulse on emerging ideas, technologies, and approaches from external parties and detects and adapts them into HARMAN, rather than assuming internal creation is the only path.',     marketLeader:'Turn external intelligence into internal advantage systemically, not through individuals.',   horizon:'Both' },
+      { punchy:'Celebrate what you learned from the miss', text:'Creates real permission to fail: makes it safe for teams to test new ideas, share what did not work, and apply the learning quickly without fear of blame.',                                                                      marketLeader:'Treat what didn\'t work as competitive intelligence and move faster because of it.',          horizon:'TH1' },
+      { punchy:'Build your team\'s tech fluency before you need it', text:'Leads the organization\'s readiness to operate in emerging technological environments: actively builds team fluency and confidence with emerging technology as a collaborator, not a threat.',                         marketLeader:'Position your team as tech collaborators before the market demands it.',                      horizon:'TH2' },
+    ],
+  },
+  ownership: {
+    self: [
+      { text:'Take full responsibility for work and outcomes, without deflection.' },
+      { text:'Take time to understand a problem before jumping to a solution, even under pressure.' },
+      { text:'Think about how decisions and actions affect others, not just the immediate task.' },
+      { text:'Act decisively within scope rather than waiting for direction, and escalate quickly when a decision falls outside it.' },
+      { text:'Make clear choices about where to focus when priorities compete, rather than treating everything as equally urgent.' },
+    ],
+    teams: [
+      { text:'Set clear, enterprise-aligned priorities by making trade-offs and stopping work that does not create value, even when it affects the team.' },
+      { text:'Make decision rights explicit: who decides what, what the team can decide on its own, and when to escalate.' },
+      { text:'Ensure the team delivers work that creates clear value for the organization, addressing risks and blockers before they escalate.' },
+      { text:'Address performance gaps directly and early, rather than allowing them to persist.' },
+      { text:'Have the team\'s back when things go wrong: shield them from blame and help find the path forward.' },
+      { text:'Trust the team to own their work and resist the pull to step in unnecessarily.' },
+    ],
+    org: [
+      { punchy:'Anticipate downstream impacts and act for the enterprise, not just your function', text:'Thinks beyond immediate outcomes before acting: considers how decisions affect other parts of the business, customer relationships, and Samsung, and does not allow divisional self-protection to override what the enterprise needs.', marketLeader:'Make it costly to optimize for your division at the expense of the enterprise, not just model the alternative.', horizon:'Both' },
+      { punchy:'Own it or assign it',                          text:'Creates clarity on who owns what across the senior leadership team: ensures enterprise priorities have clear owners, decision rights, and handoffs so work moves with speed.',                                                       marketLeader:'Kill ownership ambiguity before it kills speed.',                                             horizon:'TH1'  },
+      { punchy:'Publicly say "that was my decision"',          text:'Takes public accountability when outcomes fall short: does not deflect, minimize, or allow ambiguity about who owned a call.',                                                                                                      marketLeader:'Own the miss loudly enough to make accountability the cultural norm, not the exception.',    horizon:'Both' },
+      { punchy:'Leave your ego at the door',                   text:'Leads without ego and with humility: recognizes where they lack expertise, asks for help when needed, and brings in the right people to solve the problem in the best interest of HARMAN.',                                         marketLeader:'Regularly ask for better expertise than your own.',                                           horizon:'Both' },
+      { punchy:'Exceed all targets set',                       text:'Brings self-directed drive: goes beyond managing to targets to do what the company needs to succeed; consistently looks to overperform and go the extra mile.',                                                                     marketLeader:'Set the bar higher than anyone asked, then clear it.',                                      horizon:'Both' },
+      { punchy:'Certainty doesn\'t exist. Decide with transparency and course-correct openly.', text:'Demonstrates pragmatism, not dogmatism: makes decisions and adapts them as information emerges; defines winning clearly for the team and holds it without rigidity.',                             marketLeader:'Make your reasoning so visible the team doesn\'t need you in the room, then protect their right to decide when it gets hard.', horizon:'Both' },
+      { punchy:'Make decisions that hold up at board level',   text:'Operates with awareness of HARMAN\'s position within the Samsung ecosystem: understands what creates long-term value from the board\'s perspective, and prepares themselves and others to operate at a board-facing level.',       marketLeader:'Operate as if the board is always in the room and prepare others to do the same.',           horizon:'TH2'  },
+    ],
+  },
+  teamwork: {
+    self: [
+      { text:'Put team goals first and share credit for what is achieved together.' },
+      { text:'Share information, knowledge, and context openly and proactively, not just when asked.' },
+      { text:'Engage respectfully in day-to-day interactions, including in moments of disagreement.' },
+      { text:'Seek out perspectives from people with different backgrounds, roles, and viewpoints to improve the quality of decisions and work.' },
+      { text:'Align behind team decisions once made and reinforce them, even when initial views differ.' },
+    ],
+    teams: [
+      { text:'Invite challenge and dissenting views on decisions and ideas, and respond without defensiveness, making it safe to do so again.' },
+      { text:'Actively seek diverse perspectives and use them to improve decisions and outcomes, not just to inform discussion.' },
+      { text:'Invest in developing team members, providing honest feedback and actively building capability, including identifying and growing successors.' },
+      { text:'Hold consistent checkpoints, reviews, and 1:1s to keep the team aligned, not just informed.' },
+    ],
+    org: [
+      { punchy:'Build bridges on purpose',              text:'Actively designs structured cross-divisional collaboration: doesn\'t wait for organic connection, but creates specific business topics and initiatives that require collaboration outside a single division and unites under a shared purpose with clear context.',  marketLeader:'Align across divisions as fast as you align within them.',                                 horizon:'TH1' },
+      { punchy:'Make the enterprise "why" undeniable',  text:'Articulates the enterprise end-goal clearly enough that every leader can connect their work to it.',                                                                                                                                                          marketLeader:'Connect every decision to the mission, out loud.',                                         horizon:'TH1' },
+      { punchy:'Compete outside, not inside',           text:'Operates with the clear mindset that competition is outside, not inside HARMAN: respects other teams\' goals and KPIs as legitimate, even when they create friction with their own, ensures that resource, talent, and information-sharing decisions reflect enterprise-first logic, and visibly models this by sharing rather than hoarding.', marketLeader:'Actively share resources and talent across the enterprise based on need, not titles.', horizon:'TH1' },
+      { punchy:'Agree once, cascade faithfully',        text:'Aligns with peers on enterprise priorities and cascades that alignment with full fidelity, ensuring what is agreed is enacted consistently.',                                                                                                                  marketLeader:'Agree once and champion cascade as if it were your own choice.',                           horizon:'TH1' },
+      { punchy:'Show up to serve, not to govern',       text:'Demonstrates a service approach: arrives to business units as a contributor to their success, not as a source of governance or overhead.',                                                                                                                    marketLeader:'Show up to accelerate the business and remove anything that feels like overhead.',         horizon:'TH1' },
+      { punchy:'Thank people for raising the hard thing', text:'Makes it safe to share information across boundaries: ensures people are not blamed, punished, or made to feel unsafe for raising issues, involving the right functions, or surfacing information the organization needs to act on.',                      marketLeader:'Make raising the hard thing the expected behavior, not the brave one.',                    horizon:'Both' },
+    ],
+  },
+  customer: {
+    self: [
+      { text:'Consider the impact on the customer, internal or external, in day-to-day decisions.' },
+      { text:'Seek to understand the underlying need behind a request, not just what was asked for.' },
+      { text:'Actively seek out customer feedback and insight rather than waiting for it to be provided.' },
+      { text:'Speak up when a decision or deliverable will not serve the customer well, even when it may slow things down.' },
+      { text:'Anticipate what the customer will need next, not just what was asked for today.' },
+    ],
+    teams: [
+      { text:'Challenge requests when they do not address the customer\'s actual need, even when it creates friction.' },
+      { text:'Ensure the team understands how the work connects to the customer, internal or external.' },
+      { text:'Anticipate future customer needs by identifying emerging trends.' },
+      { text:'Maintain direct relationships with key customers to understand their evolving needs and bring those insights back to the team.' },
+    ],
+    org: [
+      { punchy:'Stay obsessed with the need behind the ask',      text:'Maintains a user-obsessed mindset at enterprise scale: seeks to understand underlying customer needs rather than stated requests.',                                                                                                        marketLeader:'Refuse to solve for the stated ask, solve for the underlying need.',                                  horizon:'Both' },
+      { punchy:'Go where the work happens',                       text:'Goes to the last mile: regularly engages at the frontline (with customers, end users, engineers, suppliers, and channel partners) rather than relying solely on filtered reports or intermediary intelligence.',                          marketLeader:'Make frontline intelligence a structural input to strategy.',                                          horizon:'Both' },
+      { punchy:'Show every function their line to the customer',  text:'Ensures every function understands how its work connects to end customers; actively creates opportunities to have direct contacts with partners and with customers.',                                                                         marketLeader:'Make customer outcomes the organizing principle for every function, not a connection to explain.',     horizon:'TH1'  },
+      { punchy:'Name the market shift before it\'s confirmed',    text:'Translates customer and market intelligence into clear strategic direction and priorities for the organization, ensuring decisions are anchored in customer outcomes, not internal metrics or divisional preferences.',                     marketLeader:'Move on weak signals before competitors confirm them.',                                                horizon:'TH2'  },
+      { punchy:'Move the org on signals, not certainty',          text:'Reads geopolitical, regulatory, and market forces as forward-looking signals about where customer needs and organizational risks are heading, and proactively prepares the organization to navigate them before they become urgent pressures.', marketLeader:'Position the org ahead of disruptions others are still monitoring.',                              horizon:'TH2'  },
+      { punchy:'Predict where your customer is going, then get there first', text:'Shapes customer and market strategy with a long-term horizon in mind, anticipating how HARMAN\'s customers, industries, and competitive landscape will be reshaped by emerging technology.',                                 marketLeader:'Shape the market your customer will operate in, not just respond to it.',                             horizon:'TH2'  },
+      { punchy:'Build team discipline to tell the customer what\'s right, not what\'s comfortable', text:'Knows when to say no to the customer: empowers account teams with the facts, context, and leadership backing to make clear customer commitments, push back when needed, and avoid escalation paths that undermine trust or discipline.', marketLeader:'Hold the line on clear customer commitments, even a no, and don\'t override your team\'s judgment when pressure escalates.', horizon:'Both' },
+    ],
+  },
+};
+
+/* ════════════════════════════════════════════════════════════
+   STATE
+   ════════════════════════════════════════════════════════════ */
+let currentValue = null;
+let currentLevel = null;
+
+// rankings[valId][levelKey][behaviorIndex] = 1|2|3|null
+const rankings = {};
+VALUES.forEach(v => {
+  rankings[v.id] = {
+    self:  new Array(BEHAVIORS[v.id].self.length).fill(null),
+    teams: new Array(BEHAVIORS[v.id].teams.length).fill(null),
+    org:   new Array(BEHAVIORS[v.id].org.length).fill(null),
+  };
+});
+
+// comments[valId][levelKey] = string (teams + self only)
+const comments = {};
+VALUES.forEach(v => { comments[v.id] = { self: '', teams: '' }; });
+
+// A value/level set gets ranking only if it's org, or has more than 4 behaviors
+function isRankable(valId, levelKey) {
+  return levelKey === 'org' || BEHAVIORS[valId][levelKey].length > 4;
+}
+
+// Total rankable behaviors across all levels and values
+const TOTAL_ALL = VALUES.reduce((sum, v) =>
+  sum +
+  (isRankable(v.id, 'self')  ? BEHAVIORS[v.id].self.length  : 0) +
+  (isRankable(v.id, 'teams') ? BEHAVIORS[v.id].teams.length : 0) +
+  BEHAVIORS[v.id].org.length, 0);
+
+/* ════════════════════════════════════════════════════════════
+   RANKING LOGIC
+   ════════════════════════════════════════════════════════════ */
+function setRank(valId, levelKey, index, value) {
+  rankings[valId][levelKey][index] = value;
+
+  // Update button states
+  const row = document.getElementById(`rank-row-${valId}-${levelKey}-${index}`);
+  if (row) {
+    row.querySelectorAll('.rank-btn').forEach(btn => {
+      btn.classList.remove('sel-1','sel-2','sel-3');
+      if (parseInt(btn.dataset.val) === value) btn.classList.add(`sel-${value}`);
+    });
+    const saved = row.querySelector('.rank-saved');
+    if (saved) {
+      saved.classList.add('show');
+      setTimeout(() => saved.classList.remove('show'), 1600);
+    }
+  }
+
+  updateSubmitBar();
+}
+
+function countRated() {
+  let total = 0;
+  VALUES.forEach(v => {
+    ['self','teams','org'].forEach(lk => {
+      total += rankings[v.id][lk].filter(r => r !== null).length;
+    });
+  });
+  return total;
+}
+
+function countRatedForLevel(levelKey) {
+  let total = 0;
+  VALUES.forEach(v => {
+    if (isRankable(v.id, levelKey)) {
+      total += rankings[v.id][levelKey].filter(r => r !== null).length;
+    }
+  });
+  return total;
+}
+
+function totalBehaviorsForLevel(levelKey) {
+  return VALUES.reduce((sum, v) =>
+    sum + (isRankable(v.id, levelKey) ? BEHAVIORS[v.id][levelKey].length : 0), 0);
+}
+
+function updateSubmitBar() {
+  const rated    = countRated();
+  const pct      = Math.round((rated / TOTAL_ALL) * 100);
+  const lv       = LEVELS.find(x => x.id === currentLevel);
+  const lvRated  = countRatedForLevel(currentLevel);
+  const lvTotal  = totalBehaviorsForLevel(currentLevel);
+  const lvDone   = lvRated === lvTotal;
+
+  document.getElementById('sbProgress').textContent = `${rated} of ${TOTAL_ALL} behaviors rated across all levels`;
+  document.getElementById('sbProgFill').style.width = pct + '%';
+  document.getElementById('sbSub').textContent =
+    lvDone
+      ? `All ${lv.name} behaviors rated — ready to submit`
+      : `${lvRated} of ${lvTotal} ${lv.name} behaviors rated — complete this level to submit`;
+  const btn = document.getElementById('sbBtn');
+  btn.disabled    = !lvDone;
+  btn.textContent = `Submit ${lv.name} →`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   RENDER HELPERS
+   ════════════════════════════════════════════════════════════ */
+function valCSS(v) {
+  return `--v-grad:${v.grad};--v-glow:${v.glow};--v-glow2:${v.glow2};--v-accent:${v.accent};--v-accent2:${v.accent2};`;
+}
+
+function thBadge(h) {
+  if (!h) return '';
+  const cls   = h === 'TH1' ? 'th1' : h === 'TH2' ? 'th2' : 'thb';
+  const label = h === 'TH1' ? 'Now → 2030' : h === 'TH2' ? '2030 → 2040' : 'Both horizons';
+  return `<span class="beh-th ${cls}">${label}</span>`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCREEN 1, LEVEL SELECTION
+   ════════════════════════════════════════════════════════════ */
+function renderScreen1() {
+  const container = document.getElementById('valGrid');
+  container.className = 'lvl-sel-grid';
+  container.innerHTML = '';
+
+  const tealGrad = 'linear-gradient(135deg,#0057B8,#00C2D4)';
+
+  // Leading Org, prominent card with START HERE badge
+  const orgLv = LEVELS.find(x => x.id === 'org');
+  const orgWrap = document.createElement('div');
+  orgWrap.innerHTML = `
+    <span class="start-badge">★&nbsp; START HERE</span>
+    <div class="lvl-card" onclick="goToValueSelect('org')"
+         style="--v-grad:${tealGrad};cursor:pointer;">
+      <div class="lvl-num">${orgLv.num}</div>
+      <div class="lvl-name">${orgLv.name}</div>
+      <div class="lvl-desc">${orgLv.desc}</div>
+      <div class="lvl-arr">→</div>
+    </div>`;
+  container.appendChild(orgWrap);
+
+  // Teams + Self, dimmed secondary row
+  const bottom = document.createElement('div');
+  bottom.className = 'lvl-sel-bottom';
+  [{ id:'teams' }, { id:'self' }].forEach(({ id }) => {
+    const lv = LEVELS.find(x => x.id === id);
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <div class="lvl-after-label">Review Later</div>
+      <div class="lvl-card lvl-sel-secondary" onclick="goToValueSelect('${id}')"
+           style="--v-grad:${tealGrad};cursor:pointer;">
+        <div class="lvl-num">${lv.num}</div>
+        <div class="lvl-name">${lv.name}</div>
+        <div class="lvl-desc">${lv.desc}</div>
+        <div class="lvl-arr">→</div>
+      </div>`;
+    bottom.appendChild(wrap);
+  });
+  container.appendChild(bottom);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCREEN 2, VALUE CARDS FOR SELECTED LEVEL
+   ════════════════════════════════════════════════════════════ */
+function renderScreen2(levelKey) {
+  const lv = LEVELS.find(x => x.id === levelKey);
+  document.getElementById('s2Dot').style.cssText = 'background:#00C2D4;box-shadow:0 0 10px #00C2D4;';
+  document.getElementById('s2Title').textContent = lv.name;
+  document.getElementById('s2Sub').textContent   = 'Select a value to explore its behaviors at this level.';
+
+  const grid = document.getElementById('lvlGrid');
+  grid.className = 'val-grid';
+  grid.innerHTML = '';
+
+  VALUES.forEach((v, i) => {
+    const behCount = BEHAVIORS[v.id][levelKey].length;
+    const wrap = document.createElement('div');
+    wrap.className = 'value-card-wrap';
+    if (i === 3) wrap.style.cssText = 'grid-column:1;grid-row:2;';
+    if (i === 4) wrap.style.cssText = 'grid-column:3;grid-row:2;';
+    wrap.innerHTML = `
+      <div class="val-card" style="${valCSS(v)}" onclick="goToBehaviors('${v.id}','${levelKey}')">
+        <div class="val-icon">${v.icon}</div>
+        <div class="val-name">${v.name}</div>
+        <div class="val-tag">${v.tagline}</div>
+        <div class="val-cta">${behCount} behavior${behCount !== 1 ? 's' : ''} at this level &nbsp;</div>
+      </div>`;
+    grid.appendChild(wrap);
+  });
+
+  const center = document.createElement('div');
+  center.className = 'val-grid-center';
+  center.style.cssText = 'grid-column:2;grid-row:2;';
+  center.innerHTML = `<div class="val-center-pill"><p>HARMAN</p><h3>UNIFIED LEADERSHIP FRAMEWORK</h3></div>`;
+  grid.appendChild(center);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCREEN 3, BEHAVIORS
+   ════════════════════════════════════════════════════════════ */
+function renderScreen3(valId, levelKey) {
+  const v    = VALUES.find(x => x.id === valId);
+  const lv   = LEVELS.find(x => x.id === levelKey);
+  const behs = BEHAVIORS[valId][levelKey];
+  const isOrg = levelKey === 'org';
+  const showRanking = isOrg || behs.length > 4;
+
+  document.getElementById('s3Title').textContent = `${v.name} · ${lv.name}`;
+  document.getElementById('s3Sub').textContent   = lv.desc;
+  document.getElementById('rankLegend').style.display    = showRanking ? 'block' : 'none';
+  document.getElementById('textOnlyNote').style.display  = showRanking ? 'none'  : 'block';
+
+  const list = document.getElementById('behList');
+  list.innerHTML = '';
+
+  behs.forEach((b, i) => {
+    const item = document.createElement('div');
+    item.className = 'beh-item';
+    item.style.setProperty('--v-accent2', v.accent2);
+
+    const currentRating = rankings[valId][levelKey][i];
+    const btn = (val) => {
+      const sel = currentRating === val ? `sel-${val}` : '';
+      return `<button class="rank-btn ${sel}" data-val="${val}" onclick="setRank('${valId}','${levelKey}',${i},${val})">${val}</button>`;
+    };
+    const rankRow = `
+      <div class="rank-row" id="rank-row-${valId}-${levelKey}-${i}">
+        <span class="rank-lbl">Rank:</span>
+        <div class="rank-btns">${btn(1)}${btn(2)}${btn(3)}</div>
+        <span class="rank-saved">✓ Saved</span>
+      </div>`;
+
+    if (isOrg) {
+      const mlHtml = b.marketLeader
+        ? `<div class="beh-ml">
+             <div class="beh-ml-lbl">Market leader version</div>
+             <div class="beh-ml-text">${b.marketLeader}</div>
+           </div>` : '';
+
+      item.innerHTML = `
+        <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')} ${thBadge(b.horizon)}</div>
+        <div class="beh-punchy" style="color:${v.accent}">${b.punchy}</div>
+        <div class="beh-full">${b.text}</div>
+        ${mlHtml}
+        ${rankRow}`;
+    } else {
+      item.innerHTML = `
+        <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
+        <div class="beh-text">${b.text}</div>
+        ${showRanking ? rankRow : ''}`;
+    }
+    list.appendChild(item);
+  });
+
+  // Comment box for Teams and Self
+  if (!isOrg) {
+    const commentWrap = document.createElement('div');
+    commentWrap.className = 'comment-box-wrap';
+    const saved = comments[valId][levelKey] || '';
+    commentWrap.innerHTML = `
+      <div class="comment-box-label">Additional comments</div>
+      <div class="comment-box-hint">Anything missing? Anything you would reframe?</div>
+      <textarea class="comment-box-textarea"
+        placeholder="Write your thoughts here..."
+        oninput="comments['${valId}']['${levelKey}']=this.value"
+      >${saved}</textarea>`;
+    list.appendChild(commentWrap);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   NAV BAR
+   ════════════════════════════════════════════════════════════ */
+function renderNav() {
+  const bar = document.getElementById('navBar');
+  bar.innerHTML = '';
+  if (!currentLevel) return;
+  const lv = LEVELS.find(x => x.id === currentLevel);
+  const back = document.createElement('button');
+  back.className = 'back-btn';
+  back.innerHTML = '← Back';
+  back.onclick   = () => currentValue ? goToValueSelect(currentLevel) : goToLevelSelect();
+  bar.appendChild(back);
+  const bc = document.createElement('span');
+  bc.className = 'bc';
+  if (!currentValue) {
+    bc.innerHTML = `<span>All levels</span><span class="bc-sep">›</span><span class="bc-cur">${lv.name}</span>`;
+  } else {
+    const v = VALUES.find(x => x.id === currentValue);
+    bc.innerHTML = `<span>All levels</span><span class="bc-sep">›</span><span>${lv.name}</span><span class="bc-sep">›</span><span class="bc-cur"><span class="bc-val-dot" style="background:${v.accent}"></span>${v.name}</span>`;
+  }
+  bar.appendChild(bc);
+}
+
+/* ════════════════════════════════════════════════════════════
+   NAVIGATION
+   ════════════════════════════════════════════════════════════ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Show submit bar on any behavior screen
+  const isS3 = id === 's3';
+  const bar = document.getElementById('submitBar');
+  bar.classList.toggle('visible', isS3);
+  if (isS3) updateSubmitBar();
+}
+
+function goToLevelSelect()               { currentValue=null; currentLevel=null; renderScreen1(); renderNav(); showScreen('s1'); }
+function goToValueSelect(levelKey)       { currentLevel=levelKey; currentValue=null; renderScreen2(levelKey); renderNav(); showScreen('s2'); }
+function goToBehaviors(valId, levelKey)  { currentValue=valId; currentLevel=levelKey; renderScreen3(valId,levelKey); renderNav(); showScreen('s3'); }
+
+/* ════════════════════════════════════════════════════════════
+   MODAL / SUBMIT
+   ════════════════════════════════════════════════════════════ */
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('visible');
+  document.getElementById('inputName').focus();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('visible');
+}
+
+async function submitRankings() {
+  const name = document.getElementById('inputName').value.trim();
+  const errEl = document.getElementById('modalError');
+
+  if (!name) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  const btn = document.getElementById('modalSubmitBtn');
+  btn.textContent = 'Submitting…';
+  btn.disabled    = true;
+
+  // Submit only the current level's rankings
+  const lv = LEVELS.find(x => x.id === currentLevel);
+  const rankList = [];
+  VALUES.forEach(v => {
+    BEHAVIORS[v.id][currentLevel].forEach((b, i) => {
+      rankList.push({
+        level:  lv.name,
+        value:  v.name,
+        index:  i + 1,
+        label:  b.punchy || b.text.substring(0, 80),
+        rating: rankings[v.id][currentLevel][i]
+      });
+    });
+  });
+
+  // Comments for this level (Teams + Self only)
+  const commentList = [];
+  if (currentLevel !== 'org') {
+    VALUES.forEach(v => {
+      const txt = (comments[v.id][currentLevel] || '').trim();
+      if (txt) commentList.push({ level: lv.name, value: v.name, comment: txt });
+    });
+  }
+
+  const payload = {
+    name,
+    level:     lv.name,
+    timestamp: new Date().toISOString(),
+    rankings:  rankList,
+    comments:  commentList
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode:   'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+  } catch(e) { /* no-cors swallows errors; we show success anyway */ }
+
+  // Show success
+  const lvSuccess = LEVELS.find(x => x.id === currentLevel);
+  document.getElementById('modalContent').innerHTML = `
+    <div class="success-box">
+      <div class="s-icon">✅</div>
+      <h3>Rankings submitted</h3>
+      <p>Thank you for your time and input.</p>
+      <button class="s-close" onclick="closeModal()">Close</button>
+    </div>`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SAVE & NEXT
+   ════════════════════════════════════════════════════════════ */
+function saveToStorage() {
+  try {
+    localStorage.setItem('hlf_rankings', JSON.stringify(rankings));
+    localStorage.setItem('hlf_comments', JSON.stringify(comments));
+  } catch(e) {}
+}
+
+function loadFromStorage() {
+  try {
+    const r = localStorage.getItem('hlf_rankings');
+    const c = localStorage.getItem('hlf_comments');
+    if (r) {
+      const saved = JSON.parse(r);
+      VALUES.forEach(v => {
+        ['self','teams','org'].forEach(lk => {
+          if (saved[v.id] && saved[v.id][lk]) {
+            saved[v.id][lk].forEach((val, i) => {
+              if (val !== null && rankings[v.id][lk][i] === null) rankings[v.id][lk][i] = val;
+            });
+          }
+        });
+      });
+    }
+    if (c) {
+      const saved = JSON.parse(c);
+      VALUES.forEach(v => {
+        if (saved[v.id]) {
+          if (saved[v.id].self)  comments[v.id].self  = saved[v.id].self;
+          if (saved[v.id].teams) comments[v.id].teams = saved[v.id].teams;
+        }
+      });
+    }
+  } catch(e) {}
+}
+
+function saveAndNext() {
+  saveToStorage();
+
+  // Flash the button
+  const btn = document.getElementById('sbSaveBtn');
+  btn.textContent = '✓ Saved';
+  btn.classList.add('saved');
+  setTimeout(() => {
+    btn.textContent = 'Save & Next →';
+    btn.classList.remove('saved');
+  }, 1200);
+
+  // Navigate to next value, or back to value select if on last one
+  if (currentValue && currentLevel) {
+    const idx = VALUES.findIndex(v => v.id === currentValue);
+    const next = VALUES[idx + 1];
+    if (next) {
+      goToBehaviors(next.id, currentLevel);
+    } else {
+      goToValueSelect(currentLevel);
+    }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   INIT
+   ════════════════════════════════════════════════════════════ */
+loadFromStorage();
+renderScreen1();
+renderNav();
+</script>
+</body>
+</html>

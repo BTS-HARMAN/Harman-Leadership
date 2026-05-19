@@ -40,7 +40,7 @@ body {
   position: sticky; top: 0; z-index: 200;
 }
 .hdr-left { display: flex; align-items: center; gap: 20px; }
-.hdr-wordmark { font-size: 20px; font-weight: 900; letter-spacing: 5px; color: #00C2D4; }
+.hdr-wordmark { font-size: 20px; font-weight: 900; letter-spacing: 5px; color: #00C2D4; cursor: pointer; }
 .hdr-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.12); }
 .hdr-title { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
 .hdr-draft { font-size: 10px; font-weight: 700; letter-spacing: 2px; background: rgba(255,106,0,0.18); color: #FF6A00; border: 1px solid rgba(255,106,0,0.3); border-radius: 20px; padding: 3px 10px; }
@@ -421,7 +421,7 @@ body {
 <!-- HEADER -->
 <header class="hdr">
   <div class="hdr-left">
-    <div class="hdr-wordmark">HARMAN</div>
+    <div class="hdr-wordmark" onclick="goToLevelSelect()" title="Back to home">HARMAN</div>
     <div class="hdr-divider"></div>
     <div class="hdr-title">Unified Leadership Framework</div>
   </div>
@@ -434,8 +434,11 @@ body {
 <div class="screen active" id="s1">
   <div class="s1-eyebrow">Leadership Levels</div>
   <div class="s1-title">Unified Leadership Framework</div>
-  <div class="s1-sub">Before your 1:1, please review and rank the <strong style="color:var(--teal)">Leading Organizations</strong> behaviors. Please provide any comments on Leading Self and Leading Teams behaviors before EOD May 29.</div>
+  <div class="s1-sub">Before your 1:1, please review and rate the <strong style="color:var(--teal)">Leading Organizations</strong> behaviors using the 1–2–3 scale. For <strong style="color:var(--teal)">Leading Self</strong> and <strong style="color:var(--teal)">Leading Teams</strong>, review the behaviors and share your written feedback in the comment box provided for each value.</div>
   <div class="val-grid" id="valGrid"></div>
+  <div style="text-align:center; margin-top:32px;">
+    <button onclick="if(confirm('This will clear all your saved answers. Are you sure?')){localStorage.removeItem('hlf_rankings');localStorage.removeItem('hlf_comments');location.reload();}" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:11px; cursor:pointer; font-family:inherit; text-decoration:underline;">Clear my saved answers</button>
+  </div>
 </div>
 
 <!-- SCREEN 2, LEVELS -->
@@ -469,7 +472,7 @@ body {
     </div>
   </div>
   <div id="textOnlyNote" style="display:none; font-size:13px; line-height:1.6; color:var(--text); max-width:780px; padding:0 0 8px 0;">
-    Review the behaviors below and provide any feedback in the open text box at the bottom.
+    Review the behaviors below. Use the comment box at the bottom to share your perspective — anything you would add, reframe, or remove.
   </div>
   <div class="beh-list" id="behList"></div>
 </div>
@@ -669,9 +672,9 @@ VALUES.forEach(v => {
 const comments = {};
 VALUES.forEach(v => { comments[v.id] = { self: '', teams: '' }; });
 
-// A value/level set gets ranking only if it's org, or has more than 4 behaviors
+// Only Leading Organizations uses the ranking interface
 function isRankable(valId, levelKey) {
-  return levelKey === 'org' || BEHAVIORS[valId][levelKey].length > 4;
+  return levelKey === 'org';
 }
 
 // Total rankable behaviors across all levels and values
@@ -829,7 +832,6 @@ function renderScreen2(levelKey) {
       <div class="val-card" style="${valCSS(v)}" onclick="goToBehaviors('${v.id}','${levelKey}')">
         <div class="val-icon">${v.icon}</div>
         <div class="val-name">${v.name}</div>
-        <div class="val-tag">${v.tagline}</div>
         <div class="val-cta">${behCount} behavior${behCount !== 1 ? 's' : ''} at this level &nbsp;</div>
       </div>`;
     grid.appendChild(wrap);
@@ -984,53 +986,42 @@ async function submitRankings() {
   btn.textContent = 'Submitting…';
   btn.disabled    = true;
 
-  // Submit only the current level's rankings
   const lv = LEVELS.find(x => x.id === currentLevel);
-  const rankList = [];
-  VALUES.forEach(v => {
-    BEHAVIORS[v.id][currentLevel].forEach((b, i) => {
-      rankList.push({
-        level:  lv.name,
-        value:  v.name,
-        index:  i + 1,
-        label:  b.punchy || b.text.substring(0, 80),
-        rating: rankings[v.id][currentLevel][i]
-      });
-    });
-  });
 
-  // Comments for this level (Teams + Self only)
-  const commentList = [];
-  if (currentLevel !== 'org') {
-    VALUES.forEach(v => {
-      const txt = (comments[v.id][currentLevel] || '').trim();
-      if (txt) commentList.push({ level: lv.name, value: v.name, comment: txt });
-    });
-  }
+  // Send one payload per value so each gets its own row in the sheet
+  const sends = VALUES.map(v => {
+    const behs = BEHAVIORS[v.id][currentLevel];
+    const rankList = isRankable(v.id, currentLevel)
+      ? behs.map((b, i) => ({
+          index:  i + 1,
+          label:  b.punchy || b.text.substring(0, 80),
+          rating: rankings[v.id][currentLevel][i]
+        }))
+      : [];
 
-  const payload = {
-    name,
-    level:     lv.name,
-    timestamp: new Date().toISOString(),
-    rankings:  rankList,
-    comments:  commentList
-  };
+    const payload = {
+      name,
+      level:     lv.name,
+      value:     v.name,
+      timestamp: new Date().toISOString(),
+      rankings:  rankList,
+      comment:   (comments[v.id] && comments[v.id][currentLevel]) ? comments[v.id][currentLevel].trim() : ''
+    };
 
-  try {
-    await fetch(APPS_SCRIPT_URL, {
+    return fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode:   'no-cors',
       headers: { 'Content-Type': 'text/plain' },
       body:    JSON.stringify(payload)
-    });
-  } catch(e) { /* no-cors swallows errors; we show success anyway */ }
+    }).catch(() => {});
+  });
 
-  // Show success
-  const lvSuccess = LEVELS.find(x => x.id === currentLevel);
+  try { await Promise.all(sends); } catch(e) {}
+
   document.getElementById('modalContent').innerHTML = `
     <div class="success-box">
       <div class="s-icon">✅</div>
-      <h3>Rankings submitted</h3>
+      <h3>Submitted</h3>
       <p>Thank you for your time and input.</p>
       <button class="s-close" onclick="closeModal()">Close</button>
     </div>`;
@@ -1074,6 +1065,9 @@ function loadFromStorage() {
   } catch(e) {}
 }
 
+// Track which values have been navigated away from via Save & Next (per level)
+const visitedViaNext = { self: new Set(), teams: new Set(), org: new Set() };
+
 function saveAndNext() {
   saveToStorage();
 
@@ -1086,16 +1080,35 @@ function saveAndNext() {
     btn.classList.remove('saved');
   }, 1200);
 
-  // Navigate to next value, or back to value select if on last one
-  if (currentValue && currentLevel) {
-    const idx = VALUES.findIndex(v => v.id === currentValue);
-    const next = VALUES[idx + 1];
-    if (next) {
-      goToBehaviors(next.id, currentLevel);
-    } else {
-      goToValueSelect(currentLevel);
+  if (!currentValue || !currentLevel) return;
+
+  // Mark current value as visited
+  visitedViaNext[currentLevel].add(currentValue);
+
+  const currentIdx = VALUES.findIndex(v => v.id === currentValue);
+
+  if (currentLevel === 'org') {
+    // Find next value with incomplete ratings, wrapping around
+    for (let i = 1; i <= VALUES.length; i++) {
+      const candidate = VALUES[(currentIdx + i) % VALUES.length];
+      if (rankings[candidate.id]['org'].some(r => r === null)) {
+        goToBehaviors(candidate.id, currentLevel);
+        return;
+      }
+    }
+  } else {
+    // Self / Teams: find next unvisited value, wrapping around
+    for (let i = 1; i <= VALUES.length; i++) {
+      const candidate = VALUES[(currentIdx + i) % VALUES.length];
+      if (!visitedViaNext[currentLevel].has(candidate.id)) {
+        goToBehaviors(candidate.id, currentLevel);
+        return;
+      }
     }
   }
+
+  // All values complete / visited — return to level overview
+  goToValueSelect(currentLevel);
 }
 
 /* ════════════════════════════════════════════════════════════

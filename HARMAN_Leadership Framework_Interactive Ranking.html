@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── HEADER (stays dark / branded) ── */
+/* ── HEADER ── */
 .hdr {
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 48px;
@@ -43,7 +43,8 @@ body {
 .hdr-wordmark { font-size: 20px; font-weight: 900; letter-spacing: 5px; color: #00C2D4; cursor: pointer; }
 .hdr-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.12); }
 .hdr-title { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-.hdr-draft { font-size: 10px; font-weight: 700; letter-spacing: 2px; background: rgba(255,106,0,0.18); color: #FF6A00; border: 1px solid rgba(255,106,0,0.3); border-radius: 20px; padding: 3px 10px; }
+.hdr-user { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: .5px; }
+.hdr-user span { color: #00C2D4; }
 
 /* ── NAV BAR ── */
 .nav-bar {
@@ -126,6 +127,16 @@ body {
 .val-cta { font-size:11px; color:var(--muted); margin-top:14px; display:flex; align-items:center; gap:4px; }
 .val-cta::after { content:'→'; }
 
+/* ── Submitted badge on value cards ── */
+.val-done-badge {
+  position: absolute; top: 12px; left: 14px;
+  background: rgba(27,140,66,0.9);
+  color: #fff; font-size: 9px; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+  z-index: 2;
+}
+
 /* ══ SCREEN 2 ══ */
 .s2-heading { margin-bottom:36px; display:flex; align-items:center; gap:16px; }
 .s2-heading-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
@@ -160,6 +171,19 @@ body {
 .s3-heading h2 { font-size:26px; font-weight:900; }
 .s3-heading p { font-size:13px; color:var(--muted); margin-top:6px; line-height:1.5; }
 
+/* Submitted banner at top of behavior list */
+.submitted-banner {
+  max-width: 820px;
+  background: rgba(27,140,66,0.12);
+  border: 1px solid rgba(27,140,66,0.35);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 700; color: #27AE60;
+}
+.submitted-banner-icon { font-size: 18px; }
+
 /* Rating legend banner (org level only) */
 .rank-legend {
   display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
@@ -182,6 +206,7 @@ body {
   transition: background .2s;
 }
 .beh-item:hover { background: var(--panel-h); }
+.beh-item.locked { opacity: 0.75; }
 .beh-n { font-size:10px; font-weight:700; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:8px; }
 .beh-text { font-size:15px; line-height:1.65; font-weight:500; }
 
@@ -213,14 +238,77 @@ body {
   cursor: pointer; transition: all .15s; font-family: inherit;
   display: flex; align-items: center; justify-content: center;
 }
-.rank-btn:hover { border-color: var(--v-accent2); color: var(--v-accent2); }
+.rank-btn:hover:not(:disabled) { border-color: var(--v-accent2); color: var(--v-accent2); }
+.rank-btn:disabled { cursor: not-allowed; opacity: 0.5; }
 .rank-btn.sel-1 { background: #C0392B; border-color: #C0392B; color: white; }
 .rank-btn.sel-2 { background: #D4860A; border-color: #D4860A; color: white; }
 .rank-btn.sel-3 { background: #1B7A3E; border-color: #1B7A3E; color: white; }
 .rank-saved { font-size: 11px; color: #1B8C42; font-weight: 600; margin-left: auto; opacity: 0; transition: opacity .4s; }
 .rank-saved.show { opacity: 1; }
 
-/* ══ FLOATING SUBMIT BAR ══ */
+/* ══ PER-VALUE SUBMIT PANEL (org only) ══ */
+.val-submit-panel {
+  max-width: 820px;
+  margin-top: 28px;
+  padding: 22px 26px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-top: 2px solid #00C2D4;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.vsp-left { display: flex; flex-direction: column; gap: 5px; }
+.vsp-status { font-size: 15px; font-weight: 700; color: var(--text); }
+.vsp-hint { font-size: 12px; color: var(--muted); }
+.vsp-prog-track { width: 200px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 2px; }
+.vsp-prog-fill { height: 100%; background: #00C2D4; border-radius: 2px; transition: width .35s; }
+.vsp-right { display: flex; gap: 10px; align-items: center; }
+.vsp-save-btn {
+  background: transparent; color: rgba(255,255,255,0.7);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 8px; padding: 11px 20px;
+  font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
+  transition: all .2s; white-space: nowrap;
+}
+.vsp-save-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.4); color: white; }
+.vsp-save-btn.saved { border-color: #00C2D4; color: #00C2D4; }
+.vsp-btn {
+  background: #00C2D4; color: #070A17;
+  border: none; border-radius: 8px; padding: 12px 28px;
+  font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit;
+  transition: background .2s, transform .15s; white-space: nowrap;
+}
+.vsp-btn:hover:not(:disabled) { background: #00DFF0; transform: translateY(-1px); }
+.vsp-btn:disabled { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); cursor: not-allowed; transform: none; }
+.vsp-btn.submitting { background: rgba(0,194,212,0.3); color: rgba(255,255,255,0.6); cursor: not-allowed; }
+
+/* ── Edit mode ── */
+.submitted-banner.editing {
+  background: rgba(212,134,10,0.12);
+  border-color: rgba(212,134,10,0.4);
+  color: #D4860A;
+}
+.edit-banner-btn {
+  margin-left: auto; flex-shrink: 0;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.75);
+  border-radius: 6px; padding: 6px 16px;
+  font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit;
+  transition: all .2s; white-space: nowrap;
+}
+.edit-banner-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); color: white; }
+.vsp-resave-btn {
+  background: linear-gradient(135deg,#D4860A,#FF6A00); color: white;
+  border: none; border-radius: 8px; padding: 12px 24px;
+  font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit;
+  transition: opacity .2s, transform .15s; white-space: nowrap;
+}
+.vsp-resave-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.vsp-resave-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+/* ══ FLOATING SUBMIT BAR (self + teams only) ══ */
 .submit-bar {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: #070A17; border-top: 2px solid #00C2D4;
@@ -247,56 +335,13 @@ body {
 .sb-save-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.45); color: white; }
 .sb-save-btn.saved { border-color: #00C2D4; color: #00C2D4; }
 
-/* ══ MODAL ══ */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(7,10,23,0.72); backdrop-filter: blur(6px);
-  z-index: 400; display: none; align-items: center; justify-content: center;
+/* Self/Teams submit result (inline in floating bar) */
+.sb-result {
+  font-size: 13px; font-weight: 700; color: #27AE60;
+  display: none; align-items: center; gap: 6px;
 }
-.modal-overlay.visible { display: flex; }
-.modal {
-  background: white; border-radius: 20px; padding: 44px 48px;
-  max-width: 500px; width: 90%;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.28);
-  animation: fsIn .25s ease both;
-}
-.modal h2 { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
-.modal > p { font-size: 14px; color: #666; line-height: 1.55; margin-bottom: 28px; }
-.form-field { margin-bottom: 16px; }
-.form-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin-bottom: 6px; }
-.form-field input, .form-field select {
-  width: 100%; padding: 12px 14px;
-  border: 1.5px solid #DDD; border-radius: 8px;
-  font-size: 15px; font-family: inherit; color: #0F1222;
-  background: white; transition: border-color .18s;
-}
-.form-field input:focus, .form-field select:focus { outline: none; border-color: #00A8BC; }
-.modal-actions { display: flex; gap: 12px; margin-top: 28px; }
-.modal-submit {
-  flex: 1; background: #070A17; color: white;
-  border: none; border-radius: 8px; padding: 14px;
-  font-size: 14px; font-weight: 800; cursor: pointer; font-family: inherit;
-  transition: background .2s;
-}
-.modal-submit:hover { background: #1A2280; }
-.modal-cancel {
-  background: transparent; border: 1.5px solid #DDD;
-  border-radius: 8px; padding: 14px 20px;
-  font-size: 14px; cursor: pointer; font-family: inherit; color: #555;
-}
-.modal-cancel:hover { border-color: #BBB; }
-.modal-error { color: #C0392B; font-size: 13px; margin-top: 12px; display: none; }
-
-/* Success */
-.success-box { text-align: center; padding: 10px 0; }
-.success-box .s-icon { font-size: 52px; margin-bottom: 16px; }
-.success-box h3 { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
-.success-box p { font-size: 14px; color: #666; line-height: 1.6; }
-.success-box .s-close {
-  margin-top: 28px; background: #070A17; color: white;
-  border: none; border-radius: 8px; padding: 12px 28px;
-  font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit;
-}
+.sb-result.visible { display: flex; }
+.sb-result-err { color: #E05C5C; }
 
 /* ── LEVEL SELECT (Screen 1) ── */
 .lvl-sel-grid { display:flex; flex-direction:column; gap:16px; max-width:820px; margin:0 auto; }
@@ -357,12 +402,13 @@ body {
   .s1-title { font-size:24px; }
   .submit-bar { padding: 14px 20px; flex-wrap: wrap; }
   .sb-prog-track { width: 140px; }
+  .val-submit-panel { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── PASSWORD GATE ── -->
+<!-- ── LOGIN GATE (name + password) ── -->
 <div id="pwGate" style="
   position:fixed; inset:0; z-index:9999;
   background:#0F1222;
@@ -370,12 +416,30 @@ body {
   font-family:inherit;">
   <div style="
     background:#1A1F38; border-radius:16px; padding:48px 56px;
-    text-align:center; max-width:400px; width:90%;
+    text-align:center; max-width:420px; width:90%;
     box-shadow:0 24px 64px rgba(0,0,0,.5);">
     <div style="font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#00B8D4;margin-bottom:20px;">HARMAN</div>
     <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:6px;">Leadership Framework</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:36px;">Working team access only</div>
-    <input id="pwInput" type="password" placeholder="Enter password"
+    <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:32px;">Senior Leadership Team Review</div>
+
+    <div style="text-align:left;margin-bottom:8px;">
+      <label style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);">Your Full Name</label>
+    </div>
+    <input id="nameInput" type="text" placeholder="First and last name"
+      onkeydown="if(event.key==='Enter')document.getElementById('pwInput').focus()"
+      style="
+        width:100%; box-sizing:border-box;
+        padding:12px 16px; border-radius:8px;
+        border:1.5px solid rgba(255,255,255,.12);
+        background:rgba(255,255,255,.07); color:#fff;
+        font-size:14px; font-family:inherit;
+        outline:none; margin-bottom:14px;
+        transition:border-color .2s;">
+
+    <div style="text-align:left;margin-bottom:8px;">
+      <label style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);">Password</label>
+    </div>
+    <input id="pwInput" type="password" placeholder="Session password"
       onkeydown="if(event.key==='Enter')checkPw()"
       style="
         width:100%; box-sizing:border-box;
@@ -385,7 +449,12 @@ body {
         font-size:14px; font-family:inherit;
         outline:none; margin-bottom:12px;
         transition:border-color .2s;">
-    <div id="pwErr" style="font-size:11px;color:#E05C5C;min-height:16px;margin-bottom:12px;display:none;">Incorrect password. Try again.</div>
+
+    <div id="returningMsg" style="font-size:12px;color:#00C2D4;min-height:16px;margin-bottom:12px;display:none;">
+      ✓ Welcome back! Your previous answers have been loaded.
+    </div>
+    <div id="pwErr" style="font-size:11px;color:#E05C5C;min-height:16px;margin-bottom:12px;display:none;"></div>
+
     <button onclick="checkPw()" style="
       width:100%; padding:12px; border-radius:8px; border:none;
       background:#00B8D4; color:#fff; font-size:13px;
@@ -399,19 +468,52 @@ body {
 <script>
 (function(){
   const k = atob('RnJhbWV3b3JrMjAyNg==');
+
   window.checkPw = function() {
-    const v = document.getElementById('pwInput').value;
-    const e = document.getElementById('pwErr');
-    if (v === k) {
-      document.getElementById('pwGate').style.display = 'none';
-      sessionStorage.setItem('hlf_auth','1');
-    } else {
-      e.style.display = 'block';
+    const name = document.getElementById('nameInput').value.trim();
+    const pass = document.getElementById('pwInput').value;
+    const errEl = document.getElementById('pwErr');
+    const retEl = document.getElementById('returningMsg');
+
+    errEl.style.display = 'none';
+    retEl.style.display = 'none';
+
+    if (!name) {
+      errEl.textContent = 'Please enter your name.';
+      errEl.style.display = 'block';
+      document.getElementById('nameInput').focus();
+      return;
+    }
+    if (pass !== k) {
+      errEl.textContent = 'Incorrect password. Try again.';
+      errEl.style.display = 'block';
       document.getElementById('pwInput').value = '';
       document.getElementById('pwInput').focus();
+      return;
+    }
+
+    // Valid — set user and load data
+    currentUser = name;
+    sessionStorage.setItem('hlf_user', name);
+    const hasExisting = loadFromStorage();
+
+    if (hasExisting) {
+      retEl.style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('pwGate').style.display = 'none';
+        refreshAfterLogin();
+      }, 1400);
+    } else {
+      document.getElementById('pwGate').style.display = 'none';
+      refreshAfterLogin();
     }
   };
-  if (sessionStorage.getItem('hlf_auth') === '1') {
+
+  // Auto-restore if session still alive
+  const savedUser = sessionStorage.getItem('hlf_user');
+  if (savedUser) {
+    currentUser = savedUser;
+    loadFromStorage();
     document.getElementById('pwGate').style.display = 'none';
   }
 })();
@@ -425,23 +527,24 @@ body {
     <div class="hdr-divider"></div>
     <div class="hdr-title">Unified Leadership Framework</div>
   </div>
+  <div class="hdr-user" id="hdrUser"></div>
 </header>
 
 <!-- NAV BAR -->
 <div class="nav-bar" id="navBar"></div>
 
-<!-- SCREEN 1, VALUES -->
+<!-- SCREEN 1: LEVEL SELECT -->
 <div class="screen active" id="s1">
   <div class="s1-eyebrow">Leadership Levels</div>
   <div class="s1-title">Unified Leadership Framework</div>
-  <div class="s1-sub">Before your 1:1, please review and rate the <strong style="color:var(--teal)">Leading Organizations</strong> behaviors using the 1–2–3 scale. For <strong style="color:var(--teal)">Leading Self</strong> and <strong style="color:var(--teal)">Leading Teams</strong>, review the behaviors and share your written feedback in the comment box provided for each value.</div>
+  <div class="s1-sub">For <strong style="color:var(--teal)">Leading Organizations</strong>, review and rate each behavior using the 1–2–3 scale, then submit each value individually. For <strong style="color:var(--teal)">Leading Self</strong> and <strong style="color:var(--teal)">Leading Teams</strong>, review the behaviors and share written feedback in the comment box for each value.</div>
   <div class="val-grid" id="valGrid"></div>
   <div style="text-align:center; margin-top:32px;">
-    <button onclick="if(confirm('This will clear all your saved answers. Are you sure?')){localStorage.removeItem('hlf_rankings');localStorage.removeItem('hlf_comments');location.reload();}" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:11px; cursor:pointer; font-family:inherit; text-decoration:underline;">Clear my saved answers</button>
+    <button onclick="if(confirm('This will clear all your saved answers. Are you sure?')){clearUserData();}" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:11px; cursor:pointer; font-family:inherit; text-decoration:underline;">Clear my saved answers</button>
   </div>
 </div>
 
-<!-- SCREEN 2, LEVELS -->
+<!-- SCREEN 2: VALUE CARDS -->
 <div class="screen" id="s2">
   <div class="s2-heading">
     <div class="s2-heading-dot" id="s2Dot"></div>
@@ -453,8 +556,9 @@ body {
   <div class="lvl-grid" id="lvlGrid"></div>
 </div>
 
-<!-- SCREEN 3, BEHAVIORS -->
+<!-- SCREEN 3: BEHAVIORS -->
 <div class="screen" id="s3">
+  <div id="submittedBanner" class="submitted-banner" style="display:none;"></div>
   <div class="s3-heading">
     <h2 id="s3Title"></h2>
     <p id="s3Sub"></p>
@@ -477,41 +581,23 @@ body {
   <div class="beh-list" id="behList"></div>
 </div>
 
-<!-- FLOATING SUBMIT BAR -->
+<!-- FLOATING SUBMIT BAR (Self + Teams only) -->
 <div class="submit-bar" id="submitBar">
   <div class="sb-left">
-    <div class="sb-progress" id="sbProgress">0 of 30 behaviors rated</div>
-    <div class="sb-sub" id="sbSub">Complete all behaviors at the current level to submit</div>
+    <div class="sb-progress" id="sbProgress">Review all values and share your comments</div>
+    <div class="sb-sub" id="sbSub">Submit when you've finished this level</div>
     <div class="sb-prog-track"><div class="sb-prog-fill" id="sbProgFill" style="width:0%"></div></div>
   </div>
   <div style="display:flex; gap:10px; align-items:center;">
+    <div class="sb-result" id="sbResult"></div>
     <button class="sb-save-btn" id="sbSaveBtn" onclick="saveAndNext()">Save &amp; Next →</button>
-    <button class="sb-btn" id="sbBtn" onclick="openModal()" disabled>Submit Level →</button>
-  </div>
-</div>
-
-<!-- SUBMIT MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modalBox">
-    <div id="modalContent">
-      <h2>Submit your rankings</h2>
-      <p>Your ratings and comments will be recorded in the HARMAN leadership framework working spreadsheet and used to help pare the behavior set down to the sharpest final list.</p>
-      <div class="form-field">
-        <label>Your name</label>
-        <input type="text" id="inputName" placeholder="First and last name" />
-      </div>
-      <div class="modal-error" id="modalError">Please enter your name.</div>
-      <div class="modal-actions">
-        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
-        <button class="modal-submit" id="modalSubmitBtn" onclick="submitRankings()">Submit my rankings →</button>
-      </div>
-    </div>
+    <button class="sb-btn" id="sbBtn" onclick="submitLevelDirect()" style="display:none;">Submit Level →</button>
   </div>
 </div>
 
 <script>
 /* ════════════════════════════════════════════════════════════
-   CONFIGURATION, replace with your deployed Apps Script URL
+   APPS SCRIPT URL
    ════════════════════════════════════════════════════════════ */
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrPoL4FUOMhxACdgA6BdGwIbgIkCZKdh936SjnHkaQEKMAT15ASxQmthwpGsOIt99w/exec';
 
@@ -657,6 +743,7 @@ const BEHAVIORS = {
    ════════════════════════════════════════════════════════════ */
 let currentValue = null;
 let currentLevel = null;
+let currentUser  = '';        // set at login
 
 // rankings[valId][levelKey][behaviorIndex] = 1|2|3|null
 const rankings = {};
@@ -668,29 +755,135 @@ VALUES.forEach(v => {
   };
 });
 
-// comments[valId][levelKey] = string (teams + self only)
+// comments[valId][levelKey] = string
 const comments = {};
-VALUES.forEach(v => { comments[v.id] = { self: '', teams: '' }; });
+VALUES.forEach(v => { comments[v.id] = { self: '', teams: '', org: '' }; });
 
-// Only Leading Organizations uses the ranking interface
+// submittedValues: which org values have been submitted
+// key: `${valId}_${levelKey}`, e.g. 'integrity_org'
+let submittedValues = {};
+
+// Also track which self/teams levels have been submitted
+// key: levelKey, e.g. 'self', 'teams'
+let submittedLevels = {};
+
+// Track which submitted values are currently being edited (unlocked)
+// key: `${valId}_${levelKey}`, e.g. 'integrity_org'
+let editingValues = {};
+
+function isSubmitted(valId, levelKey) {
+  return !!(submittedValues[`${valId}_${levelKey}`]);
+}
+
+function isLevelSubmitted(levelKey) {
+  return !!(submittedLevels[levelKey]);
+}
+
+// Only Leading Organizations uses ranking
 function isRankable(valId, levelKey) {
   return levelKey === 'org';
 }
 
-// Total rankable behaviors across all levels and values
-const TOTAL_ALL = VALUES.reduce((sum, v) =>
-  sum +
-  (isRankable(v.id, 'self')  ? BEHAVIORS[v.id].self.length  : 0) +
-  (isRankable(v.id, 'teams') ? BEHAVIORS[v.id].teams.length : 0) +
-  BEHAVIORS[v.id].org.length, 0);
+// Total rankable behaviors across all org values
+const TOTAL_ORG = VALUES.reduce((sum, v) => sum + BEHAVIORS[v.id].org.length, 0);
+
+/* ════════════════════════════════════════════════════════════
+   STORAGE  (keyed by user name so multiple SLT members
+             can use the same device without collision)
+   ════════════════════════════════════════════════════════════ */
+function userKey(suffix) {
+  const safe = currentUser.toLowerCase().replace(/[^a-z0-9]/g, '_');
+  return `hlf_${safe}_${suffix}`;
+}
+
+function saveToStorage() {
+  if (!currentUser) return;
+  try {
+    localStorage.setItem(userKey('rankings'),  JSON.stringify(rankings));
+    localStorage.setItem(userKey('comments'),  JSON.stringify(comments));
+    localStorage.setItem(userKey('submitted'), JSON.stringify(submittedValues));
+    localStorage.setItem(userKey('levels'),    JSON.stringify(submittedLevels));
+    localStorage.setItem(userKey('savedNext'), JSON.stringify({
+      self:  [...savedViaNext.self],
+      teams: [...savedViaNext.teams],
+      org:   [...savedViaNext.org],
+    }));
+  } catch(e) {}
+}
+
+// Returns true if any existing data was found for this user
+function loadFromStorage() {
+  if (!currentUser) return false;
+  let found = false;
+  try {
+    const r = localStorage.getItem(userKey('rankings'));
+    if (r) {
+      found = true;
+      const saved = JSON.parse(r);
+      VALUES.forEach(v => {
+        ['self','teams','org'].forEach(lk => {
+          if (saved[v.id] && saved[v.id][lk]) {
+            saved[v.id][lk].forEach((val, i) => {
+              if (val !== null && rankings[v.id][lk][i] === null) rankings[v.id][lk][i] = val;
+            });
+          }
+        });
+      });
+    }
+    const c = localStorage.getItem(userKey('comments'));
+    if (c) {
+      const saved = JSON.parse(c);
+      VALUES.forEach(v => {
+        if (saved[v.id]) {
+          if (saved[v.id].self)  comments[v.id].self  = saved[v.id].self;
+          if (saved[v.id].teams) comments[v.id].teams = saved[v.id].teams;
+          if (saved[v.id].org)   comments[v.id].org   = saved[v.id].org;
+        }
+      });
+    }
+    const s = localStorage.getItem(userKey('submitted'));
+    if (s) submittedValues = JSON.parse(s);
+
+    const l = localStorage.getItem(userKey('levels'));
+    if (l) submittedLevels = JSON.parse(l);
+
+    const sn = localStorage.getItem(userKey('savedNext'));
+    if (sn) {
+      const parsed = JSON.parse(sn);
+      if (parsed.self)  parsed.self.forEach(id  => savedViaNext.self.add(id));
+      if (parsed.teams) parsed.teams.forEach(id => savedViaNext.teams.add(id));
+      if (parsed.org)   parsed.org.forEach(id   => savedViaNext.org.add(id));
+    }
+  } catch(e) {}
+  return found;
+}
+
+function clearUserData() {
+  if (!currentUser) { localStorage.removeItem('hlf_rankings'); localStorage.removeItem('hlf_comments'); location.reload(); return; }
+  try {
+    localStorage.removeItem(userKey('rankings'));
+    localStorage.removeItem(userKey('comments'));
+    localStorage.removeItem(userKey('submitted'));
+    localStorage.removeItem(userKey('levels'));
+  } catch(e) {}
+  location.reload();
+}
+
+function refreshAfterLogin() {
+  // Update header
+  const el = document.getElementById('hdrUser');
+  if (el && currentUser) el.innerHTML = `Logged in as <span>${currentUser}</span>`;
+  renderScreen1();
+  renderNav();
+}
 
 /* ════════════════════════════════════════════════════════════
    RANKING LOGIC
    ════════════════════════════════════════════════════════════ */
 function setRank(valId, levelKey, index, value) {
+  if (isSubmitted(valId, levelKey) && !editingValues[`${valId}_${levelKey}`]) return; // locked unless in edit mode
   rankings[valId][levelKey][index] = value;
 
-  // Update button states
   const row = document.getElementById(`rank-row-${valId}-${levelKey}-${index}`);
   if (row) {
     row.querySelectorAll('.rank-btn').forEach(btn => {
@@ -698,57 +891,19 @@ function setRank(valId, levelKey, index, value) {
       if (parseInt(btn.dataset.val) === value) btn.classList.add(`sel-${value}`);
     });
     const saved = row.querySelector('.rank-saved');
-    if (saved) {
-      saved.classList.add('show');
-      setTimeout(() => saved.classList.remove('show'), 1600);
-    }
+    if (saved) { saved.classList.add('show'); setTimeout(() => saved.classList.remove('show'), 1600); }
   }
 
-  updateSubmitBar();
+  updateValSubmitPanel(valId);
+  saveToStorage();
 }
 
-function countRated() {
-  let total = 0;
-  VALUES.forEach(v => {
-    ['self','teams','org'].forEach(lk => {
-      total += rankings[v.id][lk].filter(r => r !== null).length;
-    });
-  });
-  return total;
+function countRatedForValue(valId, levelKey) {
+  return rankings[valId][levelKey].filter(r => r !== null).length;
 }
 
-function countRatedForLevel(levelKey) {
-  let total = 0;
-  VALUES.forEach(v => {
-    if (isRankable(v.id, levelKey)) {
-      total += rankings[v.id][levelKey].filter(r => r !== null).length;
-    }
-  });
-  return total;
-}
-
-function totalBehaviorsForLevel(levelKey) {
-  return VALUES.reduce((sum, v) =>
-    sum + (isRankable(v.id, levelKey) ? BEHAVIORS[v.id][levelKey].length : 0), 0);
-}
-
-function updateSubmitBar() {
-  const rated    = countRated();
-  const pct      = Math.round((rated / TOTAL_ALL) * 100);
-  const lv       = LEVELS.find(x => x.id === currentLevel);
-  const lvRated  = countRatedForLevel(currentLevel);
-  const lvTotal  = totalBehaviorsForLevel(currentLevel);
-  const lvDone   = lvRated === lvTotal;
-
-  document.getElementById('sbProgress').textContent = `${rated} of ${TOTAL_ALL} behaviors rated across all levels`;
-  document.getElementById('sbProgFill').style.width = pct + '%';
-  document.getElementById('sbSub').textContent =
-    lvDone
-      ? `All ${lv.name} behaviors rated — ready to submit`
-      : `${lvRated} of ${lvTotal} ${lv.name} behaviors rated — complete this level to submit`;
-  const btn = document.getElementById('sbBtn');
-  btn.disabled    = !lvDone;
-  btn.textContent = `Submit ${lv.name} →`;
+function totalForValue(valId, levelKey) {
+  return BEHAVIORS[valId][levelKey].length;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -766,7 +921,7 @@ function thBadge(h) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   SCREEN 1, LEVEL SELECTION
+   SCREEN 1: LEVEL SELECT
    ════════════════════════════════════════════════════════════ */
 function renderScreen1() {
   const container = document.getElementById('valGrid');
@@ -774,14 +929,18 @@ function renderScreen1() {
   container.innerHTML = '';
 
   const tealGrad = 'linear-gradient(135deg,#0057B8,#00C2D4)';
-
-  // Leading Org, prominent card with START HERE badge
   const orgLv = LEVELS.find(x => x.id === 'org');
+
+  // Count how many org values have been submitted
+  const orgSubmitted = VALUES.filter(v => isSubmitted(v.id, 'org')).length;
+  const orgProgress  = orgSubmitted > 0
+    ? `<span style="font-size:12px;color:#27AE60;font-weight:700;margin-left:8px;">✓ ${orgSubmitted}/5 values submitted</span>`
+    : '';
+
   const orgWrap = document.createElement('div');
   orgWrap.innerHTML = `
-    <span class="start-badge">★&nbsp; START HERE</span>
-    <div class="lvl-card" onclick="goToValueSelect('org')"
-         style="--v-grad:${tealGrad};cursor:pointer;">
+    <span class="start-badge">★&nbsp; START HERE</span>${orgProgress}
+    <div class="lvl-card" onclick="goToValueSelect('org')" style="--v-grad:${tealGrad};cursor:pointer;">
       <div class="lvl-num">${orgLv.num}</div>
       <div class="lvl-name">${orgLv.name}</div>
       <div class="lvl-desc">${orgLv.desc}</div>
@@ -789,16 +948,20 @@ function renderScreen1() {
     </div>`;
   container.appendChild(orgWrap);
 
-  // Teams + Self, dimmed secondary row
   const bottom = document.createElement('div');
   bottom.className = 'lvl-sel-bottom';
   [{ id:'teams' }, { id:'self' }].forEach(({ id }) => {
     const lv = LEVELS.find(x => x.id === id);
+    const savedCount = savedViaNext[id].size;
+    const doneTag = isLevelSubmitted(id)
+      ? `<span style="font-size:12px;color:#27AE60;font-weight:700;margin-left:8px;">✓ Submitted</span>`
+      : savedCount > 0
+        ? `<span style="font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;margin-left:8px;">${savedCount}/5 saved</span>`
+        : '';
     const wrap = document.createElement('div');
     wrap.innerHTML = `
-      <div class="lvl-after-label">Review Later</div>
-      <div class="lvl-card lvl-sel-secondary" onclick="goToValueSelect('${id}')"
-           style="--v-grad:${tealGrad};cursor:pointer;">
+      <div class="lvl-after-label">Review Later${doneTag}</div>
+      <div class="lvl-card lvl-sel-secondary" onclick="goToValueSelect('${id}')" style="--v-grad:${tealGrad};cursor:pointer;">
         <div class="lvl-num">${lv.num}</div>
         <div class="lvl-name">${lv.name}</div>
         <div class="lvl-desc">${lv.desc}</div>
@@ -810,13 +973,15 @@ function renderScreen1() {
 }
 
 /* ════════════════════════════════════════════════════════════
-   SCREEN 2, VALUE CARDS FOR SELECTED LEVEL
+   SCREEN 2: VALUE CARDS FOR SELECTED LEVEL
    ════════════════════════════════════════════════════════════ */
 function renderScreen2(levelKey) {
   const lv = LEVELS.find(x => x.id === levelKey);
   document.getElementById('s2Dot').style.cssText = 'background:#00C2D4;box-shadow:0 0 10px #00C2D4;';
   document.getElementById('s2Title').textContent = lv.name;
-  document.getElementById('s2Sub').textContent   = 'Select a value to explore its behaviors at this level.';
+  document.getElementById('s2Sub').textContent   = levelKey === 'org'
+    ? 'Select a value to rate its behaviors. Submit each value individually.'
+    : 'Select a value to review its behaviors and leave comments.';
 
   const grid = document.getElementById('lvlGrid');
   grid.className = 'val-grid';
@@ -824,12 +989,16 @@ function renderScreen2(levelKey) {
 
   VALUES.forEach((v, i) => {
     const behCount = BEHAVIORS[v.id][levelKey].length;
+    const done     = isSubmitted(v.id, levelKey);
+    const doneBadge = done ? `<div class="val-done-badge">✓ Submitted</div>` : '';
+
     const wrap = document.createElement('div');
     wrap.className = 'value-card-wrap';
     if (i === 3) wrap.style.cssText = 'grid-column:1;grid-row:2;';
     if (i === 4) wrap.style.cssText = 'grid-column:3;grid-row:2;';
     wrap.innerHTML = `
       <div class="val-card" style="${valCSS(v)}" onclick="goToBehaviors('${v.id}','${levelKey}')">
+        ${doneBadge}
         <div class="val-icon">${v.icon}</div>
         <div class="val-name">${v.name}</div>
         <div class="val-cta">${behCount} behavior${behCount !== 1 ? 's' : ''} at this level &nbsp;</div>
@@ -845,19 +1014,30 @@ function renderScreen2(levelKey) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   SCREEN 3, BEHAVIORS
+   SCREEN 3: BEHAVIORS
    ════════════════════════════════════════════════════════════ */
 function renderScreen3(valId, levelKey) {
-  const v    = VALUES.find(x => x.id === valId);
-  const lv   = LEVELS.find(x => x.id === levelKey);
-  const behs = BEHAVIORS[valId][levelKey];
-  const isOrg = levelKey === 'org';
-  const showRanking = isOrg || behs.length > 4;
+  const v      = VALUES.find(x => x.id === valId);
+  const lv     = LEVELS.find(x => x.id === levelKey);
+  const behs   = BEHAVIORS[valId][levelKey];
+  const isOrg       = levelKey === 'org';
+  const showRanking = isOrg;
+
+  // Submitted banner — only shown when the whole level has been submitted
+  const banner = document.getElementById('submittedBanner');
+  banner.classList.remove('editing');
+  if (isLevelSubmitted(levelKey)) {
+    banner.style.display = 'flex';
+    banner.innerHTML = `<span class="submitted-banner-icon">✅</span>
+      <span>${lv.name} has been submitted. Thank you for your feedback.</span>`;
+  } else {
+    banner.style.display = 'none';
+  }
 
   document.getElementById('s3Title').textContent = `${v.name} · ${lv.name}`;
   document.getElementById('s3Sub').textContent   = lv.desc;
-  document.getElementById('rankLegend').style.display    = showRanking ? 'block' : 'none';
-  document.getElementById('textOnlyNote').style.display  = showRanking ? 'none'  : 'block';
+  document.getElementById('rankLegend').style.display   = showRanking ? 'block' : 'none';
+  document.getElementById('textOnlyNote').style.display = (!showRanking) ? 'block' : 'none';
 
   const list = document.getElementById('behList');
   list.innerHTML = '';
@@ -870,7 +1050,8 @@ function renderScreen3(valId, levelKey) {
     const currentRating = rankings[valId][levelKey][i];
     const btn = (val) => {
       const sel = currentRating === val ? `sel-${val}` : '';
-      return `<button class="rank-btn ${sel}" data-val="${val}" onclick="setRank('${valId}','${levelKey}',${i},${val})">${val}</button>`;
+      return `<button class="rank-btn ${sel}" data-val="${val}"
+        onclick="setRank('${valId}','${levelKey}',${i},${val})">${val}</button>`;
     };
     const rankRow = `
       <div class="rank-row" id="rank-row-${valId}-${levelKey}-${i}">
@@ -885,7 +1066,6 @@ function renderScreen3(valId, levelKey) {
              <div class="beh-ml-lbl">Market leader version</div>
              <div class="beh-ml-text">${b.marketLeader}</div>
            </div>` : '';
-
       item.innerHTML = `
         <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')} ${thBadge(b.horizon)}</div>
         <div class="beh-punchy" style="color:${v.accent}">${b.punchy}</div>
@@ -895,43 +1075,342 @@ function renderScreen3(valId, levelKey) {
     } else {
       item.innerHTML = `
         <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
-        <div class="beh-text">${b.text}</div>
-        ${showRanking ? rankRow : ''}`;
+        <div class="beh-text">${b.text}</div>`;
     }
     list.appendChild(item);
   });
 
-  // Comment box for Teams and Self
-  if (!isOrg) {
-    const commentWrap = document.createElement('div');
-    commentWrap.className = 'comment-box-wrap';
-    const saved = comments[valId][levelKey] || '';
-    commentWrap.innerHTML = `
-      <div class="comment-box-label">Additional comments</div>
-      <div class="comment-box-hint">Anything missing? Anything you would reframe?</div>
-      <textarea class="comment-box-textarea"
-        placeholder="Write your thoughts here..."
-        oninput="comments['${valId}']['${levelKey}']=this.value"
-      >${saved}</textarea>`;
-    list.appendChild(commentWrap);
+  // Comment box for all levels
+  const commentWrap = document.createElement('div');
+  commentWrap.className = 'comment-box-wrap';
+  const savedComment = comments[valId][levelKey] || '';
+  const commentHint = isOrg
+    ? 'Any additional thoughts on these behaviors — anything you\'d add, remove, or reframe?'
+    : 'Anything missing? Anything you would reframe?';
+  commentWrap.innerHTML = `
+    <div class="comment-box-label">Additional comments</div>
+    <div class="comment-box-hint">${commentHint}</div>
+    <textarea class="comment-box-textarea"
+      placeholder="Write your thoughts here..."
+      oninput="comments['${valId}']['${levelKey}']=this.value;saveToStorage()"
+    >${savedComment}</textarea>`;
+  list.appendChild(commentWrap);
+}
+
+/* ════════════════════════════════════════════════════════════
+   PER-VALUE SUBMIT PANEL (org)
+   ════════════════════════════════════════════════════════════ */
+function updateValSubmitPanel(valId) {
+  const panel = document.getElementById(`vsp-${valId}`);
+  if (!panel) return;
+
+  const v      = VALUES.find(x => x.id === valId);
+  const rated  = countRatedForValue(valId, 'org');
+  const total  = totalForValue(valId, 'org');
+  const allDone = rated === total;
+  const locked  = isSubmitted(valId, 'org');
+  const pct = total > 0 ? Math.round((rated / total) * 100) : 0;
+
+  const isEditing = !!(editingValues[`${valId}_org`]);
+
+  if (locked && !isEditing) {
+    panel.innerHTML = `
+      <div class="vsp-left">
+        <div class="vsp-status" style="color:#27AE60;">✅ ${v.name} submitted</div>
+        <div class="vsp-hint">Rankings are locked.</div>
+      </div>
+      <div class="vsp-right">
+        <button class="edit-banner-btn" style="margin-left:0" onclick="editOrgValue('${valId}')">Edit Rankings</button>
+      </div>`;
+    return;
   }
+
+  if (isEditing) {
+    panel.innerHTML = `
+      <div class="vsp-left">
+        <div class="vsp-status" style="color:#D4860A;">✏️ Editing — ${rated} of ${total} behaviors rated</div>
+        <div class="vsp-hint">Save your edits to send an updated response to Google Sheets</div>
+      </div>
+      <div class="vsp-right">
+        <button class="vsp-resave-btn" id="vsp-resave-${valId}" onclick="saveEditedValue('${valId}')">
+          Save Edits →
+        </button>
+      </div>`;
+    return;
+  }
+
+  panel.innerHTML = `
+    <div class="vsp-left">
+      <div class="vsp-status">${rated} of ${total} behaviors rated</div>
+      <div class="vsp-hint">${allDone ? 'All behaviors rated — ready to submit' : 'Rate all behaviors to submit'}</div>
+      <div class="vsp-prog-track"><div class="vsp-prog-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="vsp-right">
+      <button class="vsp-save-btn" id="vsp-save-${valId}" onclick="saveValueProgress('${valId}')">Save Progress →</button>
+      <button class="vsp-btn" id="vsp-btn-${valId}"
+        ${allDone ? '' : 'disabled'}
+        onclick="submitOrgValue('${valId}')">
+        Submit ${v.name} →
+      </button>
+    </div>`;
+}
+
+async function saveValueProgress(valId) {
+  saveToStorage();
+  const btn = document.getElementById(`vsp-save-${valId}`);
+  if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
+
+  const v    = VALUES.find(x => x.id === valId);
+  const behs = BEHAVIORS[valId]['org'];
+  const lv   = LEVELS.find(x => x.id === 'org');
+
+  const rankList = behs.map((b, i) => ({
+    index:  i + 1,
+    label:  b.punchy || b.text.substring(0, 80),
+    rating: rankings[valId]['org'][i]   // may be null if not yet rated
+  }));
+
+  const payload = {
+    name:      currentUser,
+    level:     lv.name,
+    value:     v.name,
+    timestamp: new Date().toISOString(),
+    rankings:  rankList,
+    comment:   '',
+    partial:   true   // marks this as a progress save, not a final submission
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+
+  if (btn) {
+    btn.textContent = '✓ Saved to Sheet';
+    btn.classList.add('saved');
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = 'Save Progress →';
+      btn.classList.remove('saved');
+    }, 1800);
+  }
+}
+
+async function submitOrgValue(valId) {
+  const v    = VALUES.find(x => x.id === valId);
+  const behs = BEHAVIORS[valId]['org'];
+  const lv   = LEVELS.find(x => x.id === 'org');
+
+  const btn = document.getElementById(`vsp-btn-${valId}`);
+  if (btn) { btn.textContent = 'Submitting…'; btn.disabled = true; btn.classList.add('submitting'); }
+
+  const rankList = behs.map((b, i) => ({
+    index:  i + 1,
+    label:  b.punchy || b.text.substring(0, 80),
+    rating: rankings[valId]['org'][i]
+  }));
+
+  const payload = {
+    name:      currentUser,
+    level:     lv.name,
+    value:     v.name,
+    timestamp: new Date().toISOString(),
+    rankings:  rankList,
+    comment:   ''
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+
+  // Lock and save; clear any active edit mode
+  submittedValues[`${valId}_org`] = true;
+  delete editingValues[`${valId}_org`];
+  saveToStorage();
+
+  // Re-render this screen to show locked state cleanly
+  renderScreen3(valId, 'org');
+  renderScreen2('org');
+  renderScreen1();
+}
+
+/* ════════════════════════════════════════════════════════════
+   EDIT MODE (org values)
+   ════════════════════════════════════════════════════════════ */
+function editOrgValue(valId) {
+  editingValues[`${valId}_org`] = true;
+  // Re-render screen 3 with edit mode active (unlocks buttons, updates banner + panel)
+  renderScreen3(valId, 'org');
+}
+
+async function saveEditedValue(valId) {
+  const btn = document.getElementById(`vsp-resave-${valId}`);
+  if (btn) { btn.textContent = 'Saving edits…'; btn.disabled = true; }
+
+  const v    = VALUES.find(x => x.id === valId);
+  const behs = BEHAVIORS[valId]['org'];
+  const lv   = LEVELS.find(x => x.id === 'org');
+
+  const rankList = behs.map((b, i) => ({
+    index:  i + 1,
+    label:  b.punchy || b.text.substring(0, 80),
+    rating: rankings[valId]['org'][i]
+  }));
+
+  const payload = {
+    name:      currentUser,
+    level:     lv.name,
+    value:     v.name,
+    timestamp: new Date().toISOString(),
+    rankings:  rankList,
+    comment:   '',
+    resave:    true   // marks this as an edited re-submission
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+
+  saveToStorage();
+
+  // Exit edit mode and re-lock
+  delete editingValues[`${valId}_org`];
+  renderScreen3(valId, 'org');
+}
+
+/* ════════════════════════════════════════════════════════════
+   SELF / TEAMS SUBMIT (floating bar)
+   ════════════════════════════════════════════════════════════ */
+function updateSubmitBar() {
+  if (!currentLevel) return;
+
+  const lv         = LEVELS.find(x => x.id === currentLevel);
+  const savedCount = savedViaNext[currentLevel].size;
+  const allSaved   = savedCount >= VALUES.length;
+  const isOrg      = currentLevel === 'org';
+
+  const sbProgress = document.getElementById('sbProgress');
+  const sbSub      = document.getElementById('sbSub');
+  const sbBtn      = document.getElementById('sbBtn');
+  const sbResult   = document.getElementById('sbResult');
+  const sbProgFill = document.getElementById('sbProgFill');
+
+  const pct = Math.round((savedCount / VALUES.length) * 100);
+  sbProgFill.style.width = pct + '%';
+  sbResult.classList.remove('visible');
+
+  const lvSubmitted  = isLevelSubmitted(currentLevel);
+  const submitLabel  = isOrg
+    ? 'Leading Organizations Rankings'
+    : currentLevel === 'teams' ? 'Leading Teams Feedback'
+    : 'Leading Self Feedback';
+
+  if (lvSubmitted) {
+    sbBtn.style.display    = 'block';
+    sbBtn.textContent      = `Re-submit ${submitLabel} →`;
+    sbBtn.disabled         = false;
+    sbProgress.textContent = `✓ ${submitLabel} submitted`;
+    sbSub.textContent      = 'You can re-submit with any updated responses.';
+  } else if (allSaved) {
+    sbBtn.style.display    = 'block';
+    sbBtn.textContent      = `Submit ${submitLabel} →`;
+    sbBtn.disabled         = false;
+    sbProgress.textContent = 'All 5 values saved — ready to submit';
+    sbSub.textContent      = 'Submit to send your final responses';
+  } else {
+    sbBtn.style.display    = 'none';
+    sbProgress.textContent = `${savedCount} of 5 values saved to Sheets`;
+    sbSub.textContent      = 'Save & Next through all 5 values — Submit will appear when done';
+  }
+}
+
+async function submitLevelDirect() {
+  if (!currentLevel) return;
+  const lv    = LEVELS.find(x => x.id === currentLevel);
+  const isOrg = currentLevel === 'org';
+
+  const btn = document.getElementById('sbBtn');
+  btn.textContent = 'Submitting…';
+  btn.disabled    = true;
+
+  const sends = VALUES.map(v => {
+    const behs = BEHAVIORS[v.id][currentLevel];
+
+    // For org: include rankings; for self/teams: rankings array is empty
+    const rankList = isOrg
+      ? behs.map((b, i) => ({
+          index:  i + 1,
+          label:  b.punchy || b.text.substring(0, 80),
+          rating: rankings[v.id]['org'][i]
+        }))
+      : [];
+
+    const payload = {
+      name:      currentUser,
+      level:     lv.name,
+      value:     v.name,
+      timestamp: new Date().toISOString(),
+      rankings:  rankList,
+      comment:   (comments[v.id] && comments[v.id][currentLevel])
+                   ? comments[v.id][currentLevel].trim() : ''
+    };
+    return fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  });
+
+  try { await Promise.all(sends); } catch(e) {}
+
+  submittedLevels[currentLevel] = true;
+  saveToStorage();
+
+  const submitLabel = isOrg
+    ? 'Leading Organizations Rankings'
+    : currentLevel === 'teams' ? 'Leading Teams Feedback'
+    : 'Leading Self Feedback';
+
+  const sbResult = document.getElementById('sbResult');
+  sbResult.innerHTML = '✅ Submitted successfully';
+  sbResult.classList.add('visible');
+
+  btn.textContent = `Re-submit ${submitLabel} →`;
+  btn.disabled    = false;
+
+  renderScreen1();
 }
 
 /* ════════════════════════════════════════════════════════════
    NAV BAR
    ════════════════════════════════════════════════════════════ */
 function renderNav() {
+  // Update header user label
+  const hdrUser = document.getElementById('hdrUser');
+  if (hdrUser && currentUser) hdrUser.innerHTML = `Logged in as <span>${currentUser}</span>`;
+
   const bar = document.getElementById('navBar');
   bar.innerHTML = '';
   if (!currentLevel) return;
-  const lv = LEVELS.find(x => x.id === currentLevel);
+  const lv  = LEVELS.find(x => x.id === currentLevel);
   const back = document.createElement('button');
   back.className = 'back-btn';
   back.innerHTML = '← Back';
   back.onclick   = () => currentValue ? goToValueSelect(currentLevel) : goToLevelSelect();
   bar.appendChild(back);
   const bc = document.createElement('span');
-  bc.className = 'bc';
+  bc.className   = 'bc';
   if (!currentValue) {
     bc.innerHTML = `<span>All levels</span><span class="bc-sep">›</span><span class="bc-cur">${lv.name}</span>`;
   } else {
@@ -949,172 +1428,112 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Show submit bar on any behavior screen
-  const isS3 = id === 's3';
+  // Floating bar: show on any behavior screen (all levels)
   const bar = document.getElementById('submitBar');
+  const isS3 = (id === 's3') && !!currentLevel;
   bar.classList.toggle('visible', isS3);
   if (isS3) updateSubmitBar();
 }
 
-function goToLevelSelect()               { currentValue=null; currentLevel=null; renderScreen1(); renderNav(); showScreen('s1'); }
-function goToValueSelect(levelKey)       { currentLevel=levelKey; currentValue=null; renderScreen2(levelKey); renderNav(); showScreen('s2'); }
-function goToBehaviors(valId, levelKey)  { currentValue=valId; currentLevel=levelKey; renderScreen3(valId,levelKey); renderNav(); showScreen('s3'); }
-
-/* ════════════════════════════════════════════════════════════
-   MODAL / SUBMIT
-   ════════════════════════════════════════════════════════════ */
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('visible');
-  document.getElementById('inputName').focus();
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('visible');
-}
-
-async function submitRankings() {
-  const name = document.getElementById('inputName').value.trim();
-  const errEl = document.getElementById('modalError');
-
-  if (!name) {
-    errEl.style.display = 'block';
-    return;
-  }
-  errEl.style.display = 'none';
-
-  const btn = document.getElementById('modalSubmitBtn');
-  btn.textContent = 'Submitting…';
-  btn.disabled    = true;
-
-  const lv = LEVELS.find(x => x.id === currentLevel);
-
-  // Send one payload per value so each gets its own row in the sheet
-  const sends = VALUES.map(v => {
-    const behs = BEHAVIORS[v.id][currentLevel];
-    const rankList = isRankable(v.id, currentLevel)
-      ? behs.map((b, i) => ({
-          index:  i + 1,
-          label:  b.punchy || b.text.substring(0, 80),
-          rating: rankings[v.id][currentLevel][i]
-        }))
-      : [];
-
-    const payload = {
-      name,
-      level:     lv.name,
-      value:     v.name,
-      timestamp: new Date().toISOString(),
-      rankings:  rankList,
-      comment:   (comments[v.id] && comments[v.id][currentLevel]) ? comments[v.id][currentLevel].trim() : ''
-    };
-
-    return fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode:   'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body:    JSON.stringify(payload)
-    }).catch(() => {});
-  });
-
-  try { await Promise.all(sends); } catch(e) {}
-
-  document.getElementById('modalContent').innerHTML = `
-    <div class="success-box">
-      <div class="s-icon">✅</div>
-      <h3>Submitted</h3>
-      <p>Thank you for your time and input.</p>
-      <button class="s-close" onclick="closeModal()">Close</button>
-    </div>`;
-}
+function goToLevelSelect()              { currentValue=null; currentLevel=null; renderScreen1(); renderNav(); showScreen('s1'); }
+function goToValueSelect(levelKey)      { currentLevel=levelKey; currentValue=null; renderScreen2(levelKey); renderNav(); showScreen('s2'); }
+function goToBehaviors(valId, levelKey) { currentValue=valId; currentLevel=levelKey; renderScreen3(valId,levelKey); renderNav(); showScreen('s3'); }
 
 /* ════════════════════════════════════════════════════════════
    SAVE & NEXT
    ════════════════════════════════════════════════════════════ */
-function saveToStorage() {
-  try {
-    localStorage.setItem('hlf_rankings', JSON.stringify(rankings));
-    localStorage.setItem('hlf_comments', JSON.stringify(comments));
-  } catch(e) {}
-}
+// Tracks which values have been pushed to Sheets via Save & Next (per level)
+// Persisted to localStorage so a page refresh doesn't reset progress
+const savedViaNext = { self: new Set(), teams: new Set(), org: new Set() };
 
-function loadFromStorage() {
-  try {
-    const r = localStorage.getItem('hlf_rankings');
-    const c = localStorage.getItem('hlf_comments');
-    if (r) {
-      const saved = JSON.parse(r);
-      VALUES.forEach(v => {
-        ['self','teams','org'].forEach(lk => {
-          if (saved[v.id] && saved[v.id][lk]) {
-            saved[v.id][lk].forEach((val, i) => {
-              if (val !== null && rankings[v.id][lk][i] === null) rankings[v.id][lk][i] = val;
-            });
-          }
-        });
-      });
-    }
-    if (c) {
-      const saved = JSON.parse(c);
-      VALUES.forEach(v => {
-        if (saved[v.id]) {
-          if (saved[v.id].self)  comments[v.id].self  = saved[v.id].self;
-          if (saved[v.id].teams) comments[v.id].teams = saved[v.id].teams;
-        }
-      });
-    }
-  } catch(e) {}
-}
-
-// Track which values have been navigated away from via Save & Next (per level)
-const visitedViaNext = { self: new Set(), teams: new Set(), org: new Set() };
-
-function saveAndNext() {
-  saveToStorage();
-
-  // Flash the button
-  const btn = document.getElementById('sbSaveBtn');
-  btn.textContent = '✓ Saved';
-  btn.classList.add('saved');
-  setTimeout(() => {
-    btn.textContent = 'Save & Next →';
-    btn.classList.remove('saved');
-  }, 1200);
-
+async function saveAndNext() {
   if (!currentValue || !currentLevel) return;
 
-  // Mark current value as visited
-  visitedViaNext[currentLevel].add(currentValue);
+  const btn = document.getElementById('sbSaveBtn');
+  if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
 
-  const currentIdx = VALUES.findIndex(v => v.id === currentValue);
+  saveToStorage();
+
+  // Build and send the payload to Sheets
+  const v    = VALUES.find(x => x.id === currentValue);
+  const lv   = LEVELS.find(x => x.id === currentLevel);
+  const behs = BEHAVIORS[currentValue][currentLevel];
+
+  const rankList = isRankable(currentValue, currentLevel)
+    ? behs.map((b, i) => ({
+        index:  i + 1,
+        label:  b.punchy || b.text.substring(0, 80),
+        rating: rankings[currentValue][currentLevel][i]
+      }))
+    : [];
+
+  const payload = {
+    name:      currentUser,
+    level:     lv.name,
+    value:     v.name,
+    timestamp: new Date().toISOString(),
+    rankings:  rankList,
+    comment:   (comments[currentValue] && comments[currentValue][currentLevel])
+                 ? comments[currentValue][currentLevel].trim() : '',
+    partial:   true
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+
+  // Mark this value as saved for this level
+  savedViaNext[currentLevel].add(currentValue);
+  saveToStorage();
+
+  if (btn) {
+    btn.textContent = '✓ Saved';
+    btn.classList.add('saved');
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = 'Save & Next →'; btn.classList.remove('saved'); }, 1400);
+  }
+
+  updateSubmitBar();
+
+  // Navigate to the next value
+  const currentIdx = VALUES.findIndex(x => x.id === currentValue);
 
   if (currentLevel === 'org') {
-    // Find next value with incomplete ratings, wrapping around
+    // For org: go to next unsubmitted value with incomplete ratings
     for (let i = 1; i <= VALUES.length; i++) {
       const candidate = VALUES[(currentIdx + i) % VALUES.length];
-      if (rankings[candidate.id]['org'].some(r => r === null)) {
+      if (!isSubmitted(candidate.id, 'org') && rankings[candidate.id]['org'].some(r => r === null)) {
         goToBehaviors(candidate.id, currentLevel);
         return;
       }
     }
   } else {
-    // Self / Teams: find next unvisited value, wrapping around
+    // For self/teams: go to next value not yet saved via Save & Next
     for (let i = 1; i <= VALUES.length; i++) {
       const candidate = VALUES[(currentIdx + i) % VALUES.length];
-      if (!visitedViaNext[currentLevel].has(candidate.id)) {
+      if (!savedViaNext[currentLevel].has(candidate.id)) {
         goToBehaviors(candidate.id, currentLevel);
         return;
       }
     }
   }
 
-  // All values complete / visited — return to level overview
+  // All values done — return to level overview
   goToValueSelect(currentLevel);
 }
 
 /* ════════════════════════════════════════════════════════════
    INIT
    ════════════════════════════════════════════════════════════ */
-loadFromStorage();
+// If session is already active (page reload), restore header + render
+if (currentUser) {
+  const hdrUser = document.getElementById('hdrUser');
+  if (hdrUser) hdrUser.innerHTML = `Logged in as <span>${currentUser}</span>`;
+}
 renderScreen1();
 renderNav();
 </script>

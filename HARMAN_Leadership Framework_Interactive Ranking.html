@@ -621,17 +621,16 @@ const LEVELS = [
 const BEHAVIORS = {
   integrity: {
     self: [
-      { text:'Adhere to all laws, regulations, and company standards without exception.' },
-      { text:'Own mistakes and setbacks directly, communicate what happened and what will be done differently.' },
-      { text:'Treat others fairly and with equal respect regardless of role, seniority, or background.' },
-      { text:'Raise concerns or call out problems through appropriate channels, even when it may be unpopular or carry personal risk.' },
-      { text:'Follow through on commitments, even when it\'s difficult.' },
+      { punchy:'Own your mistakes without blame or defensiveness',          text:'Take responsibility for mistakes, name what happened clearly, and share what will change without blame or defensiveness.' },
+      { punchy:'Name the issue that needs to be named',                     text:'Speak up respectfully when something is wrong, risky, or inconsistent with standards, even when it may be uncomfortable.' },
+      { punchy:'Do what you said you would do',                             text:'Deliver on commitments and keep others informed when things change.' },
+      { punchy:'Choose what is right, not what is easy.',                   text:'Make honest, responsible choices even when inconvenient.' },
     ],
     teams: [
-      { text:'Recognize and reward contributions based on observable actions and performance, not favoritism.' },
-      { text:'Hold others accountable for commitments, even when it requires difficult conversations.' },
-      { text:'Speak up when something is wrong, and create conditions where the team feels safe to do the same.' },
-      { text:'Make decisions transparently and grounded in data and observable evidence, communicate reasoning openly, especially when decisions are difficult or unpopular.' },
+      { punchy:'Make the standard visible',   text:'Recognize and reward contributions based on observable actions and performance rather than favoritism.' },
+      { punchy:'Hold the line on commitments', text:'Hold others accountable for commitments, even when it requires difficult conversations.' },
+      { punchy:'Set the tone for truth',       text:'Raise concerns openly and respectfully, and make it safe for the team to do the same.' },
+      { punchy:'Let people see the logic',     text:'Explain the evidence, tradeoffs, and reasoning behind decisions clearly enough that the team understands how the call was made.' },
     ],
     org: [
       { punchy:'Walk the walk',                   text:'Maintains a say-do ratio of one: consistently matches words with actions, especially in high-stakes or commercially pressured situations, and is the first to acknowledge when this hasn\'t happened.', marketLeader:'Be the first to call it when words and actions don\'t match.',                                  horizon:'Both' },
@@ -642,18 +641,17 @@ const BEHAVIORS = {
   },
   innovation: {
     self: [
-      { text:'Test new approaches, share what was learned openly, and adjust, whether the outcome is a success or a failure.' },
-      { text:'Question how things are done when there might be a better way, including long-accepted practices.' },
-      { text:'Seek ways to improve what is delivered to the end user, not just how the work gets done internally.' },
-      { text:'Look outside HARMAN for new ideas and approaches, and bring relevant insights back to the work.' },
-      { text:'Use emerging technology as a working partner in day-to-day tasks and review its outputs critically before acting on them.' },
+      { punchy:'Experiment, learn and share',                                                              text:'Test new approaches, share what worked and what did not, and use the learning to improve the next attempt.' },
+      { punchy:'Challenge the default',                                                                    text:'Question existing ways of working when there may be a simpler, faster, or smarter approach.' },
+      { punchy:'Bring the outside perspective in',                                                         text:'Stay aware of what is happening beyond the immediate work and connect ideas, tools, and practices to better ways of doing the work.' },
+      { punchy:'Push what\'s possible with emerging technology and stay critical of what it tells you',    text:'Use emerging technology and practices to improve work while checking quality and owning the final judgment.' },
+      { punchy:'Continue making progress without perfect clarity.',                                        text:'Ask clarifying questions, raise risks or blockers early, and adjust as new information emerges.' },
     ],
     teams: [
-      { text:'Bring in emerging tools, technologies, and external practices to improve how the team works.' },
-      { text:'Encourage the team to adopt emerging technology and actively address the friction and fear that slows adoption.' },
-      { text:'Push the team to connect innovation to customer and business impact, not just internal improvement.' },
-      { text:'Share failures and learnings openly with the team, setting the example for others to do the same.' },
-      { text:'Reward reasonable risk-taking, including when it doesn\'t pan out.' },
+      { punchy:'Make adoption real',                    text:'Model the use of emerging technologies and practices, create time and space for the team to try them, and build confidence through practical use.' },
+      { punchy:'Tie innovation to the right impact',    text:'Guide the team to focus new ideas and improvements on customer value, business outcomes, and measurable impact.' },
+      { punchy:'Make learning louder than failure',     text:'Talk openly about what worked, what did not, and what was learned, so the team treats experimentation as a path to improvement.' },
+      { punchy:'Reward smart bets, not just wins',      text:'Recognize thoughtful experimentation and disciplined risk-taking, even when the outcome is not successful.' },
     ],
     org: [
       { punchy:'Get off the hamster wheel and make time to question how we work', text:'Breaks out of the "operational hamster wheel" by regularly taking a helicopter perspective: actively challenges the organization\'s assumptions and existing ways of working, while creating real conditions for others to do the same.', marketLeader:'Dismantle the conditions that keep the org on the hamster wheel.', horizon:'TH1' },
@@ -665,19 +663,17 @@ const BEHAVIORS = {
   },
   ownership: {
     self: [
-      { text:'Take full responsibility for work and outcomes, without deflection.' },
-      { text:'Take time to understand a problem before jumping to a solution, even under pressure.' },
-      { text:'Think about how decisions and actions affect others, not just the immediate task.' },
-      { text:'Act decisively within scope rather than waiting for direction, and escalate quickly when a decision falls outside it.' },
-      { text:'Make clear choices about where to focus when priorities compete, rather than treating everything as equally urgent.' },
+      { punchy:'Own the work',                          text:'Deliver work with care, quality, and follow-through, considering where it goes next and what others need from it.' },
+      { punchy:'Solve the right problem',               text:'Clarify the issue, desired outcome, and key constraints with the right people before moving too quickly to a fix.' },
+      { punchy:'Act within your lane, escalate beyond it.', text:'Take action and make decisions within role and raise issues quickly when authority, risk, or complexity exceeds scope.' },
+      { punchy:'Prioritize with purpose',               text:'Use goals, deadlines, and stakeholder input to sequence work, clarify tradeoffs, and focus effort where it matters most.' },
     ],
     teams: [
-      { text:'Set clear, enterprise-aligned priorities by making trade-offs and stopping work that does not create value, even when it affects the team.' },
-      { text:'Make decision rights explicit: who decides what, what the team can decide on its own, and when to escalate.' },
-      { text:'Ensure the team delivers work that creates clear value for the organization, addressing risks and blockers before they escalate.' },
-      { text:'Address performance gaps directly and early, rather than allowing them to persist.' },
-      { text:'Have the team\'s back when things go wrong: shield them from blame and help find the path forward.' },
-      { text:'Trust the team to own their work and resist the pull to step in unnecessarily.' },
+      { punchy:'Make the priorities clear',        text:'Set clear, enterprise-aligned priorities by making tradeoffs and stopping work that does not create value, even when it affects the team.' },
+      { punchy:'Clarify who owns what',            text:'Define who decides what, what the team can move forward on its own, and when to escalate.' },
+      { punchy:'Protect the team, fix the problem', text:'Shield the team from blame, focus on learning and resolution, and help find the path forward when things go wrong.' },
+      { punchy:'Correct course in real time',      text:'Address performance or behavior gaps early, directly, and fairly, and support the person in getting back on track.' },
+      { punchy:'Lead without taking over',         text:'Give the team room to execute, make decisions, and learn, while staying available for guidance and escalation.' },
     ],
     org: [
       { punchy:'Anticipate downstream impacts and act for the enterprise, not just your function', text:'Thinks beyond immediate outcomes before acting: considers how decisions affect other parts of the business, customer relationships, and Samsung, and does not allow divisional self-protection to override what the enterprise needs.', marketLeader:'Make it costly to optimize for your division at the expense of the enterprise, not just model the alternative.', horizon:'Both' },
@@ -691,17 +687,17 @@ const BEHAVIORS = {
   },
   teamwork: {
     self: [
-      { text:'Put team goals first and share credit for what is achieved together.' },
-      { text:'Share information, knowledge, and context openly and proactively, not just when asked.' },
-      { text:'Engage respectfully in day-to-day interactions, including in moments of disagreement.' },
-      { text:'Seek out perspectives from people with different backgrounds, roles, and viewpoints to improve the quality of decisions and work.' },
-      { text:'Align behind team decisions once made and reinforce them, even when initial views differ.' },
+      { punchy:'Help the team win',              text:'Deliver their part in a way that supports shared goals and stay flexible when the team needs help beyond their immediate task.' },
+      { punchy:'Share before people have to ask', text:'Proactively share context, updates, and knowledge for others to do the work well.' },
+      { punchy:'Disagree without damage',         text:'Raise different views directly and respectfully, while staying focused on the work.' },
+      { punchy:'Don\'t solve in isolation.',      text:'Recognize when work needs additional input or expertise, get guidance on who to involve, and use that input to improve quality.' },
+      { punchy:'Commit and move it forward',      text:'Share their view, align once a decision is made, and do their part to move the work forward.' },
     ],
     teams: [
-      { text:'Invite challenge and dissenting views on decisions and ideas, and respond without defensiveness, making it safe to do so again.' },
-      { text:'Actively seek diverse perspectives and use them to improve decisions and outcomes, not just to inform discussion.' },
-      { text:'Invest in developing team members, providing honest feedback and actively building capability, including identifying and growing successors.' },
-      { text:'Hold consistent checkpoints, reviews, and 1:1s to keep the team aligned, not just informed.' },
+      { punchy:'Use difference to make better calls',              text:'Invite challenge and diverse perspectives, respond without defensiveness, and use them to improve decisions and outcomes.' },
+      { punchy:'Grow people, not just output',                     text:'Coach team members, create development opportunities, and build capability so people are ready for larger contributions over time.' },
+      { punchy:'Know the team you actually have',                  text:'Use regular checkpoints, reviews, and 1:1s to clarify priorities, surface issues, and keep the team moving together.' },
+      { punchy:'Burnout is a leadership choice. Make a different one.', text:'Make realistic workload choices and clarify what the team will and will not take on.' },
     ],
     org: [
       { punchy:'Build bridges on purpose',              text:'Actively designs structured cross-divisional collaboration: doesn\'t wait for organic connection, but creates specific business topics and initiatives that require collaboration outside a single division and unites under a shared purpose with clear context.',  marketLeader:'Align across divisions as fast as you align within them.',                                 horizon:'TH1' },
@@ -714,17 +710,16 @@ const BEHAVIORS = {
   },
   customer: {
     self: [
-      { text:'Consider the impact on the customer, internal or external, in day-to-day decisions.' },
-      { text:'Seek to understand the underlying need behind a request, not just what was asked for.' },
-      { text:'Actively seek out customer feedback and insight rather than waiting for it to be provided.' },
-      { text:'Speak up when a decision or deliverable will not serve the customer well, even when it may slow things down.' },
-      { text:'Anticipate what the customer will need next, not just what was asked for today.' },
+      { punchy:'Keep the customer in mind',           text:'Consider how their work and daily choices affect internal or external customers.' },
+      { punchy:'Clarify what good looks like',        text:'Ask questions to understand the purpose, expectations, and intended use behind customer requests before moving too quickly into delivery.' },
+      { punchy:'Speak up when the work misses the mark.', text:'Raise concerns when a choice or deliverable may create customer confusion, rework, or unmet expectations.' },
+      { punchy:'Add value beyond the ask',            text:'Look for practical ways to make the work more useful, complete, or easier for the customer to act on.' },
     ],
     teams: [
-      { text:'Challenge requests when they do not address the customer\'s actual need, even when it creates friction.' },
-      { text:'Ensure the team understands how the work connects to the customer, internal or external.' },
-      { text:'Anticipate future customer needs by identifying emerging trends.' },
-      { text:'Maintain direct relationships with key customers to understand their evolving needs and bring those insights back to the team.' },
+      { punchy:'Be in the room with the customer',                          text:'Maintain direct relationships with key customers to understand their evolving needs and bring those insights back to the team.' },
+      { punchy:'Get to the real customer need',                             text:'Challenge requests that may not solve the customer\'s real need, and build the team\'s discipline to do the same.' },
+      { punchy:'Stay ahead of what customers will need and deliver on that', text:'Track trends, risks, and changing customer needs, and build the team\'s discipline to use those signals to shape better work.' },
+      { punchy:'Make the customer visible in every decision',               text:'Help the team understand who the customer is, what they need, and how the team\'s work creates or protects value.' },
     ],
     org: [
       { punchy:'Stay obsessed with the need behind the ask',      text:'Maintains a user-obsessed mindset at enterprise scale: seeks to understand underlying customer needs rather than stated requests.',                                                                                                        marketLeader:'Refuse to solve for the stated ask, solve for the underlying need.',                                  horizon:'Both' },
@@ -1075,7 +1070,8 @@ function renderScreen3(valId, levelKey) {
     } else {
       item.innerHTML = `
         <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
-        <div class="beh-text">${b.text}</div>`;
+        <div class="beh-punchy" style="color:${v.accent}">${b.punchy}</div>
+        <div class="beh-full">${b.text}</div>`;
     }
     list.appendChild(item);
   });

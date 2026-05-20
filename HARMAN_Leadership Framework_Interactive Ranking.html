@@ -215,7 +215,43 @@ body {
 .beh-full { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:12px; font-style:italic; }
 .beh-ml { margin-top:14px; padding-top:14px; border-top: 1px solid var(--border); }
 .beh-ml-lbl { font-size:10px; font-weight:700; letter-spacing:2px; color:var(--teal); text-transform:uppercase; margin-bottom:5px; }
-.beh-ml-text { font-size:14px; line-height:1.55; font-weight:600; color:var(--text); }
+/* Market Leader: THE hero phrase — large, bold, commanding */
+.beh-ml-text {
+  font-size:22px; line-height:1.3; font-weight:800;
+  color:var(--text); font-style:italic;
+  letter-spacing:-0.3px;
+}
+
+/* Three-part org behavior display */
+.beh-section-lbl { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+/* What We Heard: normal weight prose — bold runs are direct SLT quotes */
+.beh-wh-text { font-size:14px; font-weight:400; color:var(--muted); line-height:1.7; margin-bottom:0; }
+.beh-wh-text strong { font-weight:800; color:var(--text); }
+.beh-three-sep { border:none; border-top:1px solid var(--border); margin:16px 0 16px; }
+/* Draft Descriptor: small, italic context note */
+.beh-descriptor { font-size:13px; color:var(--muted); line-height:1.6; font-style:italic; }
+/* Market Leader section label — teal to signal it's the star */
+.beh-section-lbl-ml { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:6px; }
+.beh-ml-options { display:flex; flex-direction:column; gap:14px; }
+.beh-ml-option-tag { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); margin-bottom:4px; }
+
+/* Build animation for Integrity (demo value) */
+.beh-build-hidden {
+  overflow:hidden; max-height:0; opacity:0;
+  transition:max-height 0.5s ease, opacity 0.45s ease, margin 0.3s ease;
+  margin-top:0;
+}
+.beh-build-hidden.revealed { max-height:600px; opacity:1; margin-top:0; }
+.beh-build-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:12px; padding:6px 16px 6px 12px;
+  border:1px solid var(--border); border-radius:20px;
+  background:transparent; cursor:pointer; font-family:inherit;
+  font-size:10px; font-weight:800; letter-spacing:1px;
+  text-transform:uppercase; color:var(--muted); transition:all .2s;
+}
+.beh-build-btn:hover { border-color:var(--teal); color:var(--teal); }
+.beh-build-btn.all-done { color:#1B7A3E; border-color:#1B7A3E; cursor:default; pointer-events:none; }
 
 .beh-th { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1.5px; border-radius:10px; padding:2px 8px; margin-left:8px; vertical-align:middle; text-transform:uppercase; }
 .th1 { background:rgba(0,87,184,0.1); color:#0057B8; }
@@ -633,10 +669,10 @@ const BEHAVIORS = {
       { punchy:'Let people see the logic',     text:'Explain the evidence, tradeoffs, and reasoning behind decisions clearly enough that the team understands how the call was made.' },
     ],
     org: [
-      { punchy:'Walk the walk',                   text:'Maintains a say-do ratio of one: consistently matches words with actions, especially in high-stakes or commercially pressured situations, and is the first to acknowledge when this hasn\'t happened.', marketLeader:'Be the first to call it when words and actions don\'t match.',                                  horizon:'Both' },
-      { punchy:'Tell the truth, even when it\'s inconvenient', text:'Tells the truth even when it\'s inconvenient: speaks up on issues that conflict with standards or values regardless of hierarchy, peer pressure, or personal risk.',                   marketLeader:'Name the issue no one else will, at any level, in any room.',                                    horizon:'Both' },
-      { punchy:'Standards don\'t bend under pressure', text:'Does not allow financial, commercial, or workforce pressures to justify circumventing standards or requirements, and transparently manages the trade-offs when tension exists.',               marketLeader:'Make the trade-off visible and hold the standard anyway.',                                       horizon:'Both' },
-      { punchy:'Apply the newspaper test first, and create the expectation that others do too', text:'Makes decisions based on what is right for HARMAN and its stakeholders, not personal interests or political agendas, and applies the newspaper test as a check before acting.', marketLeader:'Make decisions you\'d be proud to defend publicly and speak up when others don\'t.', horizon:'Both' },
+      { punchy:'Walk the walk',                                                                    whatWeHeard:'Maintains a <strong>say-do ratio of one</strong>: consistently matches words with actions, especially in high-stakes or commercially pressured situations, and is the first to acknowledge when this hasn\'t happened',                                                         marketLeader:'Match your actions to your commitments, even under pressure.',                                                               descriptor:'Especially in high-stakes or commercially pressured situations.' },
+      { punchy:'Tell the truth, even when it\'s inconvenient',                                    whatWeHeard:'<strong>Tells the truth even when it\'s inconvenient</strong>: speaks up on issues that conflict with standards or values regardless of hierarchy, peer pressure, or personal risk',                                                                                          marketLeader:'Say what needs to be said, regardless of hierarchy, pressure, or personal risk.',                                             descriptor:'Practiced consistently sets the expectation that speaking up, regardless of hierarchy or risk becomes the norm, not the exception.' },
+      { punchy:'Standards don\'t bend under pressure',                                             whatWeHeard:'<strong>Does not allow financial, commercial, or workforce pressures to justify circumventing standards or requirements</strong>, and transparently manages the trade-offs when tension exists',                                                                               marketLeader:'Protect the standards even when business pressures push against them, and own the trade-offs required to meet them.',          descriptor:'Don\'t absorb commercial or workforce pressure quietly. Surface the conflict, own the cost, and protect the standard.' },
+      { punchy:'Apply the newspaper test first and create the expectation that others do too',    whatWeHeard:'Makes decisions based on what is right for HARMAN and its stakeholders, not personal interests or political agendas, and applies the <strong>newspaper test</strong> as a check before acting',                                                                                marketLeader:'Make HARMAN-first decisions you\'d be proud to defend publicly and speak up when others don\'t.',                             descriptor:'Let enterprise interest, not personal or political agendas, drive every decision, and then hold others to the same test.' },
     ],
   },
   innovation: {
@@ -654,11 +690,11 @@ const BEHAVIORS = {
       { punchy:'Reward smart bets, not just wins',      text:'Recognize thoughtful experimentation and disciplined risk-taking, even when the outcome is not successful.' },
     ],
     org: [
-      { punchy:'Get off the hamster wheel and make time to question how we work', text:'Breaks out of the "operational hamster wheel" by regularly taking a helicopter perspective: actively challenges the organization\'s assumptions and existing ways of working, while creating real conditions for others to do the same.', marketLeader:'Dismantle the conditions that keep the org on the hamster wheel.', horizon:'TH1' },
-      { punchy:'Fail fast, move faster',                 text:'Recognizes that speed is winning: starts experiments fast and stops what isn\'t working equally fast; makes the call to discontinue even when effort has been invested.',                                                             marketLeader:'Turn every failure into a competitive edge.',                                                 horizon:'TH1' },
-      { punchy:'Grab good ideas from anywhere, shamelessly', text:'Looks outside HARMAN for innovation: keeps a pulse on emerging ideas, technologies, and approaches from external parties and detects and adapts them into HARMAN, rather than assuming internal creation is the only path.',     marketLeader:'Turn external intelligence into internal advantage systemically, not through individuals.',   horizon:'Both' },
-      { punchy:'Celebrate what you learned from the miss', text:'Creates real permission to fail: makes it safe for teams to test new ideas, share what did not work, and apply the learning quickly without fear of blame.',                                                                      marketLeader:'Treat what didn\'t work as competitive intelligence and move faster because of it.',          horizon:'TH1' },
-      { punchy:'Build your team\'s tech fluency before you need it', text:'Leads the organization\'s readiness to operate in emerging technological environments: actively builds team fluency and confidence with emerging technology as a collaborator, not a threat.',                         marketLeader:'Position your team as tech collaborators before the market demands it.',                      horizon:'TH2' },
+      { punchy:'Get off the hamster wheel and make time to question how we work', whatWeHeard:'Breaks out of the <strong>\'operational hamster wheel\'</strong> by regularly taking <strong>a helicopter perspective</strong>: actively challenges the organization\'s assumptions and existing ways of working, while creating real conditions for others to do the same',                                                                                        marketLeader:'Steps back from day to day operational demands to maintain a strategic, big-picture perspective.',   descriptor:'Regularly challenge organizational assumptions and legacy ways of working, and actively create the conditions for others to do the same.' },
+      { punchy:'Fail fast, move faster',                                          whatWeHeard:'Recognizes that <strong>speed is winning</strong>: starts experiments fast and stops what isn\'t working equally fast; makes the call to discontinue even when effort has been invested',                                                                                                                                                                        marketLeader:'Turn every failure into a competitive edge.',                                                        descriptor:'Set clear success criteria before each experiment, cut quickly when they aren\'t met, and immediately apply what was learned to the next move.' },
+      { punchy:'Grab good ideas from anywhere, shamelessly',                      whatWeHeard:'<strong>Looks outside HARMAN for innovation</strong>: keeps a pulse on emerging ideas, technologies, and approaches from external parties and <strong>detects and adapts</strong> them into HARMAN, rather than assuming internal creation is the only path',                                                                                                    marketLeader:'Turn external intelligence into internal advantage systemically.',                                   descriptor:'Build processes that bring external ideas into HARMAN at scale, rather than relying on well-connected contacts.' },
+      { punchy:'Celebrate what you learned from the miss',                        whatWeHeard:'Creates real permission to fail: makes it safe for teams to test new ideas, share what did not work, and apply the learning quickly without fear of blame',                                                                                                                                                                                                    marketLeader:'Normalize fast learning from failure, and use it to outpace the market.',                           descriptor:'Make it structurally safe to share what failed, so the organization learns and adapts faster than competitors.' },
+      { punchy:'Build your team\'s tech fluency before you need it',              whatWeHeard:'<strong>Leads the organization\'s readiness to operate in emerging technological environments</strong>: actively builds team fluency and confidence with emerging technology as a collaborator, not a threat',                                                                                                                                                   marketLeader:'Position your team as tech innovators before the market demands it.',                               descriptor:'Actively build your team\'s fluency and confidence with emerging technology now, before external pressure makes it urgent.' },
     ],
   },
   ownership: {
@@ -676,13 +712,13 @@ const BEHAVIORS = {
       { punchy:'Lead without taking over',         text:'Give the team room to execute, make decisions, and learn, while staying available for guidance and escalation.' },
     ],
     org: [
-      { punchy:'Anticipate downstream impacts and act for the enterprise, not just your function', text:'Thinks beyond immediate outcomes before acting: considers how decisions affect other parts of the business, customer relationships, and Samsung, and does not allow divisional self-protection to override what the enterprise needs.', marketLeader:'Make it costly to optimize for your division at the expense of the enterprise, not just model the alternative.', horizon:'Both' },
-      { punchy:'Own it or assign it',                          text:'Creates clarity on who owns what across the senior leadership team: ensures enterprise priorities have clear owners, decision rights, and handoffs so work moves with speed.',                                                       marketLeader:'Kill ownership ambiguity before it kills speed.',                                             horizon:'TH1'  },
-      { punchy:'Publicly say "that was my decision"',          text:'Takes public accountability when outcomes fall short: does not deflect, minimize, or allow ambiguity about who owned a call.',                                                                                                      marketLeader:'Own the miss loudly enough to make accountability the cultural norm, not the exception.',    horizon:'Both' },
-      { punchy:'Leave your ego at the door',                   text:'Leads without ego and with humility: recognizes where they lack expertise, asks for help when needed, and brings in the right people to solve the problem in the best interest of HARMAN.',                                         marketLeader:'Regularly ask for better expertise than your own.',                                           horizon:'Both' },
-      { punchy:'Exceed all targets set',                       text:'Brings self-directed drive: goes beyond managing to targets to do what the company needs to succeed; consistently looks to overperform and go the extra mile.',                                                                     marketLeader:'Set the bar higher than anyone asked, then clear it.',                                      horizon:'Both' },
-      { punchy:'Certainty doesn\'t exist. Decide with transparency and course-correct openly.', text:'Demonstrates pragmatism, not dogmatism: makes decisions and adapts them as information emerges; defines winning clearly for the team and holds it without rigidity.',                             marketLeader:'Make your reasoning so visible the team doesn\'t need you in the room, then protect their right to decide when it gets hard.', horizon:'Both' },
-      { punchy:'Make decisions that hold up at board level',   text:'Operates with awareness of HARMAN\'s position within the Samsung ecosystem: understands what creates long-term value from the board\'s perspective, and prepares themselves and others to operate at a board-facing level.',       marketLeader:'Operate as if the board is always in the room and prepare others to do the same.',           horizon:'TH2'  },
+      { punchy:'Anticipate downstream impacts and act for the enterprise, not just your function', whatWeHeard:'Thinks beyond immediate outcomes before acting: considers how decisions affect other parts of the business, customer relationships, and Samsung, and <strong>does not allow divisional self-protection to override what the enterprise needs</strong>',    marketLeader:['Restructure incentives and accountabilities so enterprise-first behavior isn\'t the heroic choice, it\'s the default.', 'Operate with a One HARMAN mindset — lead for the enterprise, not just your part of it.'],   descriptor:'Build enterprise outcomes into how leaders are evaluated and rewarded, and call out when divisional performance comes at the enterprise\'s expense.' },
+      { punchy:'Own it or assign it',                                                              whatWeHeard:'<strong>Creates clarity on who owns what</strong> across the senior leadership team: ensure enterprise priorities have clear owners, decision rights, and handoffs so <strong>work moves with speed</strong>',                                           marketLeader:'Drive speed through clear ownership.',                                                                                                                                                                                     descriptor:'Proactively identify and resolve gaps in decision rights and handoffs before they stall enterprise priorities.' },
+      { punchy:'Publicly say \'that was my decision\'',                                            whatWeHeard:'Takes public accountability when outcomes fall short: \'<strong>I stand up and say, this was my decision</strong>.\' Does not deflect, minimize, or allow ambiguity about who owned a call',                                                         marketLeader:'Own outcomes loudly and transparently, especially when they go wrong, so accountability becomes the norm.',                                                                                                                descriptor:'Be the first to say "that was my decision" without deflecting or minimizing, so others understand accountability is expected, not optional.' },
+      { punchy:'Leave your ego at the door',                                                       whatWeHeard:'<strong>Leads without ego and with humility</strong>: recognizes where they lack expertise, <strong>asks for help</strong> when needed, and brings in the right people to solve the problem in the best interest of HARMAN',                           marketLeader:'Know what you don\'t know — regularly ask for better expertise than your own.',                                                                                                                                             descriptor:'Actively identify where your expertise falls short and bring in stronger capability without hesitation, always in service of HARMAN\'s best outcome.' },
+      { punchy:'Exceed all targets set',                                                            whatWeHeard:'Brings self-directed drive: <strong>goes beyond managing to targets</strong> to do what the company needs to succeed; consistently looks to overperform and go the extra mile',                                                                       marketLeader:'Consistently go above and beyond targets — raise the bar, then clear it.',                                                                                                                                                 descriptor:'Don\'t manage to targets. Identify what the business actually needs and drive beyond it, without being asked.' },
+      { punchy:'Certainty doesn\'t exist. Decide with transparency and course-correct openly.',    whatWeHeard:'Demonstrates <strong>pragmatism, not dogmatism</strong>: makes decisions and adapts them as information emerges; defines winning clearly for the team and holds it without rigidity',                                                                 marketLeader:'Make your reasoning so visible the team doesn\'t need you in the room, then protect their right to decide when it gets hard.',                                                                                             descriptor:'Share your thinking openly enough that the team can make decisions without you, then back them when pressure mounts.' },
+      { punchy:'Make decisions that hold up at board level',                                        whatWeHeard:'Operates with awareness of HARMAN\'s position within the <strong>Samsung ecosystem</strong>: understands what creates long-term value from the board\'s perspective, and prepares themselves and others to operate at a board-facing level',           marketLeader:'Operate as if the board is always in the room and prepare others to do the same.',                                                                                                                                          descriptor:'Apply board-level judgment to every decision and actively develop that same standard in others.' },
     ],
   },
   teamwork: {
@@ -700,12 +736,12 @@ const BEHAVIORS = {
       { punchy:'Burnout is a leadership choice. Make a different one.', text:'Make realistic workload choices and clarify what the team will and will not take on.' },
     ],
     org: [
-      { punchy:'Build bridges on purpose',              text:'Actively designs structured cross-divisional collaboration: doesn\'t wait for organic connection, but creates specific business topics and initiatives that require collaboration outside a single division and unites under a shared purpose with clear context.',  marketLeader:'Align across divisions as fast as you align within them.',                                 horizon:'TH1' },
-      { punchy:'Make the enterprise "why" undeniable',  text:'Articulates the enterprise end-goal clearly enough that every leader can connect their work to it.',                                                                                                                                                          marketLeader:'Connect every decision to the mission, out loud.',                                         horizon:'TH1' },
-      { punchy:'Compete outside, not inside',           text:'Operates with the clear mindset that competition is outside, not inside HARMAN: respects other teams\' goals and KPIs as legitimate, even when they create friction with their own, ensures that resource, talent, and information-sharing decisions reflect enterprise-first logic, and visibly models this by sharing rather than hoarding.', marketLeader:'Actively share resources and talent across the enterprise based on need, not titles.', horizon:'TH1' },
-      { punchy:'Agree once, cascade faithfully',        text:'Aligns with peers on enterprise priorities and cascades that alignment with full fidelity, ensuring what is agreed is enacted consistently.',                                                                                                                  marketLeader:'Agree once and champion cascade as if it were your own choice.',                           horizon:'TH1' },
-      { punchy:'Show up to serve, not to govern',       text:'Demonstrates a service approach: arrives to business units as a contributor to their success, not as a source of governance or overhead.',                                                                                                                    marketLeader:'Show up to accelerate the business and remove anything that feels like overhead.',         horizon:'TH1' },
-      { punchy:'Thank people for raising the hard thing', text:'Makes it safe to share information across boundaries: ensures people are not blamed, punished, or made to feel unsafe for raising issues, involving the right functions, or surfacing information the organization needs to act on.',                      marketLeader:'Make raising the hard thing the expected behavior, not the brave one.',                    horizon:'Both' },
+      { punchy:'Build bridges on purpose',                    whatWeHeard:'<strong>Actively cross-divisional collaboration</strong>: doesn\'t wait for organic connection, but creates specific business topics and initiatives that require collaboration outside a single division and unites under a <strong>shared purpose with clear context</strong>',                                                  marketLeader:'Actively create opportunities for cross-divisional collaboration.',            descriptor:'Deliberately create initiatives and opportunities that require cross-divisional collaboration, rather than waiting for it to happen organically.' },
+      { punchy:'Make the enterprise \'why\' undeniable',      whatWeHeard:'Articulates the enterprise end-goal clearly enough that every leader can connect their work to it',                                                                                                                                                                                                                             marketLeader:'Make the enterprise goal so clear every employee knows how they contribute.',  descriptor:'Make the link between every decision and the enterprise mission explicit every time.' },
+      { punchy:'Compete outside, not inside',                 whatWeHeard:'Operates with the clear mindset that <strong>competition is outside, not inside HARMAN</strong>: respects other teams\' goals and KPIs as legitimate, even when they create friction with their own, ensures that resource, talent, and information-sharing decisions reflect enterprise-first logic, and visibly models this by sharing rather than hoarding', marketLeader:'Compete externally, collaborate internally.',                                   descriptor:'Move talent, information, and resources to where the enterprise needs them most, even when it costs your division. HARMAN wins or loses together.' },
+      { punchy:'Agree once, cascade faithfully',              whatWeHeard:'Aligns with peers on enterprise priorities <strong>and cascades that alignment with full fidelity</strong>, ensuring what is agreed is enacted consistently',                                                                                                                                                                    marketLeader:'Agree once and champion cascade as if it were your own choice.',              descriptor:'Support agreed upon decisions fully and visibly, regardless of whether you pushed back in the room or whether it was your idea.' },
+      { punchy:'Show up to serve, not to govern',             whatWeHeard:'<strong>Demonstrates a service approach</strong>: arrives to business units as a contributor to their success, not as a source of governance or overhead',                                                                                                                                                                      marketLeader:'Show up to accelerate the business and remove anything that feels like overhead.', descriptor:'Arrive at every team interaction asking how to contribute to their success, not how to enforce compliance or add process.' },
+      { punchy:'Thank people for raising the hard thing',     whatWeHeard:'Makes it <strong>safe to share information across boundaries</strong>: ensures people are not blamed, punished, or made to feel unsafe for raising issues, involving the right functions, or surfacing information the organization needs to act on',                                                                           marketLeader:'Make it safe to surface risks, involve the right teams, and share critical information.', descriptor:'Visibly protect the people who surface risks, pull in the right people, and share critical information across teams, so it becomes expected, not exceptional.' },
     ],
   },
   customer: {
@@ -722,13 +758,13 @@ const BEHAVIORS = {
       { punchy:'Make the customer visible in every decision',               text:'Help the team understand who the customer is, what they need, and how the team\'s work creates or protects value.' },
     ],
     org: [
-      { punchy:'Stay obsessed with the need behind the ask',      text:'Maintains a user-obsessed mindset at enterprise scale: seeks to understand underlying customer needs rather than stated requests.',                                                                                                        marketLeader:'Refuse to solve for the stated ask, solve for the underlying need.',                                  horizon:'Both' },
-      { punchy:'Go where the work happens',                       text:'Goes to the last mile: regularly engages at the frontline (with customers, end users, engineers, suppliers, and channel partners) rather than relying solely on filtered reports or intermediary intelligence.',                          marketLeader:'Make frontline intelligence a structural input to strategy.',                                          horizon:'Both' },
-      { punchy:'Show every function their line to the customer',  text:'Ensures every function understands how its work connects to end customers; actively creates opportunities to have direct contacts with partners and with customers.',                                                                         marketLeader:'Make customer outcomes the organizing principle for every function, not a connection to explain.',     horizon:'TH1'  },
-      { punchy:'Name the market shift before it\'s confirmed',    text:'Translates customer and market intelligence into clear strategic direction and priorities for the organization, ensuring decisions are anchored in customer outcomes, not internal metrics or divisional preferences.',                     marketLeader:'Move on weak signals before competitors confirm them.',                                                horizon:'TH2'  },
-      { punchy:'Move the org on signals, not certainty',          text:'Reads geopolitical, regulatory, and market forces as forward-looking signals about where customer needs and organizational risks are heading, and proactively prepares the organization to navigate them before they become urgent pressures.', marketLeader:'Position the org ahead of disruptions others are still monitoring.',                              horizon:'TH2'  },
-      { punchy:'Predict where your customer is going, then get there first', text:'Shapes customer and market strategy with a long-term horizon in mind, anticipating how HARMAN\'s customers, industries, and competitive landscape will be reshaped by emerging technology.',                                 marketLeader:'Shape the market your customer will operate in, not just respond to it.',                             horizon:'TH2'  },
-      { punchy:'Build team discipline to tell the customer what\'s right, not what\'s comfortable', text:'Knows when to say no to the customer: empowers account teams with the facts, context, and leadership backing to make clear customer commitments, push back when needed, and avoid escalation paths that undermine trust or discipline.', marketLeader:'Hold the line on clear customer commitments, even a no, and don\'t override your team\'s judgment when pressure escalates.', horizon:'Both' },
+      { punchy:'Stay obsessed with the need behind the ask',                                         whatWeHeard:'Maintains a <strong>user-obsessed</strong> mindset at enterprise scale: seeks to understand underlying customer needs rather than stated requests',                                                                                                                                                                                                                  marketLeader:'Solve the underlying customer need, not just the stated ask.',                                                descriptor:'Ask the customer why they need what they\'re asking for, and keep probing until the real problem behind the request is clear.' },
+      { punchy:'Go where the work happens',                                                          whatWeHeard:'<strong>Goes to the last mile</strong>: regularly engages at the frontline (with customers, end users, engineers, suppliers, and channel partners) rather than relying solely on filtered reports or intermediary intelligence',                                                                                                                                     marketLeader:'Regularly engage the frontline to shape strategy with firsthand insight.',                                    descriptor:'Create regular touchpoints with customers, end users, engineers, and factory floor partners so firsthand insight shapes strategy, not just filtered reports.' },
+      { punchy:'Show every function their line to the customer',                                     whatWeHeard:'Ensures every function understands how its work connects to end customers; actively <strong>creates opportunities to have direct contacts with partners and with customers</strong>',                                                                                                                                                                              marketLeader:'Make customer outcomes the organizing principle for every function, with direct connection to customer impact.', descriptor:'Actively create direct customer exposure for every function, so the connection to customer outcomes is experienced, not explained.' },
+      { punchy:'Name the market shift before it\'s confirmed',                                       whatWeHeard:'Translates customer and market intelligence into clear strategic direction and priorities for the organization, ensuring decisions are anchored in customer outcomes, not internal metrics or divisional preferences',                                                                                                                                              marketLeader:'Lean into early insights before competitors confirm them.',                                                    descriptor:'Translate early customer and market signals into strategic direction before the data is conclusive and competitors have caught up.' },
+      { punchy:'Move the org on signals, not certainty',                                             whatWeHeard:'Reads geopolitical, regulatory, and market forces as forward-looking signals about where customer needs and organisational risks are heading, and proactively prepares the organisation to navigate them before they become urgent pressures',                                                                                                                     marketLeader:'Position the org ahead of disruptions others are still monitoring.',                                          descriptor:'Treat geopolitical, regulatory, and market shifts as early warnings and move the organization before they become urgent pressures.' },
+      { punchy:'Predict where your customer is going, then get there first',                         whatWeHeard:'Shapes customer and market strategy with a long-term horizon in mind, anticipating how HARMAN\'s customers, industries, and competitive landscape will be reshaped by emerging technology',                                                                                                                                                                      marketLeader:'Continuously anticipate and adapt strategy based on how technology is reshaping the market and customer needs.', descriptor:'Build strategy around where emerging technology is reshaping your customer\'s industry, not where it is today.' },
+      { punchy:'Build team discipline to tell the customer what\'s right, not what\'s comfortable', whatWeHeard:'<strong>Knows when to say no to the customer:</strong> empowers account teams with the facts, context, and leadership backing to make clear customer commitments, push back when needed, and avoid escalation paths that undermine trust or discipline',                                                                                                        marketLeader:'Empower your team\'s judgment, especially under pressure.',                                                    descriptor:'Equip your team with the facts and authority to say no when needed, and back them when escalation pressure mounts.' },
     ],
   },
 };
@@ -1056,17 +1092,70 @@ function renderScreen3(valId, levelKey) {
       </div>`;
 
     if (isOrg) {
-      const mlHtml = b.marketLeader
-        ? `<div class="beh-ml">
-             <div class="beh-ml-lbl">Market leader version</div>
-             <div class="beh-ml-text">${b.marketLeader}</div>
-           </div>` : '';
-      item.innerHTML = `
-        <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')} ${thBadge(b.horizon)}</div>
-        <div class="beh-punchy" style="color:${v.accent}">${b.punchy}</div>
-        <div class="beh-full">${b.text}</div>
-        ${mlHtml}
-        ${rankRow}`;
+      const isIntegrity = valId === 'integrity';
+      // Build Market Leader HTML (handle single string or array of two options)
+      let mlInnerHtml;
+      if (Array.isArray(b.marketLeader)) {
+        mlInnerHtml = `<div class="beh-ml-options">${b.marketLeader.map((opt,oi) =>
+          `<div>
+            <div class="beh-ml-option-tag">Option ${oi+1}</div>
+            <div class="beh-ml-text">${opt}</div>
+          </div>`).join('')}</div>`;
+      } else {
+        mlInnerHtml = `<div class="beh-ml-text">${b.marketLeader}</div>`;
+      }
+
+      if (isIntegrity) {
+        // Animated build — reveals in three steps
+        // Note: whatWeHeard contains HTML (<strong> tags) so we set innerHTML after
+        const whEl_i = document.createElement('div');
+        whEl_i.className = 'beh-wh-text';
+        whEl_i.innerHTML = b.whatWeHeard || b.punchy;
+        item.innerHTML = `
+          <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
+          <div>
+            <div class="beh-section-lbl">What We Heard</div>
+            <div class="beh-wh-text-slot"></div>
+          </div>
+          <div class="beh-build-hidden" id="build-ml-${valId}-${i}">
+            <hr class="beh-three-sep">
+            <div class="beh-section-lbl-ml">Market Leader</div>
+            ${mlInnerHtml}
+          </div>
+          <div class="beh-build-hidden" id="build-desc-${valId}-${i}">
+            <hr class="beh-three-sep">
+            <div class="beh-section-lbl">Draft Descriptor</div>
+            <div class="beh-descriptor">${b.descriptor || ''}</div>
+          </div>
+          <button class="beh-build-btn" id="build-btn-${valId}-${i}"
+            onclick="advanceBuild('${valId}','${levelKey}',${i})">▶ Reveal Market Leader</button>
+          ${rankRow}`;
+        item.querySelector('.beh-wh-text-slot').replaceWith(whEl_i);
+      } else {
+        // Normal three-part display — all sections visible
+        // whatWeHeard contains HTML so we inject after setting innerHTML
+        const whEl = document.createElement('div');
+        whEl.className = 'beh-wh-text';
+        whEl.innerHTML = b.whatWeHeard || b.punchy;
+        item.innerHTML = `
+          <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
+          <div>
+            <div class="beh-section-lbl">What We Heard</div>
+            <div class="beh-wh-text-slot"></div>
+          </div>
+          <hr class="beh-three-sep">
+          <div>
+            <div class="beh-section-lbl-ml">Market Leader</div>
+            ${mlInnerHtml}
+          </div>
+          <hr class="beh-three-sep">
+          <div>
+            <div class="beh-section-lbl">Draft Descriptor</div>
+            <div class="beh-descriptor">${b.descriptor || ''}</div>
+          </div>
+          ${rankRow}`;
+        item.querySelector('.beh-wh-text-slot').replaceWith(whEl);
+      }
     } else {
       item.innerHTML = `
         <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
@@ -1091,6 +1180,27 @@ function renderScreen3(valId, levelKey) {
       oninput="comments['${valId}']['${levelKey}']=this.value;saveToStorage()"
     >${savedComment}</textarea>`;
   list.appendChild(commentWrap);
+}
+
+/* ════════════════════════════════════════════════════════════
+   INTEGRITY BUILD ANIMATION
+   ════════════════════════════════════════════════════════════ */
+function advanceBuild(valId, levelKey, i) {
+  const mlEl   = document.getElementById(`build-ml-${valId}-${i}`);
+  const descEl = document.getElementById(`build-desc-${valId}-${i}`);
+  const btn    = document.getElementById(`build-btn-${valId}-${i}`);
+  if (!mlEl || !btn) return;
+
+  if (!mlEl.classList.contains('revealed')) {
+    // Step 1 → reveal Market Leader
+    mlEl.classList.add('revealed');
+    btn.textContent = '▶ Reveal Draft Descriptor';
+  } else if (!descEl.classList.contains('revealed')) {
+    // Step 2 → reveal Draft Descriptor
+    descEl.classList.add('revealed');
+    btn.textContent = '✓ All revealed';
+    btn.classList.add('all-done');
+  }
 }
 
 /* ════════════════════════════════════════════════════════════

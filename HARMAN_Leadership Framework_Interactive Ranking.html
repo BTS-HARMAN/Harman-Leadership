@@ -459,9 +459,9 @@ body {
     <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:32px;">Senior Leadership Team Review</div>
 
     <div style="text-align:left;margin-bottom:8px;">
-      <label style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);">Your Full Name</label>
+      <label style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);">Your Email</label>
     </div>
-    <input id="nameInput" type="text" placeholder="First and last name"
+    <input id="nameInput" type="email" placeholder="your@email.com"
       onkeydown="if(event.key==='Enter')document.getElementById('pwInput').focus()"
       style="
         width:100%; box-sizing:border-box;
@@ -515,7 +515,7 @@ body {
     retEl.style.display = 'none';
 
     if (!name) {
-      errEl.textContent = 'Please enter your name.';
+      errEl.textContent = 'Please enter your email.';
       errEl.style.display = 'block';
       document.getElementById('nameInput').focus();
       return;
@@ -712,7 +712,7 @@ const BEHAVIORS = {
       { punchy:'Lead without taking over',         text:'Give the team room to execute, make decisions, and learn, while staying available for guidance and escalation.' },
     ],
     org: [
-      { punchy:'Anticipate downstream impacts and act for the enterprise, not just your function', whatWeHeard:'Thinks beyond immediate outcomes before acting: considers how decisions affect other parts of the business, customer relationships, and Samsung, and <strong>does not allow divisional self-protection to override what the enterprise needs</strong>',    marketLeader:['Restructure incentives and accountabilities so enterprise-first behavior isn\'t the heroic choice, it\'s the default.', 'Operate with a One HARMAN mindset — lead for the enterprise, not just your part of it.'],   descriptor:'Build enterprise outcomes into how leaders are evaluated and rewarded, and call out when divisional performance comes at the enterprise\'s expense.' },
+      { punchy:'Anticipate downstream impacts and act for the enterprise, not just your function', whatWeHeard:'Thinks beyond immediate outcomes before acting: considers how decisions affect other parts of the business, customer relationships, and Samsung, and <strong>does not allow divisional self-protection to override what the enterprise needs</strong>',    marketLeader:'Restructure incentives and accountabilities so enterprise-first behavior isn\'t the heroic choice, it\'s the default.',   descriptor:'Build enterprise outcomes into how leaders are evaluated and rewarded, and call out when divisional performance comes at the enterprise\'s expense.' },
       { punchy:'Own it or assign it',                                                              whatWeHeard:'<strong>Creates clarity on who owns what</strong> across the senior leadership team: ensure enterprise priorities have clear owners, decision rights, and handoffs so <strong>work moves with speed</strong>',                                           marketLeader:'Drive speed through clear ownership.',                                                                                                                                                                                     descriptor:'Proactively identify and resolve gaps in decision rights and handoffs before they stall enterprise priorities.' },
       { punchy:'Publicly say \'that was my decision\'',                                            whatWeHeard:'Takes public accountability when outcomes fall short: \'<strong>I stand up and say, this was my decision</strong>.\' Does not deflect, minimize, or allow ambiguity about who owned a call',                                                         marketLeader:'Own outcomes loudly and transparently, especially when they go wrong, so accountability becomes the norm.',                                                                                                                descriptor:'Be the first to say "that was my decision" without deflecting or minimizing, so others understand accountability is expected, not optional.' },
       { punchy:'Leave your ego at the door',                                                       whatWeHeard:'<strong>Leads without ego and with humility</strong>: recognizes where they lack expertise, <strong>asks for help</strong> when needed, and brings in the right people to solve the problem in the best interest of HARMAN',                           marketLeader:'Know what you don\'t know — regularly ask for better expertise than your own.',                                                                                                                                             descriptor:'Actively identify where your expertise falls short and bring in stronger capability without hesitation, always in service of HARMAN\'s best outcome.' },
@@ -1119,16 +1119,10 @@ function renderScreen3(valId, levelKey) {
           </div>
           <div class="beh-build-hidden" id="build-ml-${valId}-${i}">
             <hr class="beh-three-sep">
-            <div class="beh-section-lbl-ml">Market Leader</div>
             ${mlInnerHtml}
           </div>
-          <div class="beh-build-hidden" id="build-desc-${valId}-${i}">
-            <hr class="beh-three-sep">
-            <div class="beh-section-lbl">Draft Descriptor</div>
-            <div class="beh-descriptor">${b.descriptor || ''}</div>
-          </div>
           <button class="beh-build-btn" id="build-btn-${valId}-${i}"
-            onclick="advanceBuild('${valId}','${levelKey}',${i})">▶ Reveal Market Leader</button>
+            onclick="advanceBuild('${valId}','${levelKey}',${i})">▶ Reveal Updated Behavior</button>
           ${rankRow}`;
         item.querySelector('.beh-wh-text-slot').replaceWith(whEl_i);
       } else {
@@ -1145,13 +1139,7 @@ function renderScreen3(valId, levelKey) {
           </div>
           <hr class="beh-three-sep">
           <div>
-            <div class="beh-section-lbl-ml">Market Leader</div>
             ${mlInnerHtml}
-          </div>
-          <hr class="beh-three-sep">
-          <div>
-            <div class="beh-section-lbl">Draft Descriptor</div>
-            <div class="beh-descriptor">${b.descriptor || ''}</div>
           </div>
           ${rankRow}`;
         item.querySelector('.beh-wh-text-slot').replaceWith(whEl);
@@ -1159,8 +1147,7 @@ function renderScreen3(valId, levelKey) {
     } else {
       item.innerHTML = `
         <div class="beh-n">Behavior ${String(i+1).padStart(2,'0')}</div>
-        <div class="beh-punchy" style="color:${v.accent}">${b.punchy}</div>
-        <div class="beh-full">${b.text}</div>`;
+        <div class="beh-punchy" style="color:${v.accent}">${b.punchy}</div>`;
     }
     list.appendChild(item);
   });
@@ -1192,13 +1179,9 @@ function advanceBuild(valId, levelKey, i) {
   if (!mlEl || !btn) return;
 
   if (!mlEl.classList.contains('revealed')) {
-    // Step 1 → reveal Market Leader
+    // Reveal Market Leader
     mlEl.classList.add('revealed');
-    btn.textContent = '▶ Reveal Draft Descriptor';
-  } else if (!descEl.classList.contains('revealed')) {
-    // Step 2 → reveal Draft Descriptor
-    descEl.classList.add('revealed');
-    btn.textContent = '✓ All revealed';
+    btn.textContent = '✓ Revealed';
     btn.classList.add('all-done');
   }
 }
@@ -1282,7 +1265,7 @@ async function saveValueProgress(valId) {
     value:     v.name,
     timestamp: new Date().toISOString(),
     rankings:  rankList,
-    comment:   '',
+    comment:   (comments[valId] && comments[valId]['org']) ? comments[valId]['org'].trim() : '',
     partial:   true   // marks this as a progress save, not a final submission
   };
 
@@ -1325,7 +1308,7 @@ async function submitOrgValue(valId) {
     value:     v.name,
     timestamp: new Date().toISOString(),
     rankings:  rankList,
-    comment:   ''
+    comment:   (comments[valId] && comments[valId]['org']) ? comments[valId]['org'].trim() : ''
   };
 
   try {
@@ -1376,7 +1359,7 @@ async function saveEditedValue(valId) {
     value:     v.name,
     timestamp: new Date().toISOString(),
     rankings:  rankList,
-    comment:   '',
+    comment:   (comments[valId] && comments[valId]['org']) ? comments[valId]['org'].trim() : '',
     resave:    true   // marks this as an edited re-submission
   };
 

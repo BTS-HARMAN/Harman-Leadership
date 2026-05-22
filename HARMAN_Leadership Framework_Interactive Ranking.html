@@ -573,7 +573,7 @@ body {
 <div class="screen active" id="s1">
   <div class="s1-eyebrow">Leadership Levels</div>
   <div class="s1-title">Unified Leadership Framework</div>
-  <div class="s1-sub">For <strong style="color:var(--teal)">Leading Organizations</strong>, review and rate each behavior using the 1–2–3 scale, then submit each value individually. For <strong style="color:var(--teal)">Leading Self</strong> and <strong style="color:var(--teal)">Leading Teams</strong>, review the behaviors and share written feedback in the comment box for each value.</div>
+  <div class="s1-sub">For <strong style="color:var(--teal)">Leading Business</strong>, review and rate each behavior using the 1–2–3 scale, then submit each value individually. For <strong style="color:var(--teal)">Leading Self</strong> and <strong style="color:var(--teal)">Leading Teams</strong>, review the behaviors and share written feedback in the comment box for each value.</div>
   <div class="val-grid" id="valGrid"></div>
   <div style="text-align:center; margin-top:32px;">
     <button onclick="if(confirm('This will clear all your saved answers. Are you sure?')){clearUserData();}" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:11px; cursor:pointer; font-family:inherit; text-decoration:underline;">Clear my saved answers</button>
@@ -651,7 +651,7 @@ const VALUES = [
 const LEVELS = [
   { id:'self',  name:'Leading Self',          num:'Level 01', desc:'The foundation behaviors every individual leader is expected to own.' },
   { id:'teams', name:'Leading Teams',         num:'Level 02', desc:'Behaviors for leaders who are responsible for the performance and development of others.' },
-  { id:'org',   name:'Leading Organizations', num:'Level 03', desc:'Senior leadership behaviors that span two horizons: what HARMAN needs to execute now, and what the next decade demands.' },
+  { id:'org',   name:'Leading Business', num:'Level 03', desc:'Senior leadership behaviors — what HARMAN needs to execute now and what the next decade demands.' },
 ];
 
 const BEHAVIORS = {
@@ -947,7 +947,7 @@ function valCSS(v) {
 function thBadge(h) {
   if (!h) return '';
   const cls   = h === 'TH1' ? 'th1' : h === 'TH2' ? 'th2' : 'thb';
-  const label = h === 'TH1' ? 'Now → 2030' : h === 'TH2' ? '2030 → 2040' : 'Both horizons';
+  const label = h === 'TH1' ? 'Now → 2030' : h === 'TH2' ? '2030 → 2040' : 'Both';
   return `<span class="beh-th ${cls}">${label}</span>`;
 }
 
@@ -1401,7 +1401,7 @@ function updateSubmitBar() {
 
   const lvSubmitted  = isLevelSubmitted(currentLevel);
   const submitLabel  = isOrg
-    ? 'Leading Organizations Rankings'
+    ? 'Leading Business Rankings'
     : currentLevel === 'teams' ? 'Leading Teams Feedback'
     : 'Leading Self Feedback';
 
@@ -1467,7 +1467,7 @@ async function submitLevelDirect() {
   saveToStorage();
 
   const submitLabel = isOrg
-    ? 'Leading Organizations Rankings'
+    ? 'Leading Business Rankings'
     : currentLevel === 'teams' ? 'Leading Teams Feedback'
     : 'Leading Self Feedback';
 
